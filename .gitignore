@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+*.log
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Misc
+*.local
+*.swp
+
+# Three.js/FBX/GLTF cache (if any)
+*.bin
+*.fbm
+
+# Live reload temp
+livereload.js
+
+# Public assets (keep only source files, ignore generated)
+public/*.tmp
+public/*.bak
+
+# Ignore coverage if using test

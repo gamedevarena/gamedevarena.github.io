@@ -1,0 +1,496 @@
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/server/livereload.js"></script>
+    <link rel="stylesheet" href="./src/css/design.css" />
+    <link rel="stylesheet" href="./src/css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+    <script src="./src/js/event-card.js" type="module"></script>
+    <script src="./src/js/founder-card.js" type="module"></script>
+    <script src="./src/js/mission-card.js" type="module"></script>
+    <link rel="icon" type="image/png" href="public/logo-silhouette.ico" />
+  </head>
+ 
+  <body class="flex flex-col items-center justify-center">
+    <header
+      class="sticky-header w-full mt-md rounded-none radius-xl p-md lg:w-10/12 xl:w-8/12"
+      role="banner"
+    >
+      <img
+        src="public/logo-silhouette.png"
+        alt="Game Dev Arena Logo"
+        id="logo"
+      />
+      <h1 id="site-title" class="visually-hidden">Game Dev Arena</h1>
+      <nav aria-label="Navigazione principale" class="flex align-items-center justify-center"> 
+        <ul>
+          <!-- <li>
+            <a href="#events" aria-label="Vai alla sezione Talks">Eventi</a>
+          </li> -->
+          <li>
+            <a href="#mission" aria-label="Vai alla sezione Su di noi"
+              >Mission</a
+            >
+          </li>
+          <li>
+            <a href="#contacts" aria-label="Vai alla sezione Contatti"
+              >Contatti</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="flex flex-row items-center justify-end">
+        <button
+          id="contattaci"
+          class="button button-secondary"
+          aria-label="Contattaci via email"
+          onclick="onContactButtonClick()"
+        >
+          <i
+            class="ph-fill ph-envelope mr-xs"
+            style="font-size: 1.2em; vertical-align: middle"
+            aria-hidden="true"
+          ></i>
+          Contattaci
+        </button>
+      </div>
+    </header>
+
+    <section
+      class="hero p-md text-white flex flex-col justify-center items-center h-10/12 lg:h-8/12"
+      style="position: relative; overflow: hidden"
+      aria-labelledby="site-title"
+    >
+      <div
+        class="container w-10/12 md:w-6/12 flex flex-col justify-center items-center"
+        style="position: relative; z-index: 1"
+      >
+        <h2 class="text-center">
+          Benvenuto in Game Dev Arena!
+        </h2>
+        <p class="text-center">
+          Unisciti a noi per scoprire, imparare e condividere tutto sullo
+          sviluppo di videogiochi. <span class="bg-accent"
+            >Eventi, talk e networking per appassionati e
+          professionisti.</span>
+        </p>
+        <a
+          href="#mission"
+          class="mt-md text-decoration-none"
+          aria-label="Scopri di più sulla community"
+        >
+          <button
+            class="button button-primary w-auto flex flex-row items-center justify-center"
+            aria-label="Scopri di più"
+          >
+            <i class="ph-fill ph-arrow-down mr-xs" aria-hidden="true"></i>
+            <span class="align-middle">Scopri di più</span>
+          </button>
+        </a>
+      </div>
+    </section>
+
+    <!-- <section
+      class="events-section p-md bg-primary m-md radius-lg shadow-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="prossimi-eventi"
+      id="events"
+    >
+      <h2 class="text-white mb-md" id="prossimi-eventi">Prossimi Eventi</h2>
+      <div class="w-full flex flex-row flex-wrap justify-start align-start">
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/milestone.png"
+          avatar="public/avatar-example.jpg"
+          speaker="Giulia Verdi"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Pixel Art: Dall’Idea al Gioco"
+        >
+          <span slot="title">Pixel Art: Dall’Idea al Gioco</span>
+          <span slot="description">
+            Scopri le tecniche base e avanzate della pixel art per videogiochi.
+            Workshop pratico con esempi di animazione e consigli su strumenti e
+            workflow.
+          </span>
+          <span slot="date">25 Maggio 2025</span>
+          <span slot="location">Torino, Italia</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/milestone.png"
+          avatar="public/avatar-example.jpg"
+          speaker="Andrea Neri"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Audio nei Videogiochi: Musica e Sound Design"
+        >
+          <span slot="title">Audio nei Videogiochi: Musica e Sound Design</span>
+          <span slot="description">
+            Un viaggio nel mondo dell’audio per videogiochi: come creare colonne
+            sonore efficaci e sound effects immersivi. Dimostrazioni live e
+            strumenti consigliati.
+          </span>
+          <span slot="date">28 Maggio 2025</span>
+          <span slot="location">Online</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/milestone.png"
+          avatar="public/avatar-example.jpg"
+          speaker="Sara Colombo"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Marketing per Indie Game Developer"
+        >
+          <span slot="title">Marketing per Indie Game Developer</span>
+          <span slot="description">
+            Strategie e strumenti per promuovere il tuo videogioco indie: social
+            media, community, press kit e crowdfunding. Consigli pratici da chi
+            ce l’ha fatta.
+          </span>
+          <span slot="date">2 Giugno 2025</span>
+          <span slot="location">Bologna, Italia</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/milestone.png"
+          avatar="public/avatar-example.jpg"
+          speaker="Bianca Bernie"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Come si sviluppa un videogioco?"
+        >
+          <span slot="title">Come si sviluppa un videogioco?</span>
+          <span slot="description">
+            Un talk introduttivo che esplora le fasi fondamentali dello sviluppo
+            di un videogioco: dall’idea iniziale, alla progettazione, fino alla
+            realizzazione tecnica e al lancio. Ideale per chi vuole capire il
+            processo creativo e tecnico dietro la creazione di un videogioco,
+            con esempi pratici e consigli utili per iniziare.
+          </span>
+          <span slot="date">10 Maggio 2025</span>
+          <span slot="location">Online</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/milestone.png"
+          avatar="public/avatar-example.jpg"
+          speaker="Marco Rossi"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Game Design: Creare Esperienze Coinvolgenti"
+        >
+          <span slot="title">Game Design: Creare Esperienze Coinvolgenti</span>
+          <span slot="description">
+            Un approfondimento sul game design, con focus su come progettare
+            meccaniche di gioco coinvolgenti e bilanciare l’esperienza del
+            giocatore. Attraverso casi studio e analisi di giochi famosi,
+            scoprirai le chiavi per creare esperienze ludiche memorabili.
+          </span>
+          <span slot="date">15 Maggio 2025</span>
+          <span slot="location">Milano, Italia</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/milestone.png"
+          avatar="public/avatar-example.jpg"
+          speaker="Luca Bianchi"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Unity vs Unreal: Quale Motore Scegliere?"
+        >
+          <span slot="title">Unity vs Unreal: Quale Motore Scegliere?</span>
+          <span slot="description">
+            Un confronto tra i due motori di gioco più popolari: Unity e Unreal
+            Engine. Analizzeremo le caratteristiche, i punti di forza e le
+            debolezze di entrambi, aiutandoti a scegliere il motore più adatto
+            alle tue esigenze di sviluppo.
+          </span>
+          <span slot="date">20 Maggio 2025</span>
+          <span slot="location">Roma, Italia</span>
+        </event-card>
+      </div>
+    </section>
+     -->
+    <section
+      class="mission-section p-md m-md radius-lg flex flex-col items-start w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="chi-siamo"
+      id="mission"
+    >
+      <h2 class="text-primary mb-md" id="chi-siamo">
+        Game Dev Arena - Chi Siamo
+      </h2>
+      <p class="mb-md">
+        Una nuova community dedicata agli sviluppatori e appassionati di
+        videogame del nordest italiano.<br />
+        L'iniziativa vuole creare connessioni, condividere conoscenze e far
+        crescere l'ecosistema locale del game development.
+      </p>
+      <h4 class="mb-xs">La Nostra Missione</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-users">
+          <span slot="title">Networking qualificato</span>
+          <span slot="description">Connessioni tra professionisti del settore per favorire collaborazioni e crescita.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-graduation-cap">
+          <span slot="title">Formazione continua</span>
+          <span slot="description">Talk e workshop specializzati per aggiornarsi sulle ultime novità del game development.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-handshake">
+          <span slot="title">Mentorship e supporto</span>
+          <span slot="description">Aiuto ai neofiti tramite mentorship e condivisione di esperienze tra membri della community.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-star">
+          <span slot="title">Valorizzazione del talento</span>
+          <span slot="description">Promozione delle eccellenze locali e delle competenze del territorio.</span>
+        </mission-card>
+      </div>
+      <h4 class="mb-xs mt-3xl">Attività Principali</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-white" icon="ph-fill ph-calendar">
+          <span slot="title">Eventi Mensili</span>
+          <span slot="description">8/9 incontri all'anno con talk da professionisti del settore.</span>
+          <div class="flex flex-col gap-xs ml-md mt-md">
+            <span class="text-muted">Location: <span class="bg-accent">311 Verona</span> - spazio innovativo per eventi tech e creativi.</span>
+            <span class="text-muted">Networking informale in pizzeria dopo gli eventi.</span>
+          </div>
+        </mission-card>
+        <mission-card bg="bg-white" icon="ph-fill ph-game-controller">
+          <span slot="title">Game Jam annuale</span>
+          <span slot="description">Competizione creativa aperta a sviluppatori di tutti i livelli.</span>
+        </mission-card>
+        <mission-card bg="bg-white" icon="ph-fill ph-wrench">
+          <span slot="title">Workshop pratici</span>
+          <span slot="description">Approfondimenti su tool, tecniche e trend di mercato con esperti del settore.</span>
+        </mission-card>
+        <mission-card bg="bg-white" icon="ph-fill ph-database">
+          <span slot="title">Database professionale</span>
+          <span slot="description">Mappatura di talenti e aziende del territorio per favorire opportunità di collaborazione.</span>
+        </mission-card>
+      </div>
+      <h4 class="mb-xs mt-3xl">Opportunità di Collaborazione</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-student">
+          <span slot="title">Università e istituti di formazione</span>
+          <span slot="description">Collaborazione con enti accademici per formazione e ricerca.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-building">
+          <span slot="title">Aziende gaming e tech</span>
+          <span slot="description">Partnership con aziende per progetti, eventi e opportunità di lavoro.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-map-pin">
+          <span slot="title">Enti locali</span>
+          <span slot="description">Promozione dell'innovazione e del territorio attraverso il supporto degli enti locali.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-100" icon="ph-fill ph-users-three">
+          <span slot="title">Altre iniziative</span>
+          <span slot="description">Collaborazione con altre community e progetti simili per ampliare l'impatto.</span>
+        </mission-card>
+      </div>
+      <h4 class="mb-xs mt-3xl">Contatti e Prossimi Passi</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-white" icon="ph-fill ph-lightbulb">
+          <span slot="title">Expertise & Mentorship</span>
+          <span slot="description">Condivisione di competenze e supporto ai membri della community.</span>
+        </mission-card>
+        <mission-card bg="bg-white" icon="ph-fill ph-hand-coins">
+          <span slot="title">Sponsorizzazioni</span>
+          <span slot="description">Partnership strategiche per sostenere la crescita della community.</span>
+        </mission-card>
+        <mission-card bg="bg-white" icon="ph-fill ph-microphone">
+          <span slot="title">Interventi qualificati</span>
+          <span slot="description">Cerchiamo speaker e professionisti per talk e workshop.</span>
+        </mission-card>
+      </div>
+      
+      <h4 class="mb-xs mt-3xl">Founders / Mentors / Advisors</h4>
+
+      <div class="w-full grid gap-md grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <founder-card
+          name="Eugenio Perinelli"
+          avatar="public/founders/eugenio.png"
+          role="Founder"
+          aria-label="Eugenio Perinelli - Founder"
+        >
+          <span slot="bio">
+            Da sempre appassionato di computergrafica 3D e videogiochi, Eugenio
+            ha iniziato fin da giovane a creare grafica, animazioni e
+            software.<br />
+            Ha trasformato la sua passione in carriera, lavorando in Italia e
+            all’estero nei settori del design, televisione, ricostruzione
+            archeologica, videogame e web.<br />
+            Oggi affianca all’attività professionale anche quella di docente,
+            <span class="bg-accent"
+              >condividendo esperienza e conoscenze con le nuove generazioni di
+              creativi.</span
+            >
+          </span>
+        </founder-card>
+        <founder-card
+          name="Nicola Castellani"
+          avatar="public/founders/nicola-avatar.png"
+          role="UI Specialist"
+          aria-label="Nicola Castellani - Founder"
+        >
+          <span slot="bio">
+            Sviluppatore e gamer, Nicola è specializzato nella creazione di
+            interfacce intuitive per il web e il gaming.<br />
+            La sua missione è
+            <span class="bg-accent"
+              >rendere le esperienze digitali coinvolgenti e accessibili a
+              tutti</span
+            >, unendo tecnologie moderne e design inclusivo per abbattere ogni
+            barriera tra persone e videogiochi.
+          </span>
+        </founder-card>
+      </div>
+    </section>
+
+    <section class="newsletter-section card my-4xl p-md m-md radius-lg flex flex-col items-start w-full lg:w-8/12 xl:w-6/12" aria-labelledby="newsletter-title">
+      <div id="mc_embed_shell" class="w-full">
+        <div id="mc_embed_signup" class="w-full flex flex-col items-center justify-center">
+          <form action="https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&amp;id=cd2ad9f361&amp;f_id=0086b1e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate flex w-full" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll" class="w-full flex flex-col items-center justify-center gap-sm">
+              <h5 class="mb-xs w-full">Iscriviti alla newsletter</h5>
+              <p class="text-muted w-full">Ricevi aggiornamenti su eventi, workshop e novità della community.</p>
+              <div class="mc-field-group mb-sm flex flex-col w-full">
+                <label for="mce-EMAIL">Indirizzo email <span class="asterisk text-error">*</span></label>
+                <input type="email" placeholder="example@domain.com" name="EMAIL" class="required email" id="mce-EMAIL" required value="" />
+              </div>
+              <div id="mce-responses" class="clear foot">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+              </div>
+              <div style="position:absolute; left:-5000px;" aria-hidden="true">
+                <input type="text" name="b_3f94f945082029a4def33014f_cd2ad9f361" tabindex="-1" value="" />
+              </div>
+              <div class="optionalParent">
+                <div class="clear foot flex flex-col gap-md w-full items-center justify-center">
+                  <button
+                    type="submit"
+                    id="mc-embedded-subscribe"
+                    class="button button-primary w-auto flex flex-row items-center justify-center"
+                    aria-label="Iscriviti alla newsletter"
+                    name="subscribe"
+                  >
+                    <i class="ph-fill ph-envelope-simple-open mr-xs" aria-hidden="true"></i>
+                    <span class="align-middle">Iscriviti</span>
+                  </button>
+                  <p style="margin:0 auto;">
+                    <a href="http://eepurl.com/jh_8ao" title="Mailchimp: l’email marketing è facile e divertente">
+                      <span style="display:inline-block; background-color:transparent; border-radius:4px;">
+                        <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width:220px; height:40px; display:flex; padding:2px 0; justify-content:center; align-items:center;" />
+                      </span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="footer p-md m-md flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
+      role="contentinfo"
+      id="contacts"
+    >
+      <div
+        class="w-full flex flex-column md:flex-row flex-wrap justify-between items-center"
+      >
+        <!-- Logo -->
+        <!-- Contacts -->
+        <div class="mb-md md:mb-0 flex flex-col items-center w-full">
+          <img
+            src="public/logo.png"
+            alt="Game Dev Arena Logo"
+            style="height: 15rem"
+          />
+          <h4 class="mb-xs">Contatti</h4>
+          <p class="mb-xs flex flex-row items-center justify-center">
+            <i class="ph-fill ph-envelope mr-xs" aria-hidden="true"></i>
+            <span class="visually-hidden">Email:</span>
+            <a
+              href="mailto:hello.gamedevarena@gmail.com"
+              class="text-primary"
+              id="email-contacts"
+              aria-label="Email"
+              >hello.gamedevarena@gmail.com</a
+            >
+          </p>
+          <p class="mb-xs flex flex-row items-center">
+            <i class="ph-fill ph-github-logo mr-xs" aria-hidden="true"></i>
+            <span class="visually-hidden">GitHub:</span>
+            <a
+              href="https://github.com/gamedevarena"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary"
+              aria-label="Github Repository"
+              >github.com/gamedevarena</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-md text-center text-muted" style="font-size: 0.9em">
+        &copy; 2025 Game Dev Arena. Tutti i diritti riservati.
+      </div>
+    </section>
+
+    <script>
+      // Sticky header shadow on scroll
+      const header = document.querySelector("header.sticky-header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 24) {
+          header.classList.add("shadow-md");
+          header.classList.add("bg-white");
+        } else {
+          header.classList.remove("shadow-md");
+          header.classList.remove("bg-white");
+        }
+      });
+
+      function onContactButtonClick() {
+        document.getElementById("email-contacts").click();
+      }
+    </script>
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script type="text/javascript">
+      (function($) {
+        window.fnames = new Array(); window.ftypes = new Array();
+        fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';
+        /* Translated default messages for the $ validation plugin. Locale: IT */
+        $.extend($.validator.messages, {
+          required: "Campo obbligatorio.",
+          remote: "Controlla questo campo.",
+          email: "Inserisci un indirizzo email valido.",
+          url: "Inserisci un indirizzo web valido.",
+          date: "Inserisci una data valida.",
+          dateISO: "Inserisci una data valida (ISO).",
+          number: "Inserisci un numero valido.",
+          digits: "Inserisci solo numeri.",
+          creditcard: "Inserisci un numero di carta di credito valido.",
+          equalTo: "Il valore non corrisponde.",
+          accept: "Inserisci un valore con un'estensione valida.",
+          maxlength: $.validator.format("Non inserire più di {0} caratteri."),
+          minlength: $.validator.format("Inserisci almeno {0} caratteri."),
+          rangelength: $.validator.format("Inserisci un valore compreso tra {0} e {1} caratteri."),
+          range: $.validator.format("Inserisci un valore compreso tra {0} e {1}."),
+          max: $.validator.format("Inserisci un valore minore o uguale a {0}."),
+          min: $.validator.format("Inserisci un valore maggiore o uguale a {0}.")
+        });
+      }(jQuery));
+      var $mcj = jQuery.noConflict(true);
+    </script>
+  </body>
+</html>
