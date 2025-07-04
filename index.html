@@ -18,7 +18,7 @@
     <script src="./src/js/mission-card.js" type="module"></script>
     <link rel="icon" type="image/png" href="public/logo-silhouette.ico" />
   </head>
- 
+
   <body class="flex flex-col items-center justify-center">
     <header
       class="sticky-header w-full mt-md rounded-none radius-xl p-md lg:w-10/12 xl:w-8/12"
@@ -30,7 +30,10 @@
         id="logo"
       />
       <h1 id="site-title" class="visually-hidden">Game Dev Arena</h1>
-      <nav aria-label="Navigazione principale" class="flex align-items-center justify-center"> 
+      <nav
+        aria-label="Navigazione principale"
+        class="flex align-items-center justify-center"
+      >
         <ul>
           <!-- <li>
             <a href="#events" aria-label="Vai alla sezione Talks">Eventi</a>
@@ -41,26 +44,27 @@
             >
           </li>
           <li>
+            <a href="#newsletter" aria-label="Iscriviti alla newsletter"
+              >Newsletter</a
+            >
+          </li>
+          <li>
             <a href="#contacts" aria-label="Vai alla sezione Contatti"
               >Contatti</a
             >
           </li>
         </ul>
       </nav>
-      <div class="flex flex-row items-center justify-end">
-        <button
-          id="contattaci"
-          class="button button-secondary"
-          aria-label="Contattaci via email"
-          onclick="onContactButtonClick()"
+      <div class="flex flex-row items-center justify-end gap-md">
+        <a
+          href="#speakers"
+          aria-label="Diventa Speaker"
+          class="button button-primary text-decoration-none"
+          title="Diventa Speaker"
         >
-          <i
-            class="ph-fill ph-envelope mr-xs"
-            style="font-size: 1.2em; vertical-align: middle"
-            aria-hidden="true"
-          ></i>
-          Contattaci
-        </button>
+          <i class="ph-fill ph-microphone-stage" aria-hidden="true"></i>
+          <span class="visually-hidden">Diventa Speaker</span>
+        </a>
       </div>
     </header>
 
@@ -73,14 +77,13 @@
         class="container w-10/12 md:w-6/12 flex flex-col justify-center items-center"
         style="position: relative; z-index: 1"
       >
-        <h2 class="text-center">
-          Benvenuto in Game Dev Arena!
-        </h2>
+        <h2 class="text-center">Benvenuto in Game Dev Arena!</h2>
         <p class="text-center">
           Unisciti a noi per scoprire, imparare e condividere tutto sullo
-          sviluppo di videogiochi. <span class="bg-accent"
-            >Eventi, talk e networking per appassionati e
-          professionisti.</span>
+          sviluppo di videogiochi.
+          <span class="bg-white text-black"
+            >Eventi, talk e networking per appassionati e professionisti.</span
+          >
         </p>
         <a
           href="#mission"
@@ -235,85 +238,142 @@
         crescere l'ecosistema locale del game development.
       </p>
       <h4 class="mb-xs">La Nostra Missione</h4>
-      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      <div
+        class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+      >
         <mission-card bg="bg-gray-100" icon="ph-fill ph-users">
           <span slot="title">Networking qualificato</span>
-          <span slot="description">Connessioni tra professionisti del settore per favorire collaborazioni e crescita.</span>
+          <span slot="description"
+            >Connessioni tra professionisti del settore per favorire
+            collaborazioni e crescita.</span
+          >
         </mission-card>
         <mission-card bg="bg-gray-100" icon="ph-fill ph-graduation-cap">
           <span slot="title">Formazione continua</span>
-          <span slot="description">Talk e workshop specializzati per aggiornarsi sulle ultime novità del game development.</span>
+          <span slot="description"
+            >Talk e workshop specializzati per aggiornarsi sulle ultime novità
+            del game development.</span
+          >
         </mission-card>
         <mission-card bg="bg-gray-100" icon="ph-fill ph-handshake">
           <span slot="title">Mentorship e supporto</span>
-          <span slot="description">Aiuto ai neofiti tramite mentorship e condivisione di esperienze tra membri della community.</span>
+          <span slot="description"
+            >Aiuto ai neofiti tramite mentorship e condivisione di esperienze
+            tra membri della community.</span
+          >
         </mission-card>
         <mission-card bg="bg-gray-100" icon="ph-fill ph-star">
           <span slot="title">Valorizzazione del talento</span>
-          <span slot="description">Promozione delle eccellenze locali e delle competenze del territorio.</span>
+          <span slot="description"
+            >Promozione delle eccellenze locali e delle competenze del
+            territorio.</span
+          >
         </mission-card>
       </div>
       <h4 class="mb-xs mt-3xl">Attività Principali</h4>
-      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      <div
+        class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+      >
         <mission-card bg="bg-white" icon="ph-fill ph-calendar">
           <span slot="title">Eventi Mensili</span>
-          <span slot="description">8/9 incontri all'anno con talk da professionisti del settore.</span>
+          <span slot="description"
+            >8/9 incontri all'anno con talk da professionisti del settore.</span
+          >
           <div class="flex flex-col gap-xs ml-md mt-md">
-            <span class="text-muted">Location: <span class="bg-accent">311 Verona</span> - spazio innovativo per eventi tech e creativi.</span>
-            <span class="text-muted">Networking informale in pizzeria dopo gli eventi.</span>
+            <span class="text-muted"
+              >Location: <span class="bg-accent">311 Verona</span> - spazio
+              innovativo per eventi tech e creativi.</span
+            >
+            <span class="text-muted"
+              >Networking informale in pizzeria dopo gli eventi.</span
+            >
           </div>
         </mission-card>
         <mission-card bg="bg-white" icon="ph-fill ph-game-controller">
           <span slot="title">Game Jam annuale</span>
-          <span slot="description">Competizione creativa aperta a sviluppatori di tutti i livelli.</span>
+          <span slot="description"
+            >Competizione creativa aperta a sviluppatori di tutti i
+            livelli.</span
+          >
         </mission-card>
         <mission-card bg="bg-white" icon="ph-fill ph-wrench">
           <span slot="title">Workshop pratici</span>
-          <span slot="description">Approfondimenti su tool, tecniche e trend di mercato con esperti del settore.</span>
+          <span slot="description"
+            >Approfondimenti su tool, tecniche e trend di mercato con esperti
+            del settore.</span
+          >
         </mission-card>
         <mission-card bg="bg-white" icon="ph-fill ph-database">
           <span slot="title">Database professionale</span>
-          <span slot="description">Mappatura di talenti e aziende del territorio per favorire opportunità di collaborazione.</span>
+          <span slot="description"
+            >Mappatura di talenti e aziende del territorio per favorire
+            opportunità di collaborazione.</span
+          >
         </mission-card>
       </div>
       <h4 class="mb-xs mt-3xl">Opportunità di Collaborazione</h4>
-      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      <div
+        class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+      >
         <mission-card bg="bg-gray-100" icon="ph-fill ph-student">
           <span slot="title">Università e istituti di formazione</span>
-          <span slot="description">Collaborazione con enti accademici per formazione e ricerca.</span>
+          <span slot="description"
+            >Collaborazione con enti accademici per formazione e ricerca.</span
+          >
         </mission-card>
         <mission-card bg="bg-gray-100" icon="ph-fill ph-building">
           <span slot="title">Aziende gaming e tech</span>
-          <span slot="description">Partnership con aziende per progetti, eventi e opportunità di lavoro.</span>
+          <span slot="description"
+            >Partnership con aziende per progetti, eventi e opportunità di
+            lavoro.</span
+          >
         </mission-card>
         <mission-card bg="bg-gray-100" icon="ph-fill ph-map-pin">
           <span slot="title">Enti locali</span>
-          <span slot="description">Promozione dell'innovazione e del territorio attraverso il supporto degli enti locali.</span>
+          <span slot="description"
+            >Promozione dell'innovazione e del territorio attraverso il supporto
+            degli enti locali.</span
+          >
         </mission-card>
         <mission-card bg="bg-gray-100" icon="ph-fill ph-users-three">
           <span slot="title">Altre iniziative</span>
-          <span slot="description">Collaborazione con altre community e progetti simili per ampliare l'impatto.</span>
+          <span slot="description"
+            >Collaborazione con altre community e progetti simili per ampliare
+            l'impatto.</span
+          >
         </mission-card>
       </div>
       <h4 class="mb-xs mt-3xl">Contatti e Prossimi Passi</h4>
-      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      <div
+        class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+      >
         <mission-card bg="bg-white" icon="ph-fill ph-lightbulb">
           <span slot="title">Expertise & Mentorship</span>
-          <span slot="description">Condivisione di competenze e supporto ai membri della community.</span>
+          <span slot="description"
+            >Condivisione di competenze e supporto ai membri della
+            community.</span
+          >
         </mission-card>
         <mission-card bg="bg-white" icon="ph-fill ph-hand-coins">
           <span slot="title">Sponsorizzazioni</span>
-          <span slot="description">Partnership strategiche per sostenere la crescita della community.</span>
+          <span slot="description"
+            >Partnership strategiche per sostenere la crescita della
+            community.</span
+          >
         </mission-card>
         <mission-card bg="bg-white" icon="ph-fill ph-microphone">
           <span slot="title">Interventi qualificati</span>
-          <span slot="description">Cerchiamo speaker e professionisti per talk e workshop.</span>
+          <span slot="description"
+            >Cerchiamo speaker e professionisti per talk e workshop.</span
+          >
         </mission-card>
       </div>
-      
+
       <h4 class="mb-xs mt-3xl">Founders / Mentors / Advisors</h4>
 
-      <div class="w-full grid gap-md grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+      <div
+        class="w-full grid gap-md grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+      >
         <founder-card
           name="Eugenio Perinelli"
           avatar="public/founders/eugenio.png"
@@ -354,26 +414,102 @@
       </div>
     </section>
 
-    <section class="newsletter-section card my-4xl p-md m-md radius-lg flex flex-col items-start w-full lg:w-8/12 xl:w-6/12" aria-labelledby="newsletter-title">
-      <div id="mc_embed_shell" class="w-full">
-        <div id="mc_embed_signup" class="w-full flex flex-col items-center justify-center">
-          <form action="https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&amp;id=cd2ad9f361&amp;f_id=0086b1e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate flex w-full" target="_blank" novalidate>
-            <div id="mc_embed_signup_scroll" class="w-full flex flex-col items-center justify-center gap-sm">
+    <!-- Call for Speakers Section -->
+    <section
+      id="speakers"
+      class="call-for-speakers-section p-md m-md my-4xl radius-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
+    >
+      <h2 id="call-for-speakers-title" class="m-0 text-center text-primary">
+        Call for Speakers
+      </h2>
+      <p class="my-2xl w-full text-center">
+        Sei un
+        <span class="bg-white text-black"
+          >professionista, docente o appassionato di game development?</span
+        ><br class="md:hidden" /><b
+          >Proponi il tuo talk, workshop o intervento per i prossimi eventi di
+          Game Dev Arena!</b
+        >
+      </p>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSeOlL5VaMrl4os61Bw5bnHOMC0tUfbg4egWkd7WaNfE3puCDA/viewform"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button button-primary flex flex-row items-center justify-center w-auto text-decoration-none"
+        aria-label="Proponi il tuo talk su Google Forms"
+      >
+        <i class="ph-fill ph-microphone-stage mr-xs" aria-hidden="true"></i>
+        <span class="align-middle">Proponi il tuo talk</span>
+      </a>
+    </section>
+
+    <section
+      id="newsletter"
+      class="newsletter-section my-2xl p-md flex flex-col items-start w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="newsletter-title"
+    >
+      <div id="mc_embed_shell" class="w-full card p-md radius-lg shadow-lg">
+        <div
+          id="mc_embed_signup"
+          class="w-full flex flex-col items-center justify-center"
+        >
+          <form
+            action="https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&amp;id=cd2ad9f361&amp;f_id=0086b1e0f0"
+            method="post"
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            class="validate flex w-full"
+            target="_blank"
+            novalidate
+          >
+            <div
+              id="mc_embed_signup_scroll"
+              class="w-full flex flex-col items-center justify-center gap-sm"
+            >
               <h5 class="mb-xs w-full">Iscriviti alla newsletter</h5>
-              <p class="text-muted w-full">Ricevi aggiornamenti su eventi, workshop e novità della community.</p>
+              <p class="text-muted w-full">
+                Ricevi aggiornamenti su eventi, workshop e novità della
+                community.
+              </p>
               <div class="mc-field-group mb-sm flex flex-col w-full">
-                <label for="mce-EMAIL">Indirizzo email <span class="asterisk text-error">*</span></label>
-                <input type="email" placeholder="example@domain.com" name="EMAIL" class="required email" id="mce-EMAIL" required value="" />
+                <label for="mce-EMAIL"
+                  >Indirizzo email
+                  <span class="asterisk text-error">*</span></label
+                >
+                <input
+                  type="email"
+                  placeholder="example@domain.com"
+                  name="EMAIL"
+                  class="required email"
+                  id="mce-EMAIL"
+                  required
+                  value=""
+                />
               </div>
               <div id="mce-responses" class="clear foot">
-                <div class="response" id="mce-error-response" style="display:none"></div>
-                <div class="response" id="mce-success-response" style="display:none"></div>
+                <div
+                  class="response"
+                  id="mce-error-response"
+                  style="display: none"
+                ></div>
+                <div
+                  class="response"
+                  id="mce-success-response"
+                  style="display: none"
+                ></div>
               </div>
-              <div style="position:absolute; left:-5000px;" aria-hidden="true">
-                <input type="text" name="b_3f94f945082029a4def33014f_cd2ad9f361" tabindex="-1" value="" />
+              <div style="position: absolute; left: -5000px" aria-hidden="true">
+                <input
+                  type="text"
+                  name="b_3f94f945082029a4def33014f_cd2ad9f361"
+                  tabindex="-1"
+                  value=""
+                />
               </div>
               <div class="optionalParent">
-                <div class="clear foot flex flex-col gap-md w-full items-center justify-center">
+                <div
+                  class="clear foot flex flex-col gap-md w-full items-center justify-center"
+                >
                   <button
                     type="submit"
                     id="mc-embedded-subscribe"
@@ -381,13 +517,37 @@
                     aria-label="Iscriviti alla newsletter"
                     name="subscribe"
                   >
-                    <i class="ph-fill ph-envelope-simple-open mr-xs" aria-hidden="true"></i>
+                    <i
+                      class="ph-fill ph-envelope-simple-open mr-xs"
+                      aria-hidden="true"
+                    ></i>
                     <span class="align-middle">Iscriviti</span>
                   </button>
-                  <p style="margin:0 auto;">
-                    <a href="http://eepurl.com/jh_8ao" title="Mailchimp: l’email marketing è facile e divertente">
-                      <span style="display:inline-block; background-color:transparent; border-radius:4px;">
-                        <img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width:220px; height:40px; display:flex; padding:2px 0; justify-content:center; align-items:center;" />
+                  <p style="margin: 0 auto">
+                    <a
+                      href="http://eepurl.com/jh_8ao"
+                      title="Mailchimp: l’email marketing è facile e divertente"
+                    >
+                      <span
+                        style="
+                          display: inline-block;
+                          background-color: transparent;
+                          border-radius: 4px;
+                        "
+                      >
+                        <img
+                          class="refferal_badge"
+                          src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg"
+                          alt="Intuit Mailchimp"
+                          style="
+                            width: 220px;
+                            height: 40px;
+                            display: flex;
+                            padding: 2px 0;
+                            justify-content: center;
+                            align-items: center;
+                          "
+                        />
                       </span>
                     </a>
                   </p>
@@ -407,15 +567,13 @@
       <div
         class="w-full flex flex-column md:flex-row flex-wrap justify-between items-center"
       >
-        <!-- Logo -->
         <!-- Contacts -->
+        <!-- Logo -->
         <div class="mb-md md:mb-0 flex flex-col items-center w-full">
-          <img
-            src="public/logo.png"
-            alt="Game Dev Arena Logo"
-            style="height: 15rem"
-          />
-          <h4 class="mb-xs">Contatti</h4>
+          <h2 id="contacts-title" class="m-0 text-center text-primary">
+            Contattaci
+          </h2>
+
           <p class="mb-xs flex flex-row items-center justify-center">
             <i class="ph-fill ph-envelope mr-xs" aria-hidden="true"></i>
             <span class="visually-hidden">Email:</span>
@@ -439,6 +597,12 @@
               >github.com/gamedevarena</a
             >
           </p>
+
+          <img
+            src="public/logo.png"
+            alt="Game Dev Arena Logo"
+            style="height: 15rem"
+          />
         </div>
       </div>
 
@@ -464,11 +628,28 @@
         document.getElementById("email-contacts").click();
       }
     </script>
-    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script
+      type="text/javascript"
+      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+    ></script>
     <script type="text/javascript">
-      (function($) {
-        window.fnames = new Array(); window.ftypes = new Array();
-        fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';
+      (function ($) {
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        fnames[0] = "EMAIL";
+        ftypes[0] = "email";
+        fnames[1] = "FNAME";
+        ftypes[1] = "text";
+        fnames[2] = "LNAME";
+        ftypes[2] = "text";
+        fnames[3] = "ADDRESS";
+        ftypes[3] = "address";
+        fnames[4] = "PHONE";
+        ftypes[4] = "phone";
+        fnames[5] = "BIRTHDAY";
+        ftypes[5] = "birthday";
+        fnames[6] = "COMPANY";
+        ftypes[6] = "text";
         /* Translated default messages for the $ validation plugin. Locale: IT */
         $.extend($.validator.messages, {
           required: "Campo obbligatorio.",
@@ -484,12 +665,18 @@
           accept: "Inserisci un valore con un'estensione valida.",
           maxlength: $.validator.format("Non inserire più di {0} caratteri."),
           minlength: $.validator.format("Inserisci almeno {0} caratteri."),
-          rangelength: $.validator.format("Inserisci un valore compreso tra {0} e {1} caratteri."),
-          range: $.validator.format("Inserisci un valore compreso tra {0} e {1}."),
+          rangelength: $.validator.format(
+            "Inserisci un valore compreso tra {0} e {1} caratteri."
+          ),
+          range: $.validator.format(
+            "Inserisci un valore compreso tra {0} e {1}."
+          ),
           max: $.validator.format("Inserisci un valore minore o uguale a {0}."),
-          min: $.validator.format("Inserisci un valore maggiore o uguale a {0}.")
+          min: $.validator.format(
+            "Inserisci un valore maggiore o uguale a {0}."
+          ),
         });
-      }(jQuery));
+      })(jQuery);
       var $mcj = jQuery.noConflict(true);
     </script>
   </body>
