@@ -915,6 +915,22 @@ p, ul, ol {
 .border {
   border: 1px solid var(--border-light);
 }
+.border-0 {
+  border-width: 0 !important;
+}
+.border-sm {
+  border-width: 1px !important;
+}
+.border-md {
+  border-width: 2px !important;
+}
+.border-lg {
+  border-width: 4px !important;
+}
+.border-xl {
+  border-width: 8px !important;
+}
+
 .border-color-white {
   border-color: var(--color-white) !important;
 }
@@ -1928,3 +1944,311 @@ textarea.success {
   font-weight: 300 !important;
 }
 
+/* Position Utilities */
+.position-static {
+  position: static !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.position-absolute {
+  position: absolute !important;
+}
+.position-fixed {
+  position: fixed !important;
+}
+.position-sticky {
+  position: sticky !important;
+}
+
+/* Top/Right/Bottom/Left Utilities */
+.top-0 {
+  top: 0 !important;
+}
+.right-0 {
+  right: 0 !important;
+}
+.bottom-0 {
+  bottom: 0 !important;
+}
+.left-0 {
+  left: 0 !important;
+}
+.top-auto {
+  top: auto !important;
+}
+.right-auto {
+  right: auto !important;
+}
+.bottom-auto {
+  bottom: auto !important;
+}
+.left-auto {
+  left: auto !important;
+}
+
+/* Z-Index Utilities */
+.z-0 {
+  z-index: 0 !important;
+}
+.z-10 {
+  z-index: 10 !important;
+}
+.z-20 {
+  z-index: 20 !important;
+}
+.z-30 {
+  z-index: 30 !important;
+}
+.z-40 {
+  z-index: 40 !important;
+}
+.z-50 {
+  z-index: 50 !important;
+}
+.z-auto {
+  z-index: auto !important;
+}
+
+/* Object Fit Utilities */
+.object-contain {
+  object-fit: contain !important;
+}
+.object-cover {
+  object-fit: cover !important;
+}
+.object-fill {
+  object-fit: fill !important;
+}
+.object-none {
+  object-fit: none !important;
+}
+.object-scale-down {
+  object-fit: scale-down !important;
+}
+
+/* Overlay Utilities using ::before pseudo-elements */
+.overlay::before,
+.overlay-primary::before,
+.overlay-secondary::before,
+.overlay-tertiary::before,
+.overlay-dark::before,
+.overlay-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  transition: opacity 0.2s;
+  opacity: 1;
+}
+
+.overlay::before {
+  background: var(--bg-overlay, rgba(42, 33, 16, 0.5));
+}
+.overlay-primary::before {
+  background: var(--color-primary);
+  opacity: 0.6;
+}
+.overlay-secondary::before {
+  background: var(--color-secondary);
+  opacity: 0.6;
+}
+.overlay-tertiary::before {
+  background: var(--color-tertiary);
+  opacity: 0.6;
+}
+.overlay-dark::before {
+  background: var(--color-black);
+  opacity: 0.5;
+}
+.overlay-light::before {
+  background: var(--color-white);
+  opacity: 0.5;
+}
+
+/* Opacity Utilities */
+.opacity-0 {
+  opacity: 0 !important;
+}
+.opacity-10 {
+  opacity: 0.1 !important;
+}
+.opacity-20 {
+  opacity: 0.2 !important;
+}
+.opacity-25 {
+  opacity: 0.25 !important;
+}
+.opacity-30 {
+  opacity: 0.3 !important;
+}
+.opacity-40 {
+  opacity: 0.4 !important;
+}
+.opacity-50 {
+  opacity: 0.5 !important;
+}
+.opacity-60 {
+  opacity: 0.6 !important;
+}
+.opacity-70 {
+  opacity: 0.7 !important;
+}
+.opacity-75 {
+  opacity: 0.75 !important;
+}
+.opacity-80 {
+  opacity: 0.8 !important;
+}
+.opacity-90 {
+  opacity: 0.9 !important;
+}
+.opacity-100 {
+  opacity: 1 !important;
+}
+
+/* Overflow Utilities */
+.overflow-auto {
+  overflow: auto !important;
+}
+.overflow-hidden {
+  overflow: hidden !important;
+}
+.overflow-visible {
+  overflow: visible !important;
+}
+.overflow-scroll {
+  overflow: scroll !important;
+}
+.overflow-x-auto {
+  overflow-x: auto !important;
+}
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+.overflow-x-visible {
+  overflow-x: visible !important;
+}
+.overflow-x-scroll {
+  overflow-x: scroll !important;
+}
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
+.overflow-y-visible {
+  overflow-y: visible !important;
+}
+.overflow-y-scroll {
+  overflow-y: scroll !important;
+}
+
+/* Animation Utilities */
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.fade-out {
+  animation-name: fade-out;
+}
+
+@keyframes slide-in-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-in-up {
+  animation-name: slide-in-up;
+}
+
+@keyframes slide-in-down {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-in-down {
+  animation-name: slide-in-down;
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.slide-in-left {
+  animation-name: slide-in-left;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.slide-in-right {
+  animation-name: slide-in-right;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-20px);}
+}
+.bounce {
+  animation-name: bounce;
+  animation-timing-function: var(--transition-bounce, cubic-bezier(0.68, -0.55, 0.265, 1.55));
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin {
+  animation-name: spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes scale-y {
+  from {
+    transform: scaleY(0.5);
+    opacity: 0.5;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+.scale-y {
+  animation-name: scale-y;
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+}
+
+.animation-fast {
+  animation-duration: 0.3s !important;
+}
+.animation-slow {
+  animation-duration: 2s !important;
+}
+.animation-infinite {
+  animation-iteration-count: infinite !important;
+}
