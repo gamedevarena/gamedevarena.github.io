@@ -24,10 +24,11 @@ class FounderCard extends StyledComponent {
   getTemplate() {
     return `
       <div class="card w-full m-0 flex flex-col items-start justify-between radius-lg">
-        <div class="flex flex-col items-start justify-between px-md pb-md pt-4xl radius-lg w-full mb-md bg-primary" style="background: url('${
-          this.getAttribute("image") || "public/demo-img.png"
-        }'); background-size: cover; background-position: center;">
-          <div class="font-weight-bold flex items-center mb-sm">
+        <div class="flex flex-col items-start justify-between px-md pb-md pt-4xl radius-lg w-full mb-md bg-primary position-relative" style="background: url('${
+          this.getAttribute("image") || "public/demo-img.webp"
+        }'); background-size: cover; background-position: center; position: relative;">
+          <div class="founder-card__overlay"></div>
+          <div class="font-weight-bold flex items-center mb-sm position-relative" style="z-index:1;">
             <img id="avatar" class="shadow-md radius-full mr-md" style="width:60px; height:60px;">
             <div class="flex flex-col">
               <span class="text-shadow text-white text-lg font-weight-bold"><slot name="name"></slot></span>
@@ -41,16 +42,26 @@ class FounderCard extends StyledComponent {
       </div>
     `;
   }
-
   getComponentStyles() {
     return `
       <style>
-        .card {
-          transition: transform 0.2s ease;
-        }
-        .card:hover {
-          transform: translateY(-2px);
-        }
+      .card {
+        transition: transform 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+      }
+      .founder-card__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+        border-radius: inherit;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .position-relative {
+        position: relative;
+      }
       </style>
     `;
   }

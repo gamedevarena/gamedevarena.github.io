@@ -26,7 +26,7 @@ class EventCard extends StyledComponent {
       <div class="card w-full m-0 flex flex-col items-start justify-between radius-lg">
         <div class="flex flex-col items-start justify-between px-md pb-md pt-4xl radius-lg w-full mb-md" 
              style="background: url('${
-               this.getAttribute("image") || "public/demo-img.png"
+               this.getAttribute("image") || "public/demo-img.webp"
              }'); background-size: cover; background-position: center;">
           <h3 class="mb-sm text-white text-shadow"><slot name="title"></slot></h3>
           <div class="flex flex-row items-center">
@@ -100,7 +100,7 @@ class EventCard extends StyledComponent {
       agency: "Agency",
       avatar: "",
       agencyAvatar: "",
-      image: "public/demo-img.png",
+      image: "public/demo-img.webp",
     };
     return defaults[attributeName] || "";
   }
