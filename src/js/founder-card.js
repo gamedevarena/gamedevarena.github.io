@@ -23,7 +23,7 @@ class FounderCard extends StyledComponent {
 
   getTemplate() {
     return `
-      <div class="card w-full m-0 flex flex-col items-start justify-between radius-lg">
+      <div class="card w-full h-full m-0 flex flex-col items-start justify-between radius-lg">
         <div class="flex flex-col items-start justify-between px-md pb-md pt-4xl radius-lg w-full mb-md bg-primary position-relative" style="background: url('${
           this.getAttribute("image") || "public/demo-img.webp"
         }'); background-size: cover; background-position: center; position: relative;">

@@ -12,7 +12,7 @@ body {
 header {
   width: 100%;
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) 10rem;
+  grid-template-columns: 10rem minmax(0, 1fr) 14rem;
   color: var(--text-primary);
   align-items: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ header nav ul li a:hover {
 }
 
 header #logo {
-  width: 160%;
+  width: 140%;
 }
 
 .sticky-header {

@@ -1,4 +1,4 @@
-@import url("/public/fonts/jetbrains-mono.css");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap");
 @import url("/public/fonts/fonts.css");
 
@@ -44,7 +44,7 @@
   --color-gray-700: #666666; /* Darker gray */
   --color-gray-800: #333333; /* Very dark gray */
   --color-gray-900: #1a1a1a; /* Almost black */
-  --color-black: #000000;
+  --color-black: #1d1c1c;
 
   /* Text Colors */
   --text-primary: var(--color-gray-900);
@@ -196,7 +196,7 @@
   --navbar-border: var(--border-light);
   --navbar-shadow: var(--shadow-sm);
 
-  --font-family-base: "JetBrains Mono", "Work Sans", "Inter", "Segoe UI", Arial, sans-serif;
+  --font-family-base: "Raleway", "Work Sans", "Inter", "Segoe UI", Arial, sans-serif;
   --font-family-heading: "Gotham", "Work Sans", "Inter", Arial, sans-serif;
   font-size: 1rem;
 }
@@ -234,7 +234,9 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-accent-light);
   font-family: var(--font-family-base);
-  line-height: 1.6;
+  line-height: normal;
+
+  overflow-x: hidden;
 }
 
 h1,
@@ -1424,6 +1426,36 @@ p, ul, ol {
 .flex-col {
   flex-direction: column !important;
 }
+
+/* Responsive: ≥768px (md) */
+@media (min-width: 768px) {
+  .md\:flex-row {
+    flex-direction: row !important;
+  }
+  .md\:flex-col {
+    flex-direction: column !important;
+  }
+}
+
+/* Responsive: ≥1024px (lg) */
+@media (min-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: row !important;
+  }
+  .lg\:flex-col {
+    flex-direction: column !important;
+  }
+}
+
+/* Responsive: ≥1280px (xl) */
+@media (min-width: 1280px) {
+  .xl\:flex-row {
+    flex-direction: row !important;
+  }
+  .xl\:flex-col {
+    flex-direction: column !important;
+  }
+}
 .flex-wrap {
   flex-wrap: wrap !important;
 }
@@ -1841,6 +1873,7 @@ p, ul, ol {
 /* Button Component */
 .button {
   display: inline-flex;
+  gap: var(--space-md);
   align-items: center;
   justify-content: center;
   padding: var(--space-sm) var(--space-md);
