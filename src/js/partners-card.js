@@ -41,8 +41,8 @@ class PartnersCard extends StyledComponent {
     const imageElements = partners
       .map(
         (partner) => `
-        <a href="${partner.link}" target="_blank" rel="noopener noreferrer" class="text-center">
-          <div class="partner-logo-container">
+        <a href="${partner.link}" target="_blank" rel="noopener noreferrer" class="text-center h-full">
+          <div class="partner-logo-container h-full">
             <img 
               src="public/partners/${partner.logo}" 
               alt="${partner.name} logo"
