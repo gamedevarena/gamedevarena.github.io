@@ -121,7 +121,11 @@ header #logo {
 @media screen and (max-width: 768px) {
   body {
     display: none;
-    font-size: 125%;
+    font-size: 90%;
+  }
+
+  .button {
+    font-size: var(--font-size-sm);
   }
 
   header {
