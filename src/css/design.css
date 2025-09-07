@@ -3,34 +3,44 @@
 @import url("/public/fonts/fonts.css");
 
 :root {
-  /* Primary Colors */
-  --color-primary: #FDC101; /* Ocean teal */
-  --color-secondary: #FDC101;
-  --color-tertiary: #FDC101;
-  --color-accent: #fcecdd;
+/* Main Colors */
+--color-primary: #FDC101;    /* Golden Yellow */
+--color-secondary: #2E86AB;  /* Complementary Blue */
+--color-tertiary: #F18F01;   /* Analogous Orange */
+--color-accent: #FFF8E7;     /* Warm Cream */
 
-  /* Primary Variations */
-  --color-primary-light: #1a99b8; /* Lighter teal */
-  --color-primary-lighter: #4db3cc; /* Very light teal */
-  --color-primary-dark: #006b85; /* Darker teal */
-  --color-primary-darker: #00566d; /* Much darker teal */
+/* Primary Variations (Golden Yellow) */
+--color-primary-light: #FED847;     /* Lighter golden yellow */
+--color-primary-lighter: #FFED99;   /* Very light golden yellow */
+--color-primary-dark: #E6AD01;      /* Darker golden yellow */
+--color-primary-darker: #CC9A00;    /* Much darker golden yellow */
 
-  /* Secondary Variations */
-  --color-secondary-light: #ff8f33; /* Lighter orange */
-  --color-secondary-lighter: #ffa866; /* Very light orange */
-  --color-secondary-dark: #e66b00; /* Darker orange */
-  --color-secondary-darker: #cc5f00; /* Much darker orange */
+/* Secondary Variations (Complementary Blue) */
+--color-secondary-light: #4A9BC1;   /* Lighter blue */
+--color-secondary-lighter: #7DB3D1; /* Very light blue */
+--color-secondary-dark: #1E5F7A;    /* Darker blue */
+--color-secondary-darker: #14455A;  /* Much darker blue */
 
-  /* Tertiary Variations */
-  --color-tertiary-light: #f5b48a; /* Lighter coral */
-  --color-tertiary-lighter: #f8c6a7; /* Very light coral */
-  --color-tertiary-dark: #e08e56; /* Darker coral */
-  --color-tertiary-darker: #cc7a3f; /* Much darker coral */
+/* Tertiary Variations (Analogous Orange) */
+--color-tertiary-light: #F5A433;    /* Lighter orange */
+--color-tertiary-lighter: #F8B866;  /* Very light orange */
+--color-tertiary-dark: #D67A01;     /* Darker orange */
+--color-tertiary-darker: #B86801;   /* Much darker orange */
 
-  /* Accent Variations */
-  --color-accent-light: #fdfaf7; /* Almost white cream */
-  --color-accent-dark: #f5dfc7; /* Darker cream */
-  --color-accent-darker: #edd2b1; /* Much darker cream */
+/* Accent Variations (Warm Cream) */
+--color-accent-light: #FFFCF5;      /* Almost white cream */
+--color-accent-dark: #F5EDD5;       /* Darker cream */
+--color-accent-darker: #E8DDC3;     /* Much darker cream */
+
+/* Additional Harmonious Colors */
+--color-neutral-light: #F7F7F7;     /* Light neutral */
+--color-neutral: #8E8E8E;           /* Medium neutral */
+--color-neutral-dark: #4A4A4A;      /* Dark neutral */
+
+--color-success: #2D8659;           /* Forest green */
+--color-warning: #F18F01;           /* Same as tertiary */
+--color-error: #D73027;             /* Warm red */
+--color-info: #2E86AB;              /* Same as secondary */
 
   /* Neutral Palette */
   --color-white: #ffffff;
@@ -104,10 +114,10 @@
   --color-info-light: var(--color-primary-light);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(253, 193, 1, 0.1);
-  --shadow-md: 0 4px 6px rgba(253, 193, 1, 0.15);
-  --shadow-lg: 0 10px 15px rgba(253, 193, 1, 0.2);
-  --shadow-xl: 0 20px 25px rgba(253, 193, 1, 0.25);
+  --shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.1);
+  --shadow-md: 0 4px 6px rgba(255, 255, 255, 0.15);
+  --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.2);
+  --shadow-xl: 0 20px 25px rgba(255, 255, 255, 0.25);
   --shadow-warm: 0 4px 12px rgba(255, 118, 1, 0.3);
 
   /* Gradients */
@@ -284,7 +294,7 @@ span, small, em, strong, b, i, u, a {
 }
 
 p, ul, ol {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin-bottom: var(--space-md);
 }
 
