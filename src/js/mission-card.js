@@ -11,7 +11,7 @@ class MissionCard extends StyledComponent {
   }
 
   getTemplate() {
-    const bgClass = this.getAttribute("bg") || "bg-white";
+    const bgClass = this.getAttribute("bg") || "bg-black";
     return `
       <div class="w-full h-full radius-lg shadow-md p-md flex flex-col items-start ${bgClass} border border-color-primary">
         <div class="flex flex-row items-center mb-xs">

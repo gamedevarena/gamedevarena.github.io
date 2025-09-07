@@ -10,17 +10,8 @@ body {
 }
 
 header {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr) 14rem;
-  color: var(--text-primary);
-  align-items: center;
-  justify-content: space-between;
-  align-content: center;
-  padding: var(--space-md);
   height: 5rem;
   overflow: visible;
-
   transition: background-color var(--transition-base),
               box-shadow var(--transition-base);
 }
@@ -53,13 +44,9 @@ header nav ul li a:hover {
   color: var(--color-secondary);
 }
 
-header #logo {
-  width: 140%;
-}
-
 .sticky-header {
   position: sticky;
-  top: var(--space-lg);
+  top:0;
   z-index: 100;
 }
 

@@ -4,10 +4,10 @@
 
 :root {
   /* Primary Colors */
-  --color-primary: #1f4572; /* Ocean teal */
-  --color-secondary: #ff7601; /* Vibrant orange */
-  --color-tertiary: #f3a26d; /* Soft coral */
-  --color-accent: #fcecdd; /* Warm cream */
+  --color-primary: #FDC101; /* Ocean teal */
+  --color-secondary: #FDC101;
+  --color-tertiary: #FDC101;
+  --color-accent: #fcecdd;
 
   /* Primary Variations */
   --color-primary-light: #1a99b8; /* Lighter teal */
@@ -47,18 +47,27 @@
   --color-black: #1d1c1c;
 
   /* Text Colors */
-  --text-primary: var(--color-gray-900);
+  --text-primary: var(--color-white);
   --text-secondary: var(--color-gray-700);
   --text-muted: var(--color-gray-500);
   --text-light: var(--color-gray-300);
-  --text-on-primary: var(--color-white);
+  --text-on-primary: var(--color-black);
   --text-on-secondary: var(--color-white);
   --text-on-tertiary: var(--color-white);
   --text-on-accent: var(--color-gray-800);
   --text-on-dark: var(--color-light);
 
+  --text-on-bg-primary: var(--color-white);
+  --text-on-bg-secondary: var(--color-gray-900);
+  --text-on-bg-tertiary: var(--color-gray-800);
+  --text-on-bg-accent: var(--color-gray-800);
+  --text-on-bg-dark: var(--color-light);
+  --text-on-bg-light: var(--color-gray-900);
+  --text-on-bg-muted: var(--color-gray-700);
+
+
   /* Background Colors */
-  --bg-primary: var(--color-white);
+  --bg-primary: #1F2428;
   --bg-secondary: var(--color-accent);
   --bg-tertiary: var(--color-gray-100);
   --bg-accent-primary: var(--color-primary);
@@ -70,7 +79,7 @@
   /* Border Colors */
   --border-light: var(--color-gray-200);
   --border-medium: var(--color-gray-300);
-  --border-dark: var(--color-gray-400);
+  --border-dark: var(--color-gray-900);
   --border-accent: var(--color-primary-light);
   --border-secondary: var(--color-secondary-light);
 
@@ -95,10 +104,10 @@
   --color-info-light: var(--color-primary-light);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 128, 157, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 128, 157, 0.15);
-  --shadow-lg: 0 10px 15px rgba(0, 128, 157, 0.2);
-  --shadow-xl: 0 20px 25px rgba(0, 128, 157, 0.25);
+  --shadow-sm: 0 1px 2px rgba(253, 193, 1, 0.1);
+  --shadow-md: 0 4px 6px rgba(253, 193, 1, 0.15);
+  --shadow-lg: 0 10px 15px rgba(253, 193, 1, 0.2);
+  --shadow-xl: 0 20px 25px rgba(253, 193, 1, 0.25);
   --shadow-warm: 0 4px 12px rgba(255, 118, 1, 0.3);
 
   /* Gradients */
@@ -188,8 +197,8 @@
   --button-tertiary-bg: var(--color-tertiary);
   --button-tertiary-hover: var(--color-tertiary-dark);
 
-  --card-bg: var(--color-white);
-  --card-border: var(--border-light);
+  --card-bg: var(--color-black);
+  --card-border: var(--border-dark);
   --card-shadow: var(--shadow-md);
 
   --navbar-bg: var(--color-white);
@@ -231,8 +240,8 @@ html {
 /* Typography */
 body {
   font-size: var(--font-size-base);
-  color: var(--text-primary);
-  background-color: var(--bg-accent-light);
+  color: var(--text-on-bg-primary);
+  background-color: var(--bg-primary);
   font-family: var(--font-family-base);
   line-height: normal;
 
@@ -1197,7 +1206,7 @@ p, ul, ol {
 
 /* Color Utilities */
 .bg-primary {
-  background-color: var(--bg-accent-primary) !important;
+  background-color: var(--bg-primary) !important;
   color: var(--text-on-primary) !important;
 }
 .bg-secondary {
@@ -1215,14 +1224,26 @@ p, ul, ol {
 .text-primary {
   color: var(--color-primary) !important;
 }
+.text-on-primary {
+  color: var(--text-on-primary) !important;
+}
 .text-secondary {
   color: var(--color-secondary) !important;
+}
+.text-on-secondary {
+  color: var(--text-on-secondary) !important;
 }
 .text-tertiary {
   color: var(--color-tertiary) !important;
 }
+.text-on-tertiary {
+  color: var(--text-on-tertiary) !important;
+}
 .text-accent {
   color: var(--color-accent) !important;
+}
+.text-on-accent {
+  color: var(--text-on-accent) !important;
 }
 .text-muted {
   color: var(--text-muted) !important;
@@ -1952,7 +1973,7 @@ textarea {
   border-radius: var(--radius-md, 0.5rem);
   border: 1px solid var(--color-gray-300);
   font-size: 1rem;
-  background: var(--color-gray-100);
+  background: var(--color-gray-900);
   color: var(--text-primary);
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;

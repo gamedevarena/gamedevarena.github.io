@@ -36,7 +36,7 @@ class FounderCard extends StyledComponent {
             </div>
           </div>
         </div>
-        <div class="bg-gray-100 p-md flex flex-col items-start w-full radius-md flex-grow-1">
+        <div class="bg-gray-900 p-md flex flex-col items-start w-full radius-md flex-grow-1">
           <p class="mb-md"><slot name="bio"></slot></p>
         </div>
       </div>

@@ -29,11 +29,10 @@ Thumbs.db
 *.bin
 *.fbm
 
-# Live reload temp
-livereload.js
-
 # Public assets (keep only source files, ignore generated)
 public/*.tmp
 public/*.bak
 
-# Ignore coverage if using test
+# Others
+.claude/
+CLAUDE.md
