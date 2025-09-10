@@ -2703,3 +2703,20 @@ textarea.success {
 .animation-infinite {
   animation-iteration-count: infinite !important;
 }
+
+/* Cursor Utilities */
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-default {
+  cursor: default;
+}
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+.cursor-move {
+  cursor: move;
+}
+.cursor-text {
+  cursor: text;
+}
