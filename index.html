@@ -16,6 +16,7 @@
   <script src="./src/js/mission-card.js" type="module"></script>
   <script src="./src/js/partners-card.js" type="module"></script>
   <link rel="icon" type="image/png" href="public/logo.ico" />
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5088c8e7-8c94-4dcc-a805-0a4a2ecc244c" type="text/javascript" async></script>
 </head>
 
 <body class="flex flex-col items-center justify-center">
@@ -103,6 +104,28 @@
   </section>
 
   <main class="flex flex-col px-md md:px-0 w-full align-items-center">
+    <!-- Eventi Passati Section -->
+    <section class="past-events-section mt-xl radius-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="eventi-passati" id="past-events">
+      <h2 class="text-primary mb-lg" id="eventi-passati">
+        Eventi Passati
+      </h2>
+      <div class="past-events-grid grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <div class="event-image-card radius-lg overflow-hidden shadow-md">
+          <img src="public/events/25-sept-2025.webp" 
+               alt="Evento del 25 Settembre 2025" 
+               class="w-full h-auto" 
+               style="object-fit: cover;" />
+        </div>
+        <div class="event-image-card radius-lg overflow-hidden shadow-md">
+          <img src="public/events/16-oct-2025.webp" 
+               alt="Evento del 16 Ottobre 2025" 
+               class="w-full h-auto" 
+               style="object-fit: cover;" />
+        </div>
+      </div>
+    </section>
+
     <!-- <section
       class="events-section p-md bg-primary m-md radius-lg shadow-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
       aria-labelledby="prossimi-eventi"
@@ -636,6 +659,15 @@
       });
     })(jQuery);
     var $mcj = jQuery.noConflict(true);
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XQZYGCQ2E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-6XQZYGCQ2E');
   </script>
 </body>
 

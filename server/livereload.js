@@ -7,6 +7,11 @@
   const wsUrl = `${protocol}//${window.location.host}`;
   
   function connect() {
+    // Only connect on localhost
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      return;
+    }
+    
     const ws = new WebSocket(wsUrl);
     
     ws.onopen = function() {
