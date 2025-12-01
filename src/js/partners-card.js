@@ -12,6 +12,11 @@ class PartnersCard extends StyledComponent {
   getTemplate() {
     const partners = [
       {
+        logo: "univr.svg",
+        name: "Universita degli studi di Verona",
+        link: "https://www.univr.it/it/",
+      },
+      {
         logo: "coderdojo-tn.png",
         name: "CoderDojo Trento",
         link: "https://www.coderdojotrento.it",
@@ -49,7 +54,7 @@ class PartnersCard extends StyledComponent {
               class="partner-logo"
               loading="lazy"
             />
-            <span class="sr-only">${partner.name}</span>
+            <span class="sr-only text-on-primary mt-xs">${partner.name}</span>
           </div>
         </a>
     `
