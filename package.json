@@ -4,8 +4,10 @@
   "description": "Game Dev Arena with live reload server",
   "main": "server.js",
   "scripts": {
+    "build": "node scripts/build-events.js",
+    "build:check": "node scripts/build-events.js --check",
     "start": "node ./server/server.js",
-    "dev": "nodemon ./server/server.js"
+    "dev": "npm run build && nodemon ./server/server.js"
   },
   "dependencies": {
     "chokidar": "^3.5.3",

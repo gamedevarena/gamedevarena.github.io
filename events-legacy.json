@@ -1,0 +1,37 @@
+{
+  "_comment": "Eventi antecedenti all'automazione. File statico, scritto a mano una volta sola. n8n NON tocca mai questo file. Le immagini stanno flat in public/events/, non nella struttura a cartelle per event_id.",
+  "events": [
+      {
+      "date": "2026-05-21",
+      "image": "public/events/21-maggio-2026.webp"
+    },
+    {
+      "date": "2026-03-12",
+      "image": "public/events/12-mar-2026.webp"
+    },
+    {
+      "date": "2026-02-19",
+      "image": "public/events/19-feb-2026.webp"
+    },
+    {
+      "date": "2026-01-30",
+      "image": "public/events/30-jan-2026.webp"
+    },
+    {
+      "date": "2025-12-11",
+      "image": "public/events/11-dec-2025.webp"
+    },
+    {
+      "date": "2025-11-13",
+      "image": "public/events/13-nov-2025.webp"
+    },
+    {
+      "date": "2025-10-16",
+      "image": "public/events/16-oct-2025.webp"
+    },
+    {
+      "date": "2025-09-25",
+      "image": "public/events/25-sept-2025.webp"
+    }
+  ]
+}

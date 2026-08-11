@@ -31,6 +31,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      # Rigenera hero + griglia eventi passati + eventbrite-url.json leggendo
+      # events.json (scritto da n8n) e events-legacy.json (statico).
+      # Nessun npm install: lo script usa solo moduli nativi di Node.
+      # Se un JSON e' malformato lo script esce 1 e il deploy si ferma:
+      # il sito online resta quello precedente.
+      - name: Build eventi
+        run: node scripts/build-events.js
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
