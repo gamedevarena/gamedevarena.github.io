@@ -52,11 +52,16 @@ function esc(s) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// This module lives at <site-root>/src/js/site.js on every deployment
+// (production root, or a PR preview under /pr-preview/<n>/) — resolving
+// against its own import.meta.url gives the right site root either way.
+const ICONS_BASE = new URL("../../public/icons/", import.meta.url);
+
 function icon(name) {
-  // Root-absolute: this is used inside a CSS custom property (--icon), and a
-  // relative url() in a custom property resolves against the stylesheet that
-  // declares the rule using it (site.css), not against the page.
-  return `/public/icons/${name}.svg`;
+  // Used inside a CSS custom property (--icon): a *relative* url() there
+  // resolves against the stylesheet that declares the rule (site.css), not
+  // against the page, so this must stay a fully-resolved absolute URL.
+  return new URL(`${name}.svg`, ICONS_BASE).href;
 }
 
 function el(tag, className, html) {
