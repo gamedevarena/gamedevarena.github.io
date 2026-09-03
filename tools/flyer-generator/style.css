@@ -4,25 +4,27 @@
    rects, not the exact organic blobs from Figma — close enough visually,
    swap for traced SVG paths if pixel-perfect fidelity is ever required. */
 
+@import "../../src/css/tokens.css";
+
 @font-face {
   font-family: 'Poppins';
-  src: url('/public/fonts/poppins-regular.woff2') format('woff2');
+  src: url('../../public/fonts/poppins-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Poppins';
-  src: url('/public/fonts/poppins-bold.woff2') format('woff2');
+  src: url('../../public/fonts/poppins-bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --color-primary: #FDC101;
-  --color-black: #1d1c1c;
-  --color-bg-dark: #1F2428; /* exact poster bg, from Locandina.svg */
+  --color-primary: var(--gda-color-accent);
+  --color-black: var(--gda-color-black);
+  --color-bg-dark: var(--gda-color-ink); /* exact poster bg, from Locandina.svg */
   --color-light-panel: #eef3fa;
   --color-gray-300: #cccccc;
   --font-family-base: "Poppins", Arial, sans-serif;
