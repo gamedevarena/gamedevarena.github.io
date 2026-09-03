@@ -47,7 +47,7 @@ const WEB_MARKUP = `
 `;
 
 const SOCIAL_MARKUP = `
-  <div class="gda-logo"><img src="/public/logo.webp" alt="GDA" /></div>
+  <div class="gda-logo"><img src="../../public/logo.webp" alt="GDA" /></div>
   <div class="decor-circle"></div>
   <div class="decor-circle"></div>
   <div class="date-block date-block--pill">${DATE_BLOCK_MARKUP}</div>
@@ -62,10 +62,10 @@ const SOCIAL_MARKUP = `
 
 const PRINT_MARKUP = `
   <div class="locandina-wordmark">
-    <span class="icon-crop"><img src="/public/logo.webp" alt="GDA" /></span>
+    <span class="icon-crop"><img src="../../public/logo.webp" alt="GDA" /></span>
     <span>GAME DEV<br>ARENA.it</span>
   </div>
-  <img class="locandina-swoosh" src="/public/locandina-top-left-decoration.svg" alt="" />
+  <img class="locandina-swoosh" src="../../public/locandina-top-left-decoration.svg" alt="" />
   <div class="photo locandina-photo"></div>
   <div class="speaker-block speaker-box locandina-speaker">
     <p class="name"></p>
@@ -88,7 +88,7 @@ const PRINT_MARKUP = `
       <div class="date-block">${DATE_BLOCK_MARKUP}</div>
       <p class="venue-details"></p>
       <div class="reg-row">
-        <div class="qr-box reg-qr-box"><img src="/public/qr/registrazione.svg" alt="QR Registrazione" /></div>
+        <div class="qr-box reg-qr-box"><img src="../../public/qr/registrazione.svg" alt="QR Registrazione" /></div>
         <p class="reg-text">Registrazione<br>Gratuita</p>
       </div>
     </div>
@@ -101,7 +101,7 @@ const PRINT_MARKUP = `
       <p class="program-lines"></p>
     </div>
   </div>
-  <img class="partner-strip" src="/public/locandina-footer.svg" alt="" />
+  <img class="partner-strip" src="../../public/locandina-footer.svg" alt="" />
 `;
 
 function esc(s) {
