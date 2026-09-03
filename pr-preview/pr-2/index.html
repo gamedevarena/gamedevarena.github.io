@@ -108,9 +108,15 @@
 
     <section class="gda-section gda-section--tight">
       <a href="#/eventi" class="gda-archive-link">
-        <span class="gda-archive-link__count"><span data-out="event-count"></span> eventi in archivio</span>
+        <span class="gda-archive-link__count"><span data-out="event-count"></span> eventi passati</span>
         <span class="gda-archive-link__cta">Vedi l'archivio<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
       </a>
+
+      <h2 class="gda-h2" style="margin-top: 48px;">Partners</h2>
+      <div class="gda-grid gda-grid--logos" data-out="partners"></div>
+
+      <h2 class="gda-h2" style="margin-top: 48px;">Sponsors</h2>
+      <div class="gda-grid gda-grid--logos gda-grid--sponsors" data-out="sponsors"></div>
     </section>
   </main>
 
@@ -134,12 +140,6 @@
 
     <h2 class="gda-h2">Founders / Mentors / Advisors</h2>
     <div class="gda-grid gda-grid--founders" data-out="founders"></div>
-
-    <h2 class="gda-h2">Partners</h2>
-    <div class="gda-grid gda-grid--logos" data-out="partners"></div>
-
-    <h2 class="gda-h2">Sponsors</h2>
-    <div class="gda-grid gda-grid--logos gda-grid--sponsors" data-out="sponsors"></div>
   </main>
 
   <main data-screen="contatti">
@@ -188,14 +188,27 @@
 
   <footer class="gda-footer">
     <div class="gda-footer__inner">
-      <img src="public/logo.webp" alt="Game Dev Arena" class="gda-footer__logo" />
-      <nav class="gda-footer__nav">
-        <a href="#/">Home</a>
-        <a href="#/eventi">Eventi passati</a>
-        <a href="#/chi-siamo">Chi siamo</a>
-        <a href="#/contatti">Contatti</a>
-      </nav>
-      <p class="gda-footer__copy">© 2026 Game Dev Arena. Tutti i diritti riservati.</p>
+      <div class="gda-footer__top">
+        <a href="#/" class="gda-footer__brand" aria-label="Game Dev Arena">
+          <img src="public/logo.webp" alt="" class="gda-footer__logo" />
+          <span>GDA</span>
+        </a>
+        <ul class="gda-footer__socials">
+          <li><a href="https://www.instagram.com/gda.gamedevarena" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span class="gda-card__icon" style="--icon: url('/public/icons/instagram.svg')"></span></a></li>
+          <li><a href="https://discord.gg/MCVVyAJmpw" target="_blank" rel="noopener noreferrer" aria-label="Discord"><span class="gda-card__icon" style="--icon: url('/public/icons/message-circle.svg')"></span></a></li>
+          <li><a href="https://www.youtube.com/@GameDevArenaVerona" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><span class="gda-card__icon" style="--icon: url('/public/icons/youtube.svg')"></span></a></li>
+          <li><a href="https://github.com/gamedevarena" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span class="gda-card__icon" style="--icon: url('/public/icons/github.svg')"></span></a></li>
+        </ul>
+      </div>
+      <div class="gda-footer__bottom">
+        <p class="gda-footer__copy">© 2026 Game Dev Arena. Tutti i diritti riservati.</p>
+        <nav class="gda-footer__nav">
+          <a href="#/">Home</a>
+          <a href="#/eventi">Eventi passati</a>
+          <a href="#/chi-siamo">Chi siamo</a>
+          <a href="#/contatti">Contatti</a>
+        </nav>
+      </div>
     </div>
   </footer>
 

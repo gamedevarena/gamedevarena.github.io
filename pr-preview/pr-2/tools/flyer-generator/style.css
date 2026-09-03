@@ -1,0 +1,313 @@
+/* GDA flyer generator — standalone tool, not part of the public site build.
+   Matches Figma "GDA-Brand" reference exports (Web desktop/mobile, Instagram
+   post/story). Panel split and date-pill shapes are simplified rounded
+   rects, not the exact organic blobs from Figma — close enough visually,
+   swap for traced SVG paths if pixel-perfect fidelity is ever required. */
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/public/fonts/poppins-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/public/fonts/poppins-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-primary: #FDC101;
+  --color-black: #1d1c1c;
+  --color-bg-dark: #1F2428; /* exact poster bg, from Locandina.svg */
+  --color-light-panel: #eef3fa;
+  --color-gray-300: #cccccc;
+  --font-family-base: "Poppins", Arial, sans-serif;
+  --font-family-heading: "Poppins", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  background: var(--color-black);
+  color: #fff;
+  padding: 2rem;
+}
+
+h1.page-title { font-family: var(--font-family-heading); font-size: 1.4rem; margin: 0 0 1.5rem; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+label { font-size: 0.85rem; color: var(--color-gray-300); display: flex; flex-direction: column; gap: 0.3rem; }
+label small { color: #888; font-weight: 400; }
+
+input, textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.4rem;
+  border: 1px solid #444;
+  background: #2a2f34;
+  color: #fff;
+}
+
+textarea { resize: vertical; min-height: 3.5rem; }
+
+.previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.preview h2 { font-size: 0.85rem; margin: 0; color: var(--color-gray-300); font-weight: 600; }
+.preview small { color: var(--color-gray-300); }
+
+.preview button {
+  align-self: flex-start;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: var(--color-primary);
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.actions { margin-top: 1rem; display: flex; gap: 0.6rem; }
+.actions button {
+  font-family: inherit;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: var(--color-primary);
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+/* ---------- shared poster parts ---------- */
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-dark);
+  font-family: var(--font-family-base);
+}
+
+.hl { color: var(--color-primary); }
+.title .hl { color: inherit; }
+
+.gda-logo { position: absolute; z-index: 3; }
+.gda-logo img { height: 1em; display: block; }
+
+.photo-panel { position: absolute; top: 0; left: 0; right: 0; background: var(--color-light-panel); }
+.photo { position: absolute; background-position: center; background-size: cover; background-repeat: no-repeat; z-index: 2; }
+
+.date-block { position: absolute; z-index: 3; }
+.date-block .weekday { font-family: var(--font-family-heading); font-weight: 700; text-transform: lowercase; margin: 0; color: var(--color-black); }
+.date-block .day { font-family: var(--font-family-heading); font-weight: 700; margin: 0; color: var(--color-black); line-height: 1; }
+.date-block .location { margin: 0.2em 0 0; color: var(--color-black); font-weight: 600; }
+.date-block .location .at { color: var(--color-primary); font-weight: 700; }
+.date-block .location .year-tag { display: none; }
+
+.date-block--pill { background: #fff; }
+
+.content-card { position: absolute; left: 0; right: 0; bottom: 0; background: var(--color-bg-dark); z-index: 1; }
+
+.quote-glyph {
+  font-family: Georgia, serif;
+  color: rgba(255, 255, 255, 0.18);
+  position: absolute;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.title { font-family: var(--font-family-heading); font-weight: 700; color: #fff; margin: 0; line-height: 1.05; }
+.subtitle { font-family: var(--font-family-heading); font-weight: 700; color: #fff; margin: 0; line-height: 1.15; }
+
+.speaker-block .name { font-family: var(--font-family-heading); font-weight: 700; color: #fff; margin: 0; }
+.speaker-block .role { color: #fff; font-weight: 700; margin: 0.3em 0 0; line-height: 1.35; }
+
+.speaker-box { border: 2px solid var(--color-primary); border-radius: 1.4em; background: var(--color-bg-dark); }
+
+.cta { color: var(--color-primary); font-family: var(--font-family-heading); font-weight: 700; text-align: center; margin: 0; }
+
+.decor-circle { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.05); z-index: 0; }
+
+/* ================= hero (web desktop, 1956x1200 -> preview /3) ================= */
+.frame[data-frame="hero"] { width: 652px; height: 400px; }
+.frame[data-frame="hero"] .photo-panel { height: 184px; border-radius: 0 0 14px 14px; }
+.frame[data-frame="hero"] .photo { top: 20px; left: 30px; width: 160px; height: 190px; border-radius: 10px 10px 0 0; }
+.frame[data-frame="hero"] .date-block { top: 60px; right: 40px; text-align: right; }
+.frame[data-frame="hero"] .date-block .weekday { font-size: 12px; }
+.frame[data-frame="hero"] .date-block .day { font-size: 30px; }
+.frame[data-frame="hero"] .date-block .location { font-size: 14px; }
+.frame[data-frame="hero"] .content-card { top: 170px; padding: 40px 44px 26px; }
+.frame[data-frame="hero"] .quote-glyph { top: 8px; left: 40px; font-size: 46px; }
+.frame[data-frame="hero"] .card-columns { display: flex; justify-content: space-between; gap: 20px; }
+.frame[data-frame="hero"] .title-col { max-width: 62%; }
+.frame[data-frame="hero"] .title { font-size: 27px; margin-top: 18px; }
+.frame[data-frame="hero"] .subtitle { font-size: 14px; margin-top: 10px; }
+.frame[data-frame="hero"] .speaker-block { padding-top: 18px; max-width: 34%; }
+.frame[data-frame="hero"] .speaker-block .name { font-size: 17px; }
+.frame[data-frame="hero"] .speaker-block .role { font-size: 11px; }
+.frame[data-frame="hero"] .cta { font-size: 15px; margin-top: 16px; }
+
+/* ================= hero-mobile (web mobile, 1100x1528 -> preview /2) ================= */
+.frame[data-frame="hero-mobile"] { width: 550px; height: 764px; }
+.frame[data-frame="hero-mobile"] .photo-panel { height: 260px; border-radius: 0 0 20px 20px; }
+.frame[data-frame="hero-mobile"] .photo { top: 24px; left: 24px; width: 200px; height: 250px; border-radius: 14px 14px 0 0; }
+.frame[data-frame="hero-mobile"] .date-block { top: 40px; right: 32px; text-align: right; }
+.frame[data-frame="hero-mobile"] .date-block .weekday { font-size: 15px; }
+.frame[data-frame="hero-mobile"] .date-block .day { font-size: 36px; }
+.frame[data-frame="hero-mobile"] .date-block .location { font-size: 17px; }
+.frame[data-frame="hero-mobile"] .content-card { top: 240px; padding: 56px 36px 32px; }
+.frame[data-frame="hero-mobile"] .quote-glyph { top: 10px; left: 32px; font-size: 56px; }
+.frame[data-frame="hero-mobile"] .title { font-size: 34px; }
+.frame[data-frame="hero-mobile"] .subtitle { font-size: 18px; margin-top: 14px; }
+.frame[data-frame="hero-mobile"] .speaker-block { margin-top: 26px; }
+.frame[data-frame="hero-mobile"] .speaker-block .name { font-size: 22px; }
+.frame[data-frame="hero-mobile"] .speaker-block .role { font-size: 14px; }
+.frame[data-frame="hero-mobile"] .cta { font-size: 19px; margin-top: 22px; }
+
+/* ================= post (Instagram post, 1080x1350 -> preview /2) ================= */
+.frame[data-frame="post"] { width: 540px; height: 675px; }
+.frame[data-frame="post"] .gda-logo { top: 26px; right: 26px; font-size: 34px; }
+.frame[data-frame="post"] .decor-circle:nth-child(2) { width: 230px; height: 230px; top: -60px; right: -40px; }
+.frame[data-frame="post"] .decor-circle:nth-child(3) { width: 200px; height: 200px; top: 90px; right: 60px; }
+.frame[data-frame="post"] .date-block--pill { top: 26px; left: 0; padding: 14px 20px; border-radius: 0 16px 16px 2px; }
+.frame[data-frame="post"] .date-block .weekday { font-size: 12px; }
+.frame[data-frame="post"] .date-block .day { font-size: 26px; }
+.frame[data-frame="post"] .date-block .location { font-size: 13px; }
+.frame[data-frame="post"] .quote-glyph { top: 220px; left: 30px; font-size: 44px; }
+.frame[data-frame="post"] .title { position: absolute; top: 250px; left: 30px; right: 30px; font-size: 30px; z-index: 1; }
+.frame[data-frame="post"] .subtitle { position: absolute; left: 30px; right: 30px; top: 350px; font-size: 15px; z-index: 1; }
+.frame[data-frame="post"] .speaker-box { position: absolute; left: 30px; right: 30px; bottom: 40px; padding: 18px 22px; z-index: 1; }
+.frame[data-frame="post"] .speaker-block .name { font-size: 18px; }
+.frame[data-frame="post"] .speaker-block .role { font-size: 12px; }
+
+/* ================= story (Instagram story, 1080x1920 -> preview /3) ================= */
+.frame[data-frame="story"] { width: 360px; height: 640px; }
+.frame[data-frame="story"] .gda-logo { top: 26px; left: 50%; transform: translateX(-50%); font-size: 26px; }
+.frame[data-frame="story"] .decor-circle:nth-child(2) { width: 220px; height: 220px; top: 60px; right: -50px; }
+.frame[data-frame="story"] .decor-circle:nth-child(3) { width: 190px; height: 190px; top: 190px; right: 40px; }
+.frame[data-frame="story"] .date-block--pill { top: 90px; left: 0; padding: 12px 18px; border-radius: 0 14px 14px 2px; }
+.frame[data-frame="story"] .date-block .weekday { font-size: 11px; }
+.frame[data-frame="story"] .date-block .day { font-size: 22px; }
+.frame[data-frame="story"] .date-block .location { font-size: 12px; }
+.frame[data-frame="story"] .quote-glyph { top: 280px; left: 24px; font-size: 40px; }
+.frame[data-frame="story"] .title { position: absolute; top: 305px; left: 24px; right: 24px; font-size: 26px; z-index: 1; }
+.frame[data-frame="story"] .subtitle { position: absolute; left: 24px; right: 24px; top: 400px; font-size: 14px; z-index: 1; }
+.frame[data-frame="story"] .speaker-box { position: absolute; left: 24px; right: 24px; bottom: 60px; padding: 16px 18px; z-index: 1; }
+.frame[data-frame="story"] .speaker-block .name { font-size: 16px; }
+.frame[data-frame="story"] .speaker-block .role { font-size: 11px; }
+
+/* ================= locandina (print A4 poster, 3508x4960) =================
+   Flow layout (not absolute-positioned like the frames above) — this poster
+   is long-form content, easier to keep in normal document flow than to
+   pixel-place every block. Top-left swoosh and footer logo strip are real
+   traced assets from Figma (public/locandina-top-left-decoration.svg,
+   public/locandina-footer.svg), not CSS approximations. */
+.frame[data-frame="locandina"] { width: 450px; height: 636px; padding: 26px 28px; display: flex; flex-direction: column; }
+
+.locandina-wordmark { display: flex; align-items: center; gap: 10px; z-index: 2; position: relative; }
+.icon-crop { width: 34px; height: 34px; overflow: hidden; position: relative; display: block; flex: none; }
+.icon-crop img { height: 34px; width: auto; position: absolute; top: 0; left: 0; }
+.locandina-wordmark span { font-family: var(--font-family-heading); font-weight: 700; color: #fff; font-size: 15px; line-height: 1.1; }
+
+.locandina-swoosh {
+  position: absolute; top: 54px; left: 0; width: 65%; height: auto;
+  z-index: 0;
+}
+
+.locandina-photo {
+  position: absolute; top: 0; right: 28px; width: 130px; height: 160px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.locandina-speaker {
+  position: absolute; top: 116px; right: 28px; width: 250px;
+  padding: 10px 14px; z-index: 2; text-align: center;
+}
+.locandina-speaker .name { font-size: 13px; }
+.locandina-speaker .role { font-size: 9px; }
+
+.title-row { display: flex; gap: 16px; margin-top: 150px; }
+.left-image {
+  flex: 1; background-position: center; background-size: cover; background-repeat: no-repeat;
+  border-radius: 0 8px 8px 0; min-height: 100px; margin-left: -28px;
+}
+.title-col { flex: 1.3; }
+
+.episode-tag { font-family: var(--font-family-heading); font-weight: 700; font-size: 13px; color: #fff; margin: 0; }
+.episode-tag .hl { color: var(--color-primary); }
+
+.frame[data-frame="locandina"] .title { font-size: 32px; margin-top: 0; }
+.frame[data-frame="locandina"] .subtitle { font-size: 14px; margin-top: 3px; }
+
+.content-grid {
+  display: grid; grid-template-columns: 1.8fr 1fr; column-gap: 14px; row-gap: 10px;
+  margin-top: 2px;
+}
+.description-col { grid-column: 1; grid-row: 1; position: relative; padding-left: 16px; }
+.description-col .quote-glyph { position: absolute; top: -8px; left: 0; z-index: 0; font-size: 52px; }
+.description-col .description { position: relative; z-index: 1; }
+.description { font-size: 12px; line-height: 1.45; color: #fff; margin: 0; }
+
+.date-venue-col { grid-column: 2; grid-row: 1; }
+.date-venue-col .date-block { position: static; text-align: left; }
+.date-venue-col .date-block .weekday { font-size: 11px; }
+.date-venue-col .date-block .day { font-size: 18px; white-space: nowrap; }
+.date-venue-col .date-block .location { font-size: 12px; }
+.date-venue-col .date-block .weekday,
+.date-venue-col .date-block .day,
+.date-venue-col .date-block .location { color: #fff; }
+.date-venue-col .date-block .year-tag { display: inline; font-size: 0.7em; color: var(--color-gray-300); margin-left: 0.5em; }
+
+.venue-details { font-size: 8px; color: var(--color-gray-300); margin: 1px 0 0; line-height: 1.3; }
+
+.reg-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.reg-text { font-family: var(--font-family-heading); font-weight: 700; font-size: 9px; color: #fff; margin: 0; }
+
+.telegram-row { grid-column: 1; grid-row: 2; display: flex; align-items: center; gap: 10px; padding-left: 16px; }
+.qr-box { width: 46px; height: 46px; border-radius: 4px; overflow: hidden; border: 3px solid var(--color-primary); flex: none; }
+.qr-box img { width: 100%; height: 100%; display: block; }
+.reg-qr-box { border: none; }
+.telegram-text { font-family: var(--font-family-heading); font-weight: 700; font-size: 9px; color: #fff; margin: 0; line-height: 1.3; }
+
+.program-block { grid-column: 2; grid-row: 2; }
+.program-block h3 { font-family: var(--font-family-heading); font-weight: 700; color: #fff; font-size: 13px; margin: 0 0 4px; }
+.program-lines { font-size: 8.5px; line-height: 1.5; color: #fff; margin: 0; }
+
+.partner-strip {
+  margin-top: auto;
+  margin-left: -28px; margin-right: -28px; margin-bottom: -26px;
+  width: calc(100% + 56px);
+  display: block;
+}
