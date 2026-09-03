@@ -1,14 +1,18 @@
 /* GDA — homepage (index.html). Standalone stylesheet, not shared with the
    legacy pages (socials.html, upcoming-event.html), which keep design.css. */
 
+@import "./tokens.css";
+
 :root {
-  --gda-accent: #FDC101;
-  --gda-ink: #1F2428;
+  --gda-accent: var(--gda-color-accent);
+  --gda-ink: var(--gda-color-ink);
   --gda-ink-2: #23292E;
-  --gda-paper: #F5F5F5;
+  --gda-paper: var(--gda-color-paper);
 }
 
 * { box-sizing: border-box; }
+
+html { overflow-x: hidden; }
 
 body {
   margin: 0;
@@ -232,7 +236,7 @@ main[data-screen="home"] { position: relative; }
   background: var(--gda-ink-2);
   box-shadow: 12px 12px 0 rgba(253, 193, 1, 0.14);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -247,7 +251,7 @@ main[data-screen="home"] { position: relative; }
 .gda-hero__meta dd { margin: 6px 0 0; font-size: 18px; font-weight: 600; }
 .gda-hero__note { margin: 0; font-size: 14px; line-height: 1.6; color: rgba(245, 245, 245, 0.6); }
 
-.gda-countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.gda-countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 100%; }
 .gda-countdown__unit { border: 1px solid rgba(245, 245, 245, 0.14); background: var(--gda-ink); padding: 14px 6px; text-align: center; }
 .gda-countdown__value { margin: 0; font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--gda-accent); }
 .gda-countdown__label { margin: 8px 0 0; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 245, 245, 0.5); }
@@ -404,18 +408,47 @@ main[data-screen="home"] { position: relative; }
 /* ── footer ───────────────────────────────────────────────────────────── */
 
 .gda-footer { border-top: 1px solid rgba(245, 245, 245, 0.12); background: #1B2023; }
-.gda-footer__inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 44px clamp(20px, 5vw, 24px);
+.gda-footer__inner { max-width: 1180px; margin: 0 auto; padding: 44px clamp(20px, 5vw, 24px) 32px; }
+
+.gda-footer__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.gda-footer__brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; color: var(--gda-paper); }
+.gda-footer__brand:hover { color: var(--gda-paper); }
+.gda-footer__logo { height: 34px; width: auto; display: block; }
+
+.gda-footer__socials { list-style: none; display: flex; gap: 12px; margin: 0; padding: 0; }
+.gda-footer__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(245, 245, 245, 0.08);
+}
+.gda-footer__socials a:hover { background: var(--gda-accent); }
+.gda-footer__socials a:hover .gda-card__icon { background: var(--gda-ink); }
+.gda-footer__socials .gda-card__icon { width: 18px; height: 18px; margin: 0; }
+
+.gda-footer__bottom {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 12px 24px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(245, 245, 245, 0.12);
 }
-.gda-footer__logo { height: 40px; width: auto; display: block; }
 .gda-footer__nav { display: flex; flex-wrap: wrap; gap: 20px; }
 .gda-footer__nav a { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245, 245, 245, 0.6); }
 .gda-footer__nav a:hover { color: var(--gda-accent); }
 .gda-footer__copy { margin: 0; font-size: 12px; color: rgba(245, 245, 245, 0.45); }
+
+@media (max-width: 560px) {
+  .gda-hero { box-shadow: 6px 6px 0 rgba(253, 193, 1, 0.14); }
+}
+
+@media (max-width: 420px) {
+  .gda-countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .gda-countdown__value { font-size: 26px; }
+}

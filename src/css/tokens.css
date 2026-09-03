@@ -1,0 +1,12 @@
+/* GDA shared brand tokens — single source of truth for colors reused across
+   site.css, design.css (legacy pages), and tools/flyer-generator. Edit a
+   brand color here and it propagates everywhere; do not hardcode these hex
+   values anywhere else. Page-specific tokens (spacing scale, legacy font
+   stacks, print-only panel colors) stay local to their own stylesheet. */
+
+:root {
+  --gda-color-accent: #FDC101; /* brand yellow */
+  --gda-color-ink: #1F2428;    /* 2026 brand dark bg */
+  --gda-color-black: #1d1c1c;  /* legacy near-black */
+  --gda-color-paper: #F5F5F5;  /* off-white */
+}

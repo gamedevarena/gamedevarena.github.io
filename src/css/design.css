@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap");
 @import url("/public/fonts/fonts.css");
+@import "./tokens.css";
 
 :root {
 /* Main Colors */
---color-primary: #FDC101;    /* Golden Yellow */
+--color-primary: var(--gda-color-accent);    /* Golden Yellow */
 --color-secondary: #2E86AB;  /* Complementary Blue */
 --color-tertiary: #F18F01;   /* Analogous Orange */
 --color-accent: #FFF8E7;     /* Warm Cream */
@@ -44,7 +45,7 @@
 
   /* Neutral Palette */
   --color-white: #ffffff;
-  --color-light: #f5f5f5; /* Light gray */
+  --color-light: var(--gda-color-paper); /* Light gray */
   --color-gray-100: #f0f0f0; /* Very light gray */
   --color-gray-200: #e0e0e0; /* Light gray */
   --color-gray-300: #cccccc; /* Medium light gray */
