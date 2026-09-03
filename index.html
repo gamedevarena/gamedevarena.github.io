@@ -1,212 +1,780 @@
-<!DOCTYPE html>
 <html lang="it">
 
 <head>
   <meta charset="UTF-8" />
-  <title>Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi</title>
-  <meta name="description" content="Community italiana di sviluppatori di videogiochi del nordest italiano: eventi mensili, game jam, workshop e networking a Verona." />
+  <title>
+    Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi
+  </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="canonical" href="https://gamedevarena.it/" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Game Dev Arena" />
-  <meta property="og:url" content="https://gamedevarena.it/" />
-  <meta property="og:title" content="Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi" />
-  <meta property="og:description" content="Community italiana di sviluppatori di videogiochi del nordest italiano: eventi mensili, game jam, workshop e networking a Verona." />
-  <meta property="og:image" content="https://gamedevarena.it/public/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="it_IT" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi" />
-  <meta name="twitter:description" content="Community italiana di sviluppatori di videogiochi del nordest italiano: eventi mensili, game jam, workshop e networking a Verona." />
-  <meta name="twitter:image" content="https://gamedevarena.it/public/og-image.jpg" />
-
-  <meta name="theme-color" content="#1F2428" />
-  <link rel="manifest" href="public/manifest.json" />
-
   <script src="/server/livereload.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./src/css/site.css" />
-  <link rel="icon" href="public/logo.ico" />
-  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <link rel="stylesheet" href="./src/css/design.css" />
+  <link rel="stylesheet" href="./src/css/styles.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+  <script src="./src/js/event-card.js" type="module"></script>
+  <script src="./src/js/founder-card.js" type="module"></script>
+  <script src="./src/js/mission-card.js" type="module"></script>
+  <script src="./src/js/partners-card.js" type="module"></script>
+  <script src="./src/js/sponsor-card.js" type="module"></script>
+  <link rel="icon" type="image/png" href="public/logo.ico" />
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5088c8e7-8c94-4dcc-a805-0a4a2ecc244c" type="text/javascript" async></script>
 </head>
 
-<body>
-  <div class="gda-scanlines" aria-hidden="true"></div>
-
-  <header class="gda-header">
-    <div class="gda-header__row gda-header__row--wide">
-      <a href="#/" class="gda-header__logo"><img src="public/logo.webp" alt="Game Dev Arena" /></a>
-      <nav class="gda-nav gda-nav--wide" aria-label="Navigazione principale">
-        <a href="#/" data-nav="home" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Home</a>
-        <a href="#/eventi" data-nav="eventi" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Eventi passati</a>
-        <a href="#/chi-siamo" data-nav="chi-siamo" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Chi siamo</a>
-        <a href="#/contatti" data-nav="contatti" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Contatti</a>
+<body class="flex flex-col items-center justify-center">
+  <header class="sticky-header w-full rounded-none p-md flex flex-row items-center justify-center" role="banner">
+    <div class="header__content flex flex-row items-center justify-between w-full h-full lg:w-10/12 xl:w-8/12">
+      <img src="public/logo.webp" alt="Game Dev Arena Logo" id="logo" width="150" />
+      <h1 id="site-title" class="visually-hidden">Game Dev Arena</h1>
+      <nav aria-label="Navigazione principale" class="flex align-items-center justify-center">
+        <ul>
+          <!-- <li>
+            <a href="#events" aria-label="Vai alla sezione Talks">Eventi</a>
+          </li> -->
+          <li>
+            <a href="#mission" aria-label="Vai alla sezione Su di noi">Mission</a>
+          </li>
+          <li>
+            <a href="#newsletter" aria-label="Iscriviti alla newsletter">Newsletter</a>
+          </li>
+          <li>
+            <a href="#contacts" aria-label="Vai alla sezione Contatti">Contatti</a>
+          </li>
+        </ul>
       </nav>
-      <a href="#" data-link="speakerForm" target="_blank" rel="noopener noreferrer" class="gda-cta gda-cta--sm">
-        <span class="gda-cta__out"><span>Diventa speaker</span></span>
-        <span class="gda-cta__in"><span>Diventa speaker</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-        <span class="gda-cta__dot" aria-hidden="true"></span>
-      </a>
-    </div>
-    <div class="gda-header__row gda-header__row--narrow">
-      <div class="gda-header__narrow-top">
-        <a href="#/"><img src="public/logo.webp" alt="Game Dev Arena" class="gda-header__logo-img" /></a>
-        <a href="#" data-link="speakerForm" target="_blank" rel="noopener noreferrer" class="gda-pill">Diventa speaker</a>
+      <div class="flex flex-row items-center justify-end gap-md">
+        <a href="#speakers" aria-label="Diventa Speaker" class="button button-primary text-decoration-none"
+          title="Diventa Speaker">
+          <i class="ph-fill ph-microphone-stage" aria-hidden="true"></i>
+          <span>Diventa speaker</span>
+        </a>
       </div>
-      <nav class="gda-nav gda-nav--narrow" aria-label="Navigazione principale">
-        <a href="#/" data-nav="home" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Home</a>
-        <a href="#/eventi" data-nav="eventi" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Eventi</a>
-        <a href="#/chi-siamo" data-nav="chi-siamo" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Chi siamo</a>
-        <a href="#/contatti" data-nav="contatti" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Contatti</a>
-      </nav>
     </div>
   </header>
 
-  <main data-screen="home" class="gda-dotgrid">
-    <section class="gda-section gda-section--hero">
-      <div class="gda-hero gda-tilt" data-tilt="soft">
-        <div class="gda-hero__left">
-          <p class="gda-eyebrow">Prossimo evento</p>
-          <p class="gda-hero__date" data-out="upcoming-date"></p>
-          <h2 class="gda-hero__title" data-out="upcoming-title"></h2>
-          <dl class="gda-hero__meta">
-            <div>
-              <dt>Speaker</dt>
-              <dd data-out="upcoming-speaker"></dd>
-            </div>
-            <div>
-              <dt>Location</dt>
-              <dd data-out="upcoming-location"></dd>
-            </div>
-          </dl>
-          <a href="#" data-link="upcoming-cta" class="gda-cta">
-            <span class="gda-cta__out"><span data-out="upcoming-cta-label"></span></span>
-            <span class="gda-cta__in"><span data-out="upcoming-cta-label"></span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-            <span class="gda-cta__dot" aria-hidden="true"></span>
-          </a>
+  <section
+    class="hero text-white flex flex-col justify-center items-center w-11/12 lg:w-10/12 xl:w-8/12 position-relative radius-2xl animated fade-in mt-4xl md:mt-xl cursor-pointer"
+    aria-labelledby="site-title">
+    <!-- GDA:HERO:START -->
+    <a href="https://www.eventbrite.it/e/generazione-procedurale-grandi-mondi-con-piccoli-budget-tickets-1989098344694?aff=oddtdtcreator" target="_blank" aria-label="Vai all'evento su Eventbrite" class="w-full flex justify-center">
+      <picture class="w-full">
+      <source
+        media="(min-width: 768px)"
+        srcset="public/events/21-maggio-2026.webp"
+      />
+      <img
+        src="public/events/21-maggio-2026-mobile.webp"
+        class="w-full h-auto"
+        style="object-fit: contain; max-width: 100%; height: auto;"
+      />
+    </picture>
+    </a>
+    <!-- GDA:HERO:END -->
+    <!-- <div class="hero-background animated" aria-hidden="true">
+      <img src="public/hero/MarbleMadness_Arcade_Mame_Screenshot_11.jpg" alt="Marble Madness game screenshot" />
+      <img src="public/hero/marble-madness-pc-083.png" alt="Marble Madness PC screenshot" />
+      <img src="public/hero/pos2uoit5bqmtd8qzbud.jpg" alt="Galaxy background" />
+      <img src="public/backgrounds/Half-Life.jpg" alt="Half-Life game background" />
+      <img src="public/backgrounds/Old-games-Fallout-2.jpg" alt="Fallout 2 game background" />
+      <img src="public/backgrounds/alien-breed-amiga-testing-a-flamethrower.png"
+        alt="Alien Breed Amiga game screenshot" />
+      <img src="public/backgrounds/doom-1.jpg" alt="Doom game background" />
+      <img src="public/backgrounds/james-pond-2-codename-robocod-screenshot.jpg" alt="James Pond 2 game screenshot" />
+      <img src="public/backgrounds/lemmings.png" alt="Lemmings game background" />
+      <img src="public/backgrounds/monkey_island.jpg" alt="Monkey Island game background" />
+      <img src="public/backgrounds/quake.jpg" alt="Quake game background" />
+      <img src="public/backgrounds/r-types-19.png" alt="R-Types game screenshot" />
+      <img src="public/backgrounds/street_fighter.jpg" alt="Street Fighter game background" />
+      <img src="public/backgrounds/ultima.jpg" alt="Ultima game background" />
+    </div>
+    <div class="overlay position-absolute w-full h-full bg-black opacity-70"></div>
+    <div class="container w-10/12 md:w-6/12 flex flex-col justify-center items-center z-30 position-relative">
+      <h2 class="text-center text-white text-shadow">
+        Benvenuto in Game Dev Arena!
+      </h2>
+      <p class="text-center">
+        <span class="text-shadow text-white">Unisciti a noi per scoprire, imparare e condividere tutto sullo
+          sviluppo di videogiochi.</span>
+        <span class="bg-white text-black">Eventi, talk e networking per appassionati e professionisti.</span>
+      </p>
+      <a href="#mission" class="mt-md text-decoration-none" aria-label="Scopri di più sulla community">
+        <button class="button button-primary w-auto flex flex-row items-center justify-center"
+          aria-label="Scopri di più">
+          <i class="ph-fill ph-arrow-down mr-xs" aria-hidden="true"></i>
+          <span class="align-middle">Scopri di più</span>
+        </button>
+      </a>
+    </div> -->
+  </section>
+
+  <main class="flex flex-col px-md md:px-0 w-full align-items-center">
+    <!-- Eventi Passati Section -->
+    <section class="past-events-section mt-xl radius-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="eventi-passati" id="past-events">
+      <h2 class="text-primary mb-lg" id="eventi-passati">
+        Eventi Passati
+      </h2>
+      <div class="past-events-grid grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"><!-- GDA:PAST:START -->
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/21-maggio-2026.webp"
+               alt="Evento del 21 Maggio 2026"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
         </div>
-        <div class="gda-hero__right">
-          <p class="gda-eyebrow gda-eyebrow--muted">Countdown</p>
-          <div class="gda-countdown" data-out="countdown"></div>
-          <p class="gda-hero__note">Talk, networking e pizza dopo l'evento. Ingresso gratuito, posti limitati.</p>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/12-mar-2026.webp"
+               alt="Evento del 12 Marzo 2026"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
         </div>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/19-feb-2026.webp"
+               alt="Evento del 19 Febbraio 2026"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
+        </div>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/30-jan-2026.webp"
+               alt="Evento del 30 Gennaio 2026"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
+        </div>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/11-dec-2025.webp"
+               alt="Evento dell&#39;11 Dicembre 2025"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
+        </div>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/13-nov-2025.webp"
+               alt="Evento del 13 Novembre 2025"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
+        </div>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/16-oct-2025.webp"
+               alt="Evento del 16 Ottobre 2025"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
+        </div>
+        <div class="event-image-card radius-lg overflow-hidden">
+          <img src="public/events/25-sept-2025.webp"
+               alt="Evento del 25 Settembre 2025"
+               class="w-full h-auto"
+               style="object-fit: cover;" />
+        </div>
+      <!-- GDA:PAST:END -->      </div>
+    </section>
+
+    <!-- <section
+      class="events-section p-md bg-primary m-md radius-lg shadow-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="prossimi-eventi"
+      id="events"
+    >
+      <h2 class="text-white mb-md" id="prossimi-eventi">Prossimi Eventi</h2>
+      <div class="w-full flex flex-row flex-wrap justify-start align-start">
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/gda.webp"
+          avatar="public/avatar-example.webp"
+          speaker="Giulia Verdi"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Pixel Art: Dall’Idea al Gioco"
+        >
+          <span slot="title">Pixel Art: Dall’Idea al Gioco</span>
+          <span slot="description">
+            Scopri le tecniche base e avanzate della pixel art per videogiochi.
+            Workshop pratico con esempi di animazione e consigli su strumenti e
+            workflow.
+          </span>
+          <span slot="date">25 Maggio 2025</span>
+          <span slot="location">Torino, Italia</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/gda.webp"
+          avatar="public/avatar-example.webp"
+          speaker="Andrea Neri"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Audio nei Videogiochi: Musica e Sound Design"
+        >
+          <span slot="title">Audio nei Videogiochi: Musica e Sound Design</span>
+          <span slot="description">
+            Un viaggio nel mondo dell’audio per videogiochi: come creare colonne
+            sonore efficaci e sound effects immersivi. Dimostrazioni live e
+            strumenti consigliati.
+          </span>
+          <span slot="date">28 Maggio 2025</span>
+          <span slot="location">Online</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/gda.webp"
+          avatar="public/avatar-example.webp"
+          speaker="Sara Colombo"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Marketing per Indie Game Developer"
+        >
+          <span slot="title">Marketing per Indie Game Developer</span>
+          <span slot="description">
+            Strategie e strumenti per promuovere il tuo videogioco indie: social
+            media, community, press kit e crowdfunding. Consigli pratici da chi
+            ce l’ha fatta.
+          </span>
+          <span slot="date">2 Giugno 2025</span>
+          <span slot="location">Bologna, Italia</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/gda.webp"
+          avatar="public/avatar-example.webp"
+          speaker="Bianca Bernie"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Come si sviluppa un videogioco?"
+        >
+          <span slot="title">Come si sviluppa un videogioco?</span>
+          <span slot="description">
+            Un talk introduttivo che esplora le fasi fondamentali dello sviluppo
+            di un videogioco: dall’idea iniziale, alla progettazione, fino alla
+            realizzazione tecnica e al lancio. Ideale per chi vuole capire il
+            processo creativo e tecnico dietro la creazione di un videogioco,
+            con esempi pratici e consigli utili per iniziare.
+          </span>
+          <span slot="date">10 Maggio 2025</span>
+          <span slot="location">Online</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/gda.webp"
+          avatar="public/avatar-example.webp"
+          speaker="Marco Rossi"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Game Design: Creare Esperienze Coinvolgenti"
+        >
+          <span slot="title">Game Design: Creare Esperienze Coinvolgenti</span>
+          <span slot="description">
+            Un approfondimento sul game design, con focus su come progettare
+            meccaniche di gioco coinvolgenti e bilanciare l’esperienza del
+            giocatore. Attraverso casi studio e analisi di giochi famosi,
+            scoprirai le chiavi per creare esperienze ludiche memorabili.
+          </span>
+          <span slot="date">15 Maggio 2025</span>
+          <span slot="location">Milano, Italia</span>
+        </event-card>
+        <event-card
+          agency="Milestone"
+          agencyAvatar="public/brands/gda.webp"
+          avatar="public/avatar-example.webp"
+          speaker="Luca Bianchi"
+          class="inline-flex md:w-full lg:w-6/12 p-xs"
+          role="article"
+          aria-label="Evento Unity vs Unreal: Quale Motore Scegliere?"
+        >
+          <span slot="title">Unity vs Unreal: Quale Motore Scegliere?</span>
+          <span slot="description">
+            Un confronto tra i due motori di gioco più popolari: Unity e Unreal
+            Engine. Analizzeremo le caratteristiche, i punti di forza e le
+            debolezze di entrambi, aiutandoti a scegliere il motore più adatto
+            alle tue esigenze di sviluppo.
+          </span>
+          <span slot="date">20 Maggio 2025</span>
+          <span slot="location">Roma, Italia</span>
+        </event-card>
+      </div>
+    </section>
+     -->
+    <section class="mission-section mt-xl radius-lg flex flex-col items-start w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="chi-siamo" id="mission">
+      <h2 class="text-primary mb-md" id="chi-siamo">
+        Game Dev Arena - Che cos'é
+      </h2>
+      <p class="mb-md">
+        Una nuova community dedicata agli sviluppatori e appassionati di
+        videogame del nordest italiano.<br />
+        L'iniziativa vuole creare connessioni, condividere conoscenze e far
+        crescere l'ecosistema locale del game development.
+      </p>
+      <h4 class="mb-lg mt-2lg">La Nostra Missione</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-users">
+          <span slot="title">Networking qualificato</span>
+          <span slot="description">Connessioni tra professionisti del settore per favorire
+            collaborazioni e crescita.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-graduation-cap">
+          <span slot="title">Formazione continua</span>
+          <span slot="description">Talk e workshop specializzati per aggiornarsi sulle ultime novità
+            del game development.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-handshake">
+          <span slot="title">Mentorship e supporto</span>
+          <span slot="description">Aiuto ai neofiti tramite mentorship e condivisione di esperienze
+            tra membri della community.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-star">
+          <span slot="title">Valorizzazione del talento</span>
+          <span slot="description">Promozione delle eccellenze locali e delle competenze del
+            territorio.</span>
+        </mission-card>
+      </div>
+      <h4 class="mb-lg mt-2lg">Attività Principali</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-calendar">
+          <span slot="title">Eventi Mensili</span>
+          <span slot="description">8/9 incontri all'anno con talk da professionisti del
+            settore.</span>
+          <div class="flex flex-col gap-xs ml-md mt-md">
+            <span class="text-muted">Location: <span class="bg-accent">311 Verona</span> - spazio
+              innovativo per eventi tech e creativi.</span>
+            <span class="text-muted">Networking informale in pizzeria dopo gli eventi.</span>
+          </div>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-game-controller">
+          <span slot="title">Game Jam annuale</span>
+          <span slot="description">Competizione creativa aperta a sviluppatori di tutti i
+            livelli.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-wrench">
+          <span slot="title">Workshop pratici</span>
+          <span slot="description">Approfondimenti su tool, tecniche e trend di mercato con esperti
+            del settore.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-database">
+          <span slot="title">Database professionale</span>
+          <span slot="description">Mappatura di talenti e aziende del territorio per favorire
+            opportunità di collaborazione.</span>
+        </mission-card>
+      </div>
+      <h4 class="mb-lg mt-2lg">Opportunità di Collaborazione</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-student">
+          <span slot="title">Università e istituti di formazione</span>
+          <span slot="description">Collaborazione con enti accademici per formazione e
+            ricerca.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-building">
+          <span slot="title">Aziende gaming e tech</span>
+          <span slot="description">Partnership con aziende per progetti, eventi e opportunità di
+            lavoro.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-map-pin">
+          <span slot="title">Enti locali</span>
+          <span slot="description">Promozione dell'innovazione e del territorio attraverso il
+            supporto degli enti locali.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-users-three">
+          <span slot="title">Altre iniziative</span>
+          <span slot="description">Collaborazione con altre community e progetti simili per ampliare
+            l'impatto.</span>
+        </mission-card>
+      </div>
+      <h4 class="mb-lg mt-2lg">Contatti e Prossimi Passi</h4>
+      <div class="mission-cards grid gap-md w-full md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-lightbulb">
+          <span slot="title">Expertise & Mentorship</span>
+          <span slot="description">Condivisione di competenze e supporto ai membri della
+            community.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-hand-coins">
+          <span slot="title">Sponsorizzazioni</span>
+          <span slot="description">Partnership strategiche per sostenere la crescita della
+            community.</span>
+        </mission-card>
+        <mission-card bg="bg-gray-900" icon="ph-fill ph-microphone">
+          <span slot="title">Interventi qualificati</span>
+          <span slot="description">Cerchiamo speaker e professionisti per talk e workshop.</span>
+        </mission-card>
+      </div>
+
+      <h4 class="mb-lg mt-2lg">Founders / Mentors / Advisors</h4>
+
+      <div class="w-full grid gap-md grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <founder-card name="Eugenio Perinelli" avatar="public/founders/eugenio.webp" role="3D Artist / Docente"
+          aria-label="Eugenio Perinelli - Founder" image="public/city-bloom.webp">
+          <span slot="bio">
+            Da sempre appassionato di computergrafica 3D e videogiochi,
+            Eugenio ha iniziato fin da giovane a creare grafica, animazioni e
+            software.<br />
+            Ha trasformato la sua passione in carriera, lavorando in Italia e
+            all’estero nei settori del design, televisione, ricostruzione
+            archeologica, videogame e web.<br />
+            Oggi affianca all’attività professionale anche quella di docente,
+            <span class="bg-accent">condividendo esperienza e conoscenze con le nuove generazioni
+              di creativi.</span>
+          </span>
+        </founder-card>
+        <founder-card name="Cesare Montresor" avatar="public/founders/cesare-avatar.webp"
+          role="Software Developer/ PhD Student" aria-label="Cesare Montresor - Software Developer/ PhD Student"
+          image="public/fantasy-place.webp">
+          <span slot="bio">
+            Cesare, jake of all trades, master of none. Ha iniziato a
+            sviluppare software da ragazzino e non ha più smesso. Per tenere
+            sempre viva la passione, sta facendo un dottorato su AI. Profondo
+            amore per le community e la condivisione di conoscenza, negli anni
+            ha partecipato ed avviato diverse community. Adora vedere il
+            potenziale che sboccia,
+            <span class="bg-accent">
+              ama viaggiare e detta sua dovrebbe fare piu sport.
+            </span>
+          </span>
+        </founder-card>
+        <founder-card name="Nicola Castellani" avatar="public/founders/nicola-avatar.webp" role="Frontend Developer"
+          aria-label="Nicola Castellani - Frontend Developer" image="public/galaxy.webp">
+          <span slot="bio">
+            Sviluppatore e gamer, Nicola è specializzato nella creazione di
+            interfacce intuitive per il web e il gaming.<br />
+            La sua missione è
+            <span class="bg-accent">rendere le esperienze digitali coinvolgenti e accessibili a
+              tutti</span>, unendo tecnologie moderne e design inclusivo per abbattere ogni
+            barriera tra persone e videogiochi.
+          </span>
+        </founder-card>
+
+        <founder-card name="Emanuele Vinci" avatar="public/founders/emanuele-avatar.webp" role="Mobile Developer"
+          aria-label="Emanuele - Mobile Developer" image="public/fantasy-building.webp">
+          <span slot="bio">
+            Emanuele è uno sviluppatore Flutter freelance, sempre curioso e
+            pronto a sperimentare nuove tecnologie per creare soluzioni
+            eleganti e funzionali. Nel tempo libero dà vita a un videogioco
+            indipendente, occupandosi di programmazione, scrittura e game
+            design.
+            <span class="bg-accent">
+              Crede nel potenziale creativo del software e ama lavorare su
+              progetti che uniscono tecnica, immaginazione e voglia di
+              scoprire.
+            </span>
+          </span>
+        </founder-card>
       </div>
     </section>
 
-    <section class="gda-section">
-      <h1 class="gda-h1">Game Dev<br /><span class="gda-accent-text">Arena</span></h1>
-      <div class="gda-intro" data-out="home-intro"></div>
+    <!-- Partners Section -->
+    <section id="partners"
+      class="partners-section my-2xl radius-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12 card">
+      <h2 id="partners-title" class="m-0 text-center text-primary mb-lg">
+        Partners
+      </h2>
+      <p class="text-center mb-xl w-full">
+        I nostri partner che sostengono la crescita della community italiana del game development
+      </p>
+      <partners-card class="w-full"></partners-card>
     </section>
 
-    <section class="gda-section gda-section--tight">
-      <a href="#/eventi" class="gda-archive-link">
-        <span class="gda-archive-link__count"><span data-out="event-count"></span> eventi in archivio</span>
-        <span class="gda-archive-link__cta">Vedi l'archivio<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+    <!-- Sponsors Section -->
+    <section id="sponsors"
+      class="sponsors-section my-2xl p-md radius-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12 card">
+      <h2 id="sponsors-title" class="m-0 text-center text-primary mb-lg">
+        Sponsors
+      </h2>
+      <p class="text-center mb-xl w-full">
+        Le aziende che supportano Game Dev Arena e rendono possibili i nostri eventi
+      </p>
+
+      <!-- Sponsor Grid -->
+      <div class="sponsors-grid flex flex-col items-center gap-lg w-full">
+        <!-- Platinum Sponsors -->
+        <!-- <div class="sponsor-tier-section w-full flex flex-col items-center">
+          <h3 class="text-center mb-md text-muted">Platinum Sponsors</h3>
+          <div class="flex flex-row flex-wrap gap-md justify-center w-full">
+            <sponsor-card
+              logo="public/logo.webp"
+              name="Example Platinum Sponsor"
+              link="https://example.com"
+              tier="platinum"
+              style="max-width: 400px; width: 100%;">
+              <span slot="description">Descrizione breve dello sponsor platinum</span>
+            </sponsor-card>
+          </div>
+        </div> -->
+
+        <!-- Gold Sponsors -->
+        <!-- <div class="sponsor-tier-section w-full mt-lg flex flex-col items-center">
+          <h3 class="text-center mb-md text-muted">Gold Sponsors</h3>
+          <div class="flex flex-row flex-wrap gap-md justify-center w-full">
+            <sponsor-card
+              logo="public/logo.webp"
+              name="Example Gold Sponsor 1"
+              link="https://example.com"
+              tier="gold"
+              style="max-width: 350px; width: 100%;">
+              <span slot="description">Descrizione sponsor gold</span>
+            </sponsor-card>
+            <sponsor-card
+              logo="public/logo.webp"
+              name="Example Gold Sponsor 2"
+              link="https://example.com"
+              tier="gold"
+              style="max-width: 350px; width: 100%;">
+              <span slot="description">Descrizione sponsor gold</span>
+            </sponsor-card>
+          </div>
+        </div> -->
+
+        <!-- Silver Sponsors -->
+        <div class="sponsor-tier-section w-full mt-lg flex flex-col items-center">
+          <!-- <h3 class="text-center mb-md text-muted">Silver Sponsors</h3> -->
+          <div class="flex flex-row flex-wrap gap-md justify-center w-full">
+            <sponsor-card
+              logo="public/sponsors/pixel.svg"
+              name="Pixel T-Shirt"
+              link="https://pixeltshirt.com/"
+              tier="silver"
+              style="max-width: 250px; width: 100%;">
+            </sponsor-card>
+            <sponsor-card
+              logo="public/sponsors/espressione.svg"
+              name="Espressione Grafica"
+              link="https://www.graficaespressione.it/"
+              tier="silver"
+              style="max-width: 250px; width: 100%;">
+            </sponsor-card>
+          </div>
+        </div>
+      </div>
+
+      <!-- Become a Sponsor CTA -->
+      <div class="mt-2xl flex flex-col items-center gap-md">
+        <p class="text-center">
+          Vuoi supportare la community e aumentare la visibilità della tua azienda?
+        </p>
+        <a href="mailto:hello.gamedevarena@gmail.com?subject=Sponsorship%20Inquiry"
+          class="button button-primary flex flex-row items-center justify-center w-auto text-decoration-none"
+          aria-label="Diventa uno sponsor">
+          <i class="ph-fill ph-hand-coins mr-xs" aria-hidden="true"></i>
+          <span class="align-middle">Diventa Sponsor</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Call for Speakers Section -->
+    <section id="speakers"
+      class="call-for-speakers-section my-2xl radius-lg flex flex-col items-center w-full lg:w-10/12 xl:w-8/12 card">
+      <h2 id="call-for-speakers-title" class="m-0 text-center text-primary">
+        Call for Speakers
+      </h2>
+      <p class="my-2xl w-full text-center">
+        Sei un
+        <span class="bg-white text-black">professionista, docente o appassionato di game development?</span><br
+          class="md:hidden" /><b>Proponi il tuo talk, workshop o intervento per i prossimi eventi di
+          Game Dev Arena!</b>
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeOlL5VaMrl4os61Bw5bnHOMC0tUfbg4egWkd7WaNfE3puCDA/viewform"
+        target="_blank" rel="noopener noreferrer"
+        class="button button-primary flex flex-row items-center justify-center w-auto text-decoration-none"
+        aria-label="Proponi il tuo talk su Google Forms">
+        <i class="ph-fill ph-microphone-stage mr-xs" aria-hidden="true"></i>
+        <span class="align-middle">Proponi il tuo talk</span>
       </a>
     </section>
+
+    <section id="newsletter" class="newsletter-section mb-2xl flex flex-col items-start w-full lg:w-10/12 xl:w-8/12"
+      aria-labelledby="newsletter-title">
+      <div id="mc_embed_shell" class="w-full card p-md radius-lg shadow-md">
+        <div id="mc_embed_signup" class="w-full flex flex-col items-center justify-center">
+          <form
+            action="https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&amp;id=cd2ad9f361&amp;f_id=0086b1e0f0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate flex w-full"
+            target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll" class="w-full flex flex-col items-center justify-center gap-sm">
+              <h2 class="m-0 text-center text-primary">
+                Iscriviti alla newsletter
+              </h2>
+              <p class="text-muted w-full">
+                Ricevi aggiornamenti su eventi, workshop e novità della
+                community.
+              </p>
+              <div class="mc-field-group mb-sm flex flex-col w-full">
+                <label for="mce-EMAIL">Indirizzo email
+                  <span class="asterisk text-error">*</span></label>
+                <input type="email" placeholder="example@domain.com" name="EMAIL" class="required email" id="mce-EMAIL"
+                  required value="" />
+              </div>
+              <div id="mce-responses" class="clear foot">
+                <div class="response" id="mce-error-response" style="display: none"></div>
+                <div class="response" id="mce-success-response" style="display: none"></div>
+              </div>
+              <div style="position: absolute; left: -5000px" aria-hidden="true">
+                <input type="text" name="b_3f94f945082029a4def33014f_cd2ad9f361" tabindex="-1" value="" />
+              </div>
+              <div class="optionalParent">
+                <div class="clear foot flex flex-col gap-md w-full items-center justify-center">
+                  <button type="submit" id="mc-embedded-subscribe"
+                    class="button button-primary w-auto flex flex-row items-center justify-center"
+                    aria-label="Iscriviti alla newsletter" name="subscribe">
+                    <i class="ph-fill ph-envelope-simple-open mr-xs" aria-hidden="true"></i>
+                    <span class="align-middle">Iscriviti</span>
+                  </button>
+                  <p style="margin: 0 auto">
+                    <a href="http://eepurl.com/jh_8ao" title="Mailchimp: l’email marketing è facile e divertente">
+                      <span style="
+                            display: inline-block;
+                            background-color: transparent;
+                            border-radius: 4px;
+                          ">
+                        <img class="refferal_badge"
+                          class="flex flex-row mb-md md:mb-0 flex flex-col items-center w-full"
+                          src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-light.svg"
+                          alt="Intuit Mailchimp" style="
+                              width: 220px;
+                              height: 40px;
+                              display: flex;
+                              padding: 2px 0;
+                              justify-content: center;
+                              align-items: center;
+                            " />
+                      </span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <main data-screen="eventi">
-    <p class="gda-eyebrow">Archivio</p>
-    <h1 class="gda-h1 gda-h1--page">Eventi passati</h1>
-    <p class="gda-lead">Ogni mese un talk da professionisti del settore, ospitato al 311 Verona.</p>
-    <div class="gda-years" data-out="event-years"></div>
-  </main>
+  <footer class="footer flex flex-col items-center bg-primary w-full p-md py-xl md:py-2xl lg:py-4xl" role="contentinfo"
+    id="contacts">
+    <!-- Contacts -->
+    <!-- Logo -->
+    <div class="flex flex-col md:flex-row items-center w-full w-full lg:w-10/12 xl:w-6/12 justify-between gap-lg">
+      <div class="flex flex-col gap-sm">
+        <img src="public/logo.webp" alt="Game Dev Arena Logo" width="255" />
+      </div>
 
-  <main data-screen="chi-siamo">
-    <p class="gda-eyebrow">La community</p>
-    <h1 class="gda-h1 gda-h1--page">Chi siamo</h1>
-    <div class="gda-intro gda-intro--wide" data-out="about-intro"></div>
+      <div class="flex flex-col gap-sm">
+        <h5 id="contacts-title" class="m-0">Contatti</h5>
 
-    <h2 class="gda-h2">La nostra missione</h2>
-    <div class="gda-grid gda-grid--cards" data-out="mission"></div>
+        <p class="mb-xs flex flex-row items-start justify-start">
+          <i class="ph-fill ph-envelope mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">Email:</span>
+          <a href="mailto:hello.gamedevarena@gmail.com" class="text-primary" id="email-contacts"
+            aria-label="Email">hello.gamedevarena@gmail.com</a>
+        </p>
+        <p class="mb-xs flex flex-row items-center">
+          <i class="ph-fill ph-telegram-logo mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">Telegram:</span>
+          <a href="https://t.me/GameDevArena" target="_blank" rel="noopener noreferrer" class="text-primary"
+            aria-label="Unisciti al gruppo Telegram">Telegram</a>
+        </p>
 
-    <h2 class="gda-h2">Attività principali</h2>
-    <div class="gda-grid gda-grid--cards" data-out="activities"></div>
+        <p class="mb-xs flex flex-row items-center">
+          <i class="ph-fill ph-discord-logo mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">Discord:</span>
+          <a href="https://discord.gg/MCVVyAJmpw" target="_blank" rel="noopener noreferrer" class="text-primary"
+            aria-label="Seguici su Discord">Discord</a>
+        </p>
 
-    <h2 class="gda-h2">Founders / Mentors / Advisors</h2>
-    <div class="gda-grid gda-grid--founders" data-out="founders"></div>
+        <p class="mb-xs flex flex-row items-center">
+          <i class="ph-fill ph-instagram-logo mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">Instagram:</span>
+          <a href="https://www.instagram.com/gda.gamedevarena" target="_blank" rel="noopener noreferrer" class="text-primary"
+            aria-label="Seguici su Instagram">Instagram</a>
+        </p>
 
-    <h2 class="gda-h2">Partners</h2>
-    <div class="gda-grid gda-grid--logos" data-out="partners"></div>
+        <p class="mb-xs flex flex-row items-center">
+          <i class="ph-fill ph-youtube-logo mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">YouTube:</span>
+          <a href="https://www.youtube.com/@GameDevArenaVerona" target="_blank" rel="noopener noreferrer" class="text-primary"
+            aria-label="Iscriviti al canale YouTube">YouTube</a>
+        </p>
 
-    <h2 class="gda-h2">Sponsors</h2>
-    <div class="gda-grid gda-grid--logos gda-grid--sponsors" data-out="sponsors"></div>
-  </main>
+        <p class="mb-xs flex flex-row items-center">
+          <i class="ph-fill ph-github-logo mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">GitHub:</span>
+          <a href="https://github.com/gamedevarena" target="_blank" rel="noopener noreferrer" class="text-primary"
+            aria-label="Github Repository">GitHub</a>
+        </p>
 
-  <main data-screen="contatti">
-    <p class="gda-eyebrow">Scrivici</p>
-    <h1 class="gda-h1 gda-h1--page">Contatti</h1>
-    <p class="gda-lead">Proposte di talk, sponsorship, collaborazioni o solo due parole sul game dev: siamo raggiungibili qui.</p>
-
-    <div class="gda-grid gda-grid--contacts" data-out="contacts"></div>
-
-    <div class="gda-panels">
-      <section class="gda-panel gda-panel--accent">
-        <h2>Call for Speakers</h2>
-        <p>Sei un professionista, docente o appassionato di game development? Proponi il tuo talk, workshop o intervento per i prossimi eventi di Game Dev Arena.</p>
-        <a href="#" data-link="speakerForm" target="_blank" rel="noopener noreferrer" class="gda-cta">
-          <span class="gda-cta__out"><span>Proponi il tuo talk</span></span>
-          <span class="gda-cta__in"><span>Proponi il tuo talk</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-          <span class="gda-cta__dot" aria-hidden="true"></span>
-        </a>
-      </section>
-
-      <section class="gda-panel">
-        <h2>Newsletter</h2>
-        <p>Ricevi aggiornamenti su eventi, workshop e novità della community.</p>
-        <form data-link="newsletterAction" action="https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&id=cd2ad9f361&f_id=0086b1e0f0" method="post" target="_blank" class="gda-form">
-          <label for="gda-email">Indirizzo email</label>
-          <input id="gda-email" type="email" name="EMAIL" required placeholder="example@domain.com" />
-          <button type="submit" name="subscribe" class="gda-cta">
-            <span class="gda-cta__out"><span>Iscriviti</span></span>
-            <span class="gda-cta__in"><span>Iscriviti</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-            <span class="gda-cta__dot" aria-hidden="true"></span>
-          </button>
-        </form>
-      </section>
-
-      <section class="gda-panel">
-        <h2>Sponsorship</h2>
-        <p>Vuoi supportare la community e aumentare la visibilità della tua azienda?</p>
-        <a href="#" data-link="sponsorMail" class="gda-cta">
-          <span class="gda-cta__out"><span>Diventa sponsor</span></span>
-          <span class="gda-cta__in"><span>Diventa sponsor</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-          <span class="gda-cta__dot" aria-hidden="true"></span>
-        </a>
-      </section>
-    </div>
-  </main>
-
-  <footer class="gda-footer">
-    <div class="gda-footer__inner">
-      <img src="public/logo.webp" alt="Game Dev Arena" class="gda-footer__logo" />
-      <nav class="gda-footer__nav">
-        <a href="#/">Home</a>
-        <a href="#/eventi">Eventi passati</a>
-        <a href="#/chi-siamo">Chi siamo</a>
-        <a href="#/contatti">Contatti</a>
-      </nav>
-      <p class="gda-footer__copy">© 2026 Game Dev Arena. Tutti i diritti riservati.</p>
+        <p class="flex flex-row items-center">
+          <i class="ph-fill ph-file-pdf mr-xs" aria-hidden="true"></i>
+          <span class="visually-hidden">Presentazione:</span>
+          <a href="public/presentazione.pdf" target="_blank" rel="noopener noreferrer" class="text-primary"
+            aria-label="Scarica la presentazione PDF">Presentazione community</a>
+        </p>
+      </div>
     </div>
   </footer>
+  <div class="py-sm text-center flex flex-row items-center justify-center bg-black w-full w-full"
+    style="font-size: 0.9em">
+    <span class="text-white">&copy; 2025 Game Dev Arena. Tutti i diritti riservati.</span>
+  </div>
 
-  <script src="./src/js/site.js" type="module"></script>
+  <script>
+    // Sticky header shadow on scroll
+    const header = document.querySelector("header.sticky-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 24) {
+        header.classList.add("bg-primary");
+      } else {
+        header.classList.remove("bg-primary");
+      }
+    });
 
+    function onContactButtonClick() {
+      document.getElementById("email-contacts").click();
+    }
+  </script>
+  <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+  <script type="text/javascript">
+    (function ($) {
+      window.fnames = new Array();
+      window.ftypes = new Array();
+      fnames[0] = "EMAIL";
+      ftypes[0] = "email";
+      fnames[1] = "FNAME";
+      ftypes[1] = "text";
+      fnames[2] = "LNAME";
+      ftypes[2] = "text";
+      fnames[3] = "ADDRESS";
+      ftypes[3] = "address";
+      fnames[4] = "PHONE";
+      ftypes[4] = "phone";
+      fnames[5] = "BIRTHDAY";
+      ftypes[5] = "birthday";
+      fnames[6] = "COMPANY";
+      ftypes[6] = "text";
+      /* Translated default messages for the $ validation plugin. Locale: IT */
+      $.extend($.validator.messages, {
+        required: "Campo obbligatorio.",
+        remote: "Controlla questo campo.",
+        email: "Inserisci un indirizzo email valido.",
+        url: "Inserisci un indirizzo web valido.",
+        date: "Inserisci una data valida.",
+        dateISO: "Inserisci una data valida (ISO).",
+        number: "Inserisci un numero valido.",
+        digits: "Inserisci solo numeri.",
+        creditcard: "Inserisci un numero di carta di credito valido.",
+        equalTo: "Il valore non corrisponde.",
+        accept: "Inserisci un valore con un'estensione valida.",
+        maxlength: $.validator.format("Non inserire più di {0} caratteri."),
+        minlength: $.validator.format("Inserisci almeno {0} caratteri."),
+        rangelength: $.validator.format(
+          "Inserisci un valore compreso tra {0} e {1} caratteri."
+        ),
+        range: $.validator.format(
+          "Inserisci un valore compreso tra {0} e {1}."
+        ),
+        max: $.validator.format("Inserisci un valore minore o uguale a {0}."),
+        min: $.validator.format(
+          "Inserisci un valore maggiore o uguale a {0}."
+        ),
+      });
+    })(jQuery);
+    var $mcj = jQuery.noConflict(true);
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XQZYGCQ2E"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
     gtag('config', 'G-6XQZYGCQ2E');
   </script>
 </body>

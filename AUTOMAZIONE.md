@@ -12,36 +12,33 @@ Questo documento dice chi tocca cosa. Se lo ignori, il prossimo deploy sovrascri
 | `events.json` | **n8n** | Riscritto **per intero** a ogni pubblicazione. Non modificarlo a mano: la modifica sparisce al commit successivo. |
 | `events-legacy.json` | **tu, a mano** | Eventi precedenti all'automazione. n8n non lo apre mai. |
 | `public/events/<event_id>/` | **n8n** | Immagini prese da Google Drive e committate as-is. |
-| `data/site.json` — campi `events` e `upcoming` | **lo script di build** | Vedi sotto. |
+| `index.html` — blocchi tra i marker | **lo script di build** | Vedi sotto. |
 | `eventbrite-url.json` | **lo script di build** | Consumato da `upcoming-event.html`. |
-| `data/site.json` — tutti gli altri campi | **tu** | `community`, `mission`, `activities`, `founders`, `partners`, `sponsors`, `contacts`, `links`. |
-| tutto il resto | **tu** | CSS, JS, markup. |
+| tutto il resto | **tu** | CSS, componenti, sezioni non marcate. |
 
 ---
 
-## I campi generati in `data/site.json`
+## I marker in `index.html`
 
-`index.html` è una SPA che ad ogni caricamento fa `fetch('data/site.json')` e renderizza da lì:
-nessun marker nell'HTML, tutto il contenuto vive in quel JSON. Lo script di build ne riscrive
-**solo due campi**, il resto lo lascia intatto:
+Due blocchi sono rigenerati automaticamente. **Quello che scrivi dentro viene cancellato.**
 
-- **`events`** — sempre rigenerato da `events.json` (n8n) + `events-legacy.json` (statico):
-  stessa logica di prima, solo l'output cambia forma (voce dell'archivio invece di card HTML).
-- **`upcoming`** — riscritto **solo se** in `events.json` c'è un evento `status: "upcoming"` con
-  `eb_url` valorizzato. Altrimenti resta quello già su disco: puoi annunciare un evento a mano
-  (data, speaker, location) prima ancora che il biglietto Eventbrite esista, e il build non lo
-  cancella. `events.json` non porta un orario (solo `AAAA-MM-GG`): lo script usa **19:00** come
-  default, sovrascrivibile con un campo opzionale `time` (`"19:00"`) sulla riga dell'evento.
+```html
+<!-- GDA:HERO:START -->   ... locandina + link Eventbrite ...   <!-- GDA:HERO:END -->
+<!-- GDA:PAST:START -->   ... griglia eventi passati ...        <!-- GDA:PAST:END -->
+```
 
-Se un JSON è malformato o manca `data/site.json` lo script esce 1 e **il deploy si ferma**: il
-sito online resta quello di prima. È voluto — meglio un deploy mancato che una home rotta.
+Se cancelli un marker il build fallisce con un errore esplicito e **il deploy si ferma**: il sito
+online resta quello di prima. È voluto — meglio un deploy mancato che una home rotta.
+
+Per cambiare l'aspetto di quei blocchi si modifica il *template* dentro
+`scripts/build-events.js` (funzioni `bloccoHero` e `bloccoPassati`), non l'HTML generato.
 
 ---
 
 ## Il build
 
 ```bash
-npm run build          # rigenera data/site.json (events/upcoming) + eventbrite-url.json
+npm run build          # rigenera index.html + eventbrite-url.json
 npm run build:check    # non scrive niente, esce 1 se qualcosa è disallineato
 npm run dev            # build + server locale su http://localhost:6969
 ```
@@ -49,8 +46,8 @@ npm run dev            # build + server locale su http://localhost:6969
 Node puro, nessuna dipendenza. Gira anche in CI: lo step "Build eventi" di
 `.github/workflows/static.yml` lo esegue a ogni push su `main`, prima del deploy.
 
-**Non serve committare il `data/site.json` rigenerato**: ci pensa la CI. Se lo committi comunque
-non succede niente di male, il risultato è identico.
+**Non serve committare l'`index.html` rigenerato**: ci pensa la CI. Se lo committi comunque non
+succede niente di male, il risultato è identico.
 
 ---
 
@@ -88,9 +85,9 @@ Le carichi in Google Drive nella cartella dell'evento; n8n le committa senza con
 
 | Sintomo | Causa | Rimedio |
 |---|---|---|
-| Deploy fallito, mail da GitHub | JSON malformato o `data/site.json` mancante | Leggi il log dell'Action: lo script stampa il motivo. Il sito online non è cambiato. |
-| Un evento non compare nell'archivio | `date` non nel formato `AAAA-MM-GG` | Il log del build lo dice: `evento scartato, data non valida`. |
-| L'home mostra ancora il prossimo evento vecchio | Nessun evento con `status: upcoming` ed `eb_url` in `events.json` | Voluto: senza biglietto pubblicato `upcoming` non viene toccato, così la home non resta vuota. |
+| Deploy fallito, mail da GitHub | JSON malformato o marker mancante | Leggi il log dell'Action: lo script stampa il motivo. Il sito online non è cambiato. |
+| Un evento non compare nella griglia | `date` non nel formato `AAAA-MM-GG` | Il log del build lo dice: `evento scartato, data non valida`. |
+| L'hero mostra ancora l'evento vecchio | Nessun evento con `status: upcoming` in `events.json` | Voluto: senza evento futuro l'hero non viene toccato, così la home non resta vuota. |
 | Immagine rotta nella griglia | Cartella `public/events/<event_id>/` mancante o file con nome diverso | I nomi sono fissi: `hero.jpg`, `hero-mobile.jpg`, `post.jpg`. |
 
 ---
@@ -106,17 +103,12 @@ Le carichi in Google Drive nella cartella dell'evento; n8n le committa senza con
       "date": "2026-09-17",
       "title": "Titolo del talk",
       "eb_url": "https://www.eventbrite.it/e/...",
-      "status": "upcoming",
-      "speaker": "Nome Cognome",
-      "location": "311 Verona",
-      "time": "19:00"
+      "status": "upcoming"
     }
   ]
 }
 ```
 
-`status`: `upcoming` (va nel prossimo evento in home) oppure qualsiasi altro valore (va tra i
-passati). Se ci sono più `upcoming`, il build usa quello con la data più vicina e avvisa nel log.
-`speaker`, `location` e `time` sono opzionali: se assenti lo script tiene quelli già presenti in
-`data/site.json` (`time` di default è `19:00`). `generated_at` è solo diagnostico, lo script lo
-ignora.
+`status`: `upcoming` (va nell'hero) oppure qualsiasi altro valore (va tra i passati).
+Se ci sono più `upcoming`, il build usa quello con la data più vicina e avvisa nel log.
+`generated_at` è solo diagnostico, lo script lo ignora.
