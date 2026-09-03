@@ -1,0 +1,245 @@
+{
+  "_comment": "Single content feed for the GDA site. Everything on the site is rendered from this file, so an external automation (n8n, GitHub Action, script) only needs to rewrite this JSON — no markup changes.",
+  "generated_at": "2026-09-03T08:42:21Z",
+  "community": {
+    "name": "Game Dev Arena",
+    "logo": "public/logo.webp",
+    "claim": "Community italiana di sviluppatori di videogiochi",
+    "intro": [
+      "Una nuova community dedicata agli sviluppatori e appassionati di videogame del nordest italiano.",
+      "L'iniziativa vuole creare connessioni, condividere conoscenze e far crescere l'ecosistema locale del game development."
+    ]
+  },
+  "upcoming": {
+    "date": "2026-09-24T19:00:00+02:00",
+    "dateLabel": "24 Settembre 2026",
+    "title": "Titolo da definire",
+    "speaker": "Diego Zamprogno",
+    "location": "311 Verona",
+    "url": "",
+    "ticketLabel": "Biglietti in arrivo",
+    "poster": "",
+    "posterMobile": ""
+  },
+  "events": [
+    {
+      "date": "2026-05-21",
+      "dateLabel": "21 Maggio 2026",
+      "image": "public/events/21-maggio-2026.webp",
+      "title": ""
+    },
+    {
+      "date": "2026-03-12",
+      "dateLabel": "12 Marzo 2026",
+      "image": "public/events/12-mar-2026.webp",
+      "title": ""
+    },
+    {
+      "date": "2026-02-19",
+      "dateLabel": "19 Febbraio 2026",
+      "image": "public/events/19-feb-2026.webp",
+      "title": ""
+    },
+    {
+      "date": "2026-01-30",
+      "dateLabel": "30 Gennaio 2026",
+      "image": "public/events/30-jan-2026.webp",
+      "title": ""
+    },
+    {
+      "date": "2025-12-11",
+      "dateLabel": "11 Dicembre 2025",
+      "image": "public/events/11-dec-2025.webp",
+      "title": ""
+    },
+    {
+      "date": "2025-11-13",
+      "dateLabel": "13 Novembre 2025",
+      "image": "public/events/13-nov-2025.webp",
+      "title": ""
+    },
+    {
+      "date": "2025-10-16",
+      "dateLabel": "16 Ottobre 2025",
+      "image": "public/events/16-oct-2025.webp",
+      "title": ""
+    },
+    {
+      "date": "2025-09-25",
+      "dateLabel": "25 Settembre 2025",
+      "image": "public/events/25-sept-2025.webp",
+      "title": ""
+    }
+  ],
+  "mission": [
+    {
+      "title": "Networking qualificato",
+      "description": "Connessioni tra professionisti del settore per favorire collaborazioni e crescita.",
+      "icon": "users"
+    },
+    {
+      "title": "Formazione continua",
+      "description": "Talk e workshop specializzati per aggiornarsi sulle ultime novità del game development.",
+      "icon": "graduation-cap"
+    },
+    {
+      "title": "Mentorship e supporto",
+      "description": "Aiuto ai neofiti tramite mentorship e condivisione di esperienze tra membri della community.",
+      "icon": "handshake"
+    },
+    {
+      "title": "Valorizzazione del talento",
+      "description": "Promozione delle eccellenze locali e delle competenze del territorio.",
+      "icon": "star"
+    }
+  ],
+  "activities": [
+    {
+      "title": "Eventi Mensili",
+      "description": "8/9 incontri all'anno con talk da professionisti del settore. Location: 311 Verona - spazio innovativo per eventi tech e creativi. Networking informale in pizzeria dopo gli eventi.",
+      "icon": "calendar-days"
+    },
+    {
+      "title": "Game Jam annuale",
+      "description": "Competizione creativa aperta a sviluppatori di tutti i livelli.",
+      "icon": "gamepad-2"
+    },
+    {
+      "title": "Workshop pratici",
+      "description": "Approfondimenti su tool, tecniche e trend di mercato con esperti del settore.",
+      "icon": "wrench"
+    },
+    {
+      "title": "Database professionale",
+      "description": "Mappatura di talenti e aziende del territorio per favorire opportunità di collaborazione.",
+      "icon": "database"
+    }
+  ],
+  "founders": [
+    {
+      "name": "Eugenio Perinelli",
+      "role": "3D Artist / Docente",
+      "avatar": "public/founders/eugenio.webp",
+      "bio": [
+        "Da sempre appassionato di computergrafica 3D e videogiochi, Eugenio ha iniziato fin da giovane a creare grafica, animazioni e software.",
+        "Ha trasformato la sua passione in carriera, lavorando in Italia e all'estero nei settori del design, televisione, ricostruzione archeologica, videogame e web.",
+        "Oggi affianca all'attività professionale anche quella di docente,"
+      ],
+      "bioHighlight": "condividendo esperienza e conoscenze con le nuove generazioni di creativi."
+    },
+    {
+      "name": "Nicola Castellani",
+      "role": "Frontend Developer",
+      "avatar": "public/founders/nicola-avatar.webp",
+      "bio": [
+        "Sviluppatore e gamer, Nicola è specializzato nella creazione di interfacce intuitive per il web e il gaming.",
+        "La sua missione è rendere le esperienze digitali coinvolgenti e accessibili a tutti, unendo tecnologie moderne e design inclusivo per abbattere ogni barriera tra persone e videogiochi."
+      ],
+      "bioHighlight": ""
+    },
+    {
+      "name": "Emanuele Vinci",
+      "role": "Mobile Developer",
+      "avatar": "public/founders/emanuele-avatar.webp",
+      "bio": [
+        "Emanuele è uno sviluppatore Flutter freelance, sempre curioso e pronto a sperimentare nuove tecnologie per creare soluzioni eleganti e funzionali. Nel tempo libero dà vita a un videogioco indipendente, occupandosi di programmazione, scrittura e game design."
+      ],
+      "bioHighlight": "Crede nel potenziale creativo del software e ama lavorare su progetti che uniscono tecnica, immaginazione e voglia di scoprire."
+    }
+  ],
+  "partners": [
+    {
+      "name": "Universita degli studi di Verona",
+      "logo": "public/partners/univr.svg",
+      "link": "https://www.univr.it/it/"
+    },
+    {
+      "name": "CoderDojo Trento",
+      "logo": "public/partners/coderdojo-tn.png",
+      "link": "https://www.coderdojotrento.it"
+    },
+    {
+      "name": "CoderDojo Verona",
+      "logo": "public/partners/coderdojo-vr-logo-150x150.png",
+      "link": "https://www.coderdojovr.it"
+    },
+    {
+      "name": "311 Verona",
+      "logo": "public/partners/311_logo.png",
+      "link": "https://311verona.org"
+    },
+    {
+      "name": "Istituto Design Palladio Verona",
+      "logo": "public/partners/logo_IDP.png",
+      "link": "https://istitutopalladio.it"
+    },
+    {
+      "name": "VR FabLab",
+      "logo": "public/partners/vrfablab_logo_h_90dpi_color_nobg.png",
+      "link": "https://www.veronafablab.it"
+    }
+  ],
+  "sponsors": [
+    {
+      "name": "Pixel T-Shirt",
+      "logo": "public/sponsors/pixel.svg",
+      "link": "https://pixeltshirt.com/",
+      "tier": "silver"
+    },
+    {
+      "name": "Espressione Grafica",
+      "logo": "public/sponsors/espressione.svg",
+      "link": "https://www.graficaespressione.it/",
+      "tier": "silver"
+    }
+  ],
+  "contacts": [
+    {
+      "label": "Email",
+      "value": "hello.gamedevarena@gmail.com",
+      "href": "mailto:hello.gamedevarena@gmail.com",
+      "icon": "mail"
+    },
+    {
+      "label": "Telegram",
+      "value": "t.me/GameDevArena",
+      "href": "https://t.me/GameDevArena",
+      "icon": "send"
+    },
+    {
+      "label": "Discord",
+      "value": "discord.gg/MCVVyAJmpw",
+      "href": "https://discord.gg/MCVVyAJmpw",
+      "icon": "message-circle"
+    },
+    {
+      "label": "Instagram",
+      "value": "gda.gamedevarena",
+      "href": "https://www.instagram.com/gda.gamedevarena",
+      "icon": "instagram"
+    },
+    {
+      "label": "YouTube",
+      "value": "@GameDevArenaVerona",
+      "href": "https://www.youtube.com/@GameDevArenaVerona",
+      "icon": "youtube"
+    },
+    {
+      "label": "GitHub",
+      "value": "github.com/gamedevarena",
+      "href": "https://github.com/gamedevarena",
+      "icon": "github"
+    },
+    {
+      "label": "Presentazione",
+      "value": "Presentazione community (PDF)",
+      "href": "public/presentazione.pdf",
+      "icon": "file-text"
+    }
+  ],
+  "links": {
+    "speakerForm": "https://docs.google.com/forms/d/e/1FAIpQLSeOlL5VaMrl4os61Bw5bnHOMC0tUfbg4egWkd7WaNfE3puCDA/viewform",
+    "sponsorMail": "mailto:hello.gamedevarena@gmail.com?subject=Sponsorship%20Inquiry",
+    "newsletterAction": "https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&id=cd2ad9f361&f_id=0086b1e0f0"
+  }
+}

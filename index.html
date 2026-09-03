@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi</title>
+  <meta name="description" content="Community italiana di sviluppatori di videogiochi del nordest italiano: eventi mensili, game jam, workshop e networking a Verona." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://gamedevarena.it/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Game Dev Arena" />
+  <meta property="og:url" content="https://gamedevarena.it/" />
+  <meta property="og:title" content="Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi" />
+  <meta property="og:description" content="Community italiana di sviluppatori di videogiochi del nordest italiano: eventi mensili, game jam, workshop e networking a Verona." />
+  <meta property="og:image" content="https://gamedevarena.it/public/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="it_IT" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Game Dev Arena – Community Italiana di Sviluppatori di Videogiochi" />
+  <meta name="twitter:description" content="Community italiana di sviluppatori di videogiochi del nordest italiano: eventi mensili, game jam, workshop e networking a Verona." />
+  <meta name="twitter:image" content="https://gamedevarena.it/public/og-image.jpg" />
+
+  <meta name="theme-color" content="#1F2428" />
+  <link rel="manifest" href="public/manifest.json" />
+
+  <script src="/server/livereload.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/css/site.css" />
+  <link rel="icon" href="public/logo.ico" />
+  <link rel="apple-touch-icon" href="public/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png" />
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5088c8e7-8c94-4dcc-a805-0a4a2ecc244c" type="text/javascript" async></script>
+</head>
+
+<body>
+  <div class="gda-scanlines" aria-hidden="true"></div>
+
+  <header class="gda-header">
+    <div class="gda-header__row gda-header__row--wide">
+      <a href="#/" class="gda-header__logo"><img src="public/logo.webp" alt="Game Dev Arena" /></a>
+      <nav class="gda-nav gda-nav--wide" aria-label="Navigazione principale">
+        <a href="#/" data-nav="home" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Home</a>
+        <a href="#/eventi" data-nav="eventi" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Eventi passati</a>
+        <a href="#/chi-siamo" data-nav="chi-siamo" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Chi siamo</a>
+        <a href="#/contatti" data-nav="contatti" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Contatti</a>
+      </nav>
+      <a href="#" data-link="speakerForm" target="_blank" rel="noopener noreferrer" class="gda-cta gda-cta--sm">
+        <span class="gda-cta__out"><span>Diventa speaker</span></span>
+        <span class="gda-cta__in"><span>Diventa speaker</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+        <span class="gda-cta__dot" aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="gda-header__row gda-header__row--narrow">
+      <div class="gda-header__narrow-top">
+        <a href="#/"><img src="public/logo.webp" alt="Game Dev Arena" class="gda-header__logo-img" /></a>
+        <a href="#" data-link="speakerForm" target="_blank" rel="noopener noreferrer" class="gda-pill">Diventa speaker</a>
+      </div>
+      <nav class="gda-nav gda-nav--narrow" aria-label="Navigazione principale">
+        <a href="#/" data-nav="home" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Home</a>
+        <a href="#/eventi" data-nav="eventi" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Eventi</a>
+        <a href="#/chi-siamo" data-nav="chi-siamo" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Chi siamo</a>
+        <a href="#/contatti" data-nav="contatti" class="gda-nav__link"><span class="gda-dot" aria-hidden="true"></span>Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main data-screen="home" class="gda-dotgrid">
+    <section class="gda-section gda-section--hero">
+      <div class="gda-hero gda-tilt" data-tilt="soft">
+        <div class="gda-hero__left">
+          <p class="gda-eyebrow">Prossimo evento</p>
+          <p class="gda-hero__date" data-out="upcoming-date"></p>
+          <h2 class="gda-hero__title" data-out="upcoming-title"></h2>
+          <dl class="gda-hero__meta">
+            <div>
+              <dt>Speaker</dt>
+              <dd data-out="upcoming-speaker"></dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd data-out="upcoming-location"></dd>
+            </div>
+          </dl>
+          <a href="#" data-link="upcoming-cta" class="gda-cta">
+            <span class="gda-cta__out"><span data-out="upcoming-cta-label"></span></span>
+            <span class="gda-cta__in"><span data-out="upcoming-cta-label"></span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+            <span class="gda-cta__dot" aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="gda-hero__right">
+          <p class="gda-eyebrow gda-eyebrow--muted">Countdown</p>
+          <div class="gda-countdown" data-out="countdown"></div>
+          <p class="gda-hero__note">Talk, networking e pizza dopo l'evento. Ingresso gratuito, posti limitati.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gda-section">
+      <h1 class="gda-h1">Game Dev<br /><span class="gda-accent-text">Arena</span></h1>
+      <div class="gda-intro" data-out="home-intro"></div>
+    </section>
+
+    <section class="gda-section gda-section--tight">
+      <a href="#/eventi" class="gda-archive-link">
+        <span class="gda-archive-link__count"><span data-out="event-count"></span> eventi in archivio</span>
+        <span class="gda-archive-link__cta">Vedi l'archivio<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+      </a>
+    </section>
+  </main>
+
+  <main data-screen="eventi">
+    <p class="gda-eyebrow">Archivio</p>
+    <h1 class="gda-h1 gda-h1--page">Eventi passati</h1>
+    <p class="gda-lead">Ogni mese un talk da professionisti del settore, ospitato al 311 Verona.</p>
+    <div class="gda-years" data-out="event-years"></div>
+  </main>
+
+  <main data-screen="chi-siamo">
+    <p class="gda-eyebrow">La community</p>
+    <h1 class="gda-h1 gda-h1--page">Chi siamo</h1>
+    <div class="gda-intro gda-intro--wide" data-out="about-intro"></div>
+
+    <h2 class="gda-h2">La nostra missione</h2>
+    <div class="gda-grid gda-grid--cards" data-out="mission"></div>
+
+    <h2 class="gda-h2">Attività principali</h2>
+    <div class="gda-grid gda-grid--cards" data-out="activities"></div>
+
+    <h2 class="gda-h2">Founders / Mentors / Advisors</h2>
+    <div class="gda-grid gda-grid--founders" data-out="founders"></div>
+
+    <h2 class="gda-h2">Partners</h2>
+    <div class="gda-grid gda-grid--logos" data-out="partners"></div>
+
+    <h2 class="gda-h2">Sponsors</h2>
+    <div class="gda-grid gda-grid--logos gda-grid--sponsors" data-out="sponsors"></div>
+  </main>
+
+  <main data-screen="contatti">
+    <p class="gda-eyebrow">Scrivici</p>
+    <h1 class="gda-h1 gda-h1--page">Contatti</h1>
+    <p class="gda-lead">Proposte di talk, sponsorship, collaborazioni o solo due parole sul game dev: siamo raggiungibili qui.</p>
+
+    <div class="gda-grid gda-grid--contacts" data-out="contacts"></div>
+
+    <div class="gda-panels">
+      <section class="gda-panel gda-panel--accent">
+        <h2>Call for Speakers</h2>
+        <p>Sei un professionista, docente o appassionato di game development? Proponi il tuo talk, workshop o intervento per i prossimi eventi di Game Dev Arena.</p>
+        <a href="#" data-link="speakerForm" target="_blank" rel="noopener noreferrer" class="gda-cta">
+          <span class="gda-cta__out"><span>Proponi il tuo talk</span></span>
+          <span class="gda-cta__in"><span>Proponi il tuo talk</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          <span class="gda-cta__dot" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <section class="gda-panel">
+        <h2>Newsletter</h2>
+        <p>Ricevi aggiornamenti su eventi, workshop e novità della community.</p>
+        <form data-link="newsletterAction" action="https://github.us12.list-manage.com/subscribe/post?u=3f94f945082029a4def33014f&id=cd2ad9f361&f_id=0086b1e0f0" method="post" target="_blank" class="gda-form">
+          <label for="gda-email">Indirizzo email</label>
+          <input id="gda-email" type="email" name="EMAIL" required placeholder="example@domain.com" />
+          <button type="submit" name="subscribe" class="gda-cta">
+            <span class="gda-cta__out"><span>Iscriviti</span></span>
+            <span class="gda-cta__in"><span>Iscriviti</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+            <span class="gda-cta__dot" aria-hidden="true"></span>
+          </button>
+        </form>
+      </section>
+
+      <section class="gda-panel">
+        <h2>Sponsorship</h2>
+        <p>Vuoi supportare la community e aumentare la visibilità della tua azienda?</p>
+        <a href="#" data-link="sponsorMail" class="gda-cta">
+          <span class="gda-cta__out"><span>Diventa sponsor</span></span>
+          <span class="gda-cta__in"><span>Diventa sponsor</span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          <span class="gda-cta__dot" aria-hidden="true"></span>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="gda-footer">
+    <div class="gda-footer__inner">
+      <img src="public/logo.webp" alt="Game Dev Arena" class="gda-footer__logo" />
+      <nav class="gda-footer__nav">
+        <a href="#/">Home</a>
+        <a href="#/eventi">Eventi passati</a>
+        <a href="#/chi-siamo">Chi siamo</a>
+        <a href="#/contatti">Contatti</a>
+      </nav>
+      <p class="gda-footer__copy">© 2026 Game Dev Arena. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <script src="./src/js/site.js" type="module"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XQZYGCQ2E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6XQZYGCQ2E');
+  </script>
+</body>
+
+</html>
