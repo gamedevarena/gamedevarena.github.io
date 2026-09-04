@@ -12,8 +12,8 @@ const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
   'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
 
 const FRAMES = [
-  { key: 'hero', kind: 'web', file: 'hero.jpg', exportW: 1956, exportH: 1200 },
-  { key: 'hero-mobile', kind: 'web', file: 'hero-mobile.jpg', exportW: 1100, exportH: 1528 },
+  { key: 'hero', kind: 'web', file: 'hero.png', exportW: 1956, exportH: 1200 },
+  { key: 'hero-mobile', kind: 'web', file: 'hero-mobile.png', exportW: 1100, exportH: 1528 },
   { key: 'post', kind: 'social', file: 'post.jpg', exportW: 1080, exportH: 1350 },
   { key: 'story', kind: 'social', file: 'story.jpg', exportW: 1080, exportH: 1920 },
   { key: 'locandina', kind: 'print', file: 'locandina.jpg', exportW: 3508, exportH: 4960 },
@@ -26,23 +26,26 @@ const DATE_BLOCK_MARKUP = `
 `;
 
 const WEB_MARKUP = `
-  <div class="photo-panel">
-    <div class="photo"></div>
-    <div class="date-block">${DATE_BLOCK_MARKUP}</div>
-  </div>
-  <div class="content-card">
-    <span class="quote-glyph">&ldquo;</span>
-    <div class="card-columns">
-      <div class="title-col">
-        <h1 class="title"></h1>
-        <p class="subtitle"></p>
-      </div>
-      <div class="speaker-block">
-        <p class="name"></p>
-        <p class="role"></p>
-      </div>
+  <div class="hero-card">
+    <div class="photo-panel">
+      <div class="photo"></div>
+      <div class="date-block">${DATE_BLOCK_MARKUP}</div>
     </div>
-    <p class="cta">Clicca e prenota!</p>
+    <div class="content-card">
+      <div class="hero-swoosh left-image"></div>
+      <span class="quote-glyph">&ldquo;</span>
+      <div class="card-columns">
+        <div class="title-col">
+          <h1 class="title"></h1>
+          <p class="subtitle"></p>
+        </div>
+        <div class="speaker-block">
+          <p class="name"></p>
+          <p class="role"></p>
+        </div>
+      </div>
+      <p class="cta">Clicca e prenota!</p>
+    </div>
   </div>
 `;
 
@@ -61,18 +64,15 @@ const SOCIAL_MARKUP = `
 `;
 
 const PRINT_MARKUP = `
-  <div class="locandina-wordmark">
-    <span class="icon-crop"><img src="../../public/logo.webp" alt="GDA" /></span>
-    <span>GAME DEV<br>ARENA.it</span>
-  </div>
+  <img class="locandina-wordmark" src="../../public/gda-logo-full.svg" alt="Game Dev Arena" />
   <img class="locandina-swoosh" src="../../public/locandina-top-left-decoration.svg" alt="" />
   <div class="photo locandina-photo"></div>
   <div class="speaker-block speaker-box locandina-speaker">
     <p class="name"></p>
     <p class="role"></p>
   </div>
+  <div class="left-image"></div>
   <div class="title-row">
-    <div class="left-image"></div>
     <div class="title-col">
       <p class="episode-tag"></p>
       <h1 class="title"></h1>
@@ -211,6 +211,55 @@ function readForm(form) {
   };
 }
 
+// Shrinks el's font-size until it fits inside container's max-height cap
+// (el itself has no fixed height — it always sizes to its content, so it
+// must be measured against the constrained parent), so long talk
+// descriptions scale down instead of overflowing the fixed-size print
+// poster. Resets to the CSS-defined size first so it can grow back when
+// the text gets shorter again.
+function fitTextToBox(el, container = el.parentElement, minFontSize = 7) {
+  el.style.fontSize = '';
+  const maxFontSize = parseFloat(getComputedStyle(el).fontSize);
+  let size = maxFontSize;
+  while (container.scrollHeight > container.clientHeight && size > minFontSize) {
+    size -= 0.5;
+    el.style.fontSize = `${size}px`;
+  }
+}
+
+// description-col's available height depends on title/subtitle length (variable
+// per event), so it can't be a fixed CSS max-height — that either wastes space
+// or (worse) silently clips long descriptions. Compute the real remaining
+// space above the fixed-height print frame's footer and bake it in as an
+// explicit pixel height, so fitTextToBox() shrinks against a number that
+// matches what's actually available, not a guess.
+function fitLocandinaDescription(frameEl) {
+  const descriptionCol = frameEl.querySelector('.description-col');
+  const description = frameEl.querySelector('.description');
+  const contentGrid = frameEl.querySelector('.content-grid');
+  if (!descriptionCol || !description || !contentGrid) return;
+
+  descriptionCol.style.height = '';
+  const telegramRow = frameEl.querySelector('.telegram-row');
+  const programBlock = frameEl.querySelector('.program-block');
+  const partnerStrip = frameEl.querySelector('.partner-strip');
+
+  const frameRect = frameEl.getBoundingClientRect();
+  const paddingBottom = parseFloat(getComputedStyle(frameEl).paddingBottom) || 0;
+  const frameContentBottom = frameRect.bottom - paddingBottom;
+  const contentGridTop = contentGrid.getBoundingClientRect().top;
+  const partnerStripHeight = partnerStrip ? partnerStrip.getBoundingClientRect().height : 0;
+  const rowGap = parseFloat(getComputedStyle(contentGrid).rowGap) || 0;
+  const row2Height = Math.max(
+    telegramRow ? telegramRow.getBoundingClientRect().height : 0,
+    programBlock ? programBlock.getBoundingClientRect().height : 0
+  );
+  const targetHeight = frameContentBottom - partnerStripHeight - contentGridTop - rowGap - row2Height;
+
+  descriptionCol.style.height = `${Math.max(targetHeight, 0)}px`;
+  fitTextToBox(description, descriptionCol);
+}
+
 function downloadDataUrl(dataUrl, filename) {
   const a = document.createElement('a');
   a.href = dataUrl;
@@ -221,8 +270,31 @@ function downloadDataUrl(dataUrl, filename) {
 async function exportFrame(frameEl, frameSpec) {
   await document.fonts.ready;
   const pixelRatio = frameSpec.exportW / frameEl.clientWidth;
-  const dataUrl = await htmlToImage.toJpeg(frameEl, { quality: 0.95, pixelRatio });
+  const dataUrl = frameSpec.file.endsWith('.png')
+    ? await htmlToImage.toPng(frameEl, { pixelRatio })
+    : await htmlToImage.toJpeg(frameEl, { quality: 0.95, pixelRatio });
   downloadDataUrl(dataUrl, frameSpec.file);
+}
+
+// Draft (text fields + uploaded images as data URLs) persists across
+// reloads — live reload full-refreshes the page on every CSS/JS edit, which
+// would otherwise wipe re-uploaded photos and typed text on every save.
+const DRAFT_KEY = 'gda-flyer-draft';
+
+function saveDraft(data) {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+  } catch (e) {
+    // quota exceeded (large images) or storage disabled — draft just won't persist
+  }
+}
+
+function loadDraft() {
+  try {
+    return JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+  } catch (e) {
+    return null;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -247,14 +319,31 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => exportFrame(el, spec));
   }
 
+  const draft = loadDraft();
+  if (draft) {
+    for (const [key, value] of Object.entries(draft)) {
+      const field = form.elements.namedItem(key);
+      // File inputs reject any programmatic value but the empty string
+      // (InvalidStateError) — bgImage/leftImage/regQrImage are restored
+      // as data URLs below instead, the file input itself just can't
+      // show a remembered filename.
+      if (field && field.type !== 'file') field.value = value;
+    }
+    bgImage = draft.bgImage || '';
+    leftImage = draft.leftImage || '';
+    regQrImage = draft.regQrImage || '';
+  }
+
   function rerender() {
     const data = { ...readForm(form), bgImage, leftImage, regQrImage };
     for (const spec of FRAMES) renderPoster(frameEls[spec.key], data);
+    fitLocandinaDescription(frameEls.locandina);
     document.querySelectorAll('.target-path').forEach((el) => {
       el.textContent = data.eventId
         ? `public/events/${data.eventId}/`
         : 'public/events/<event_id>/';
     });
+    saveDraft(data);
   }
 
   form.addEventListener('input', rerender);
@@ -285,4 +374,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   rerender();
+  // Fonts loading after this point (font-display: swap) change text metrics,
+  // so the description box height computed above can go stale — refit once
+  // the real font is in, or a fast reload racing the cached font can ship a
+  // layout sized for the fallback font.
+  document.fonts.ready.then(() => fitLocandinaDescription(frameEls.locandina));
 });
