@@ -199,6 +199,8 @@ main[data-screen="contatti"] {
   animation: gdaRise 0.4s ease both;
 }
 
+main[data-screen="home"] { animation: gdaRise 0.4s ease both; }
+
 main[data-screen="home"] { position: relative; }
 .gda-dotgrid::before {
   content: "";
@@ -230,31 +232,15 @@ main[data-screen="home"] { position: relative; }
 
 /* ── hero ─────────────────────────────────────────────────────────────── */
 
-.gda-hero {
-  border: 2px solid var(--gda-accent);
+.gda-hero-poster {
+  display: block;
+  overflow: hidden;
   border-radius: 3px;
-  background: var(--gda-ink-2);
-  box-shadow: 12px 12px 0 rgba(253, 193, 1, 0.14);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.gda-hero__left,
-.gda-hero__right { padding: clamp(24px, 4vw, 38px); }
-.gda-hero__right { display: flex; flex-direction: column; justify-content: center; gap: 22px; }
-.gda-hero__date { margin: 0 0 10px; font-size: 15px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245, 245, 245, 0.7); }
-.gda-hero__title { margin: 0 0 22px; font-size: clamp(28px, 3.4vw, 46px); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; }
-.gda-hero__meta { margin: 0 0 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.gda-hero__meta dt { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 245, 245, 0.5); }
-.gda-hero__meta dd { margin: 6px 0 0; font-size: 18px; font-weight: 600; }
-.gda-hero__note { margin: 0; font-size: 14px; line-height: 1.6; color: rgba(245, 245, 245, 0.6); }
-
-.gda-countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 100%; }
-.gda-countdown__unit { border: 1px solid rgba(245, 245, 245, 0.14); background: var(--gda-ink); padding: 14px 6px; text-align: center; }
-.gda-countdown__value { margin: 0; font-size: clamp(22px, 2.6vw, 34px); font-weight: 800; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--gda-accent); }
-.gda-countdown__label { margin: 8px 0 0; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245, 245, 245, 0.5); }
+.gda-hero-poster img { display: block; width: 100%; height: auto; }
 
 .gda-archive-link {
   display: flex;
@@ -443,12 +429,3 @@ main[data-screen="home"] { position: relative; }
 .gda-footer__nav a { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245, 245, 245, 0.6); }
 .gda-footer__nav a:hover { color: var(--gda-accent); }
 .gda-footer__copy { margin: 0; font-size: 12px; color: rgba(245, 245, 245, 0.45); }
-
-@media (max-width: 560px) {
-  .gda-hero { box-shadow: 6px 6px 0 rgba(253, 193, 1, 0.14); }
-}
-
-@media (max-width: 420px) {
-  .gda-countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .gda-countdown__value { font-size: 26px; }
-}

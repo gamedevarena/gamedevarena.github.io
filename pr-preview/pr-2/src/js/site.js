@@ -36,8 +36,6 @@ const ROUTES = ["home", "eventi", "chi-siamo", "contatti"];
 const ICON_COPY = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5"></rect><path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"></path></svg>';
 const ICON_DONE = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 12.5 9.5 18 20 6.5"></polyline></svg>';
 
-function pad(n) { return n < 10 ? "0" + n : String(n); }
-
 function monthLabel(iso) {
   const d = new Date(iso);
   if (isNaN(d.getTime())) return "";
@@ -85,46 +83,6 @@ function attachTilt(node, soft) {
   node.addEventListener("mouseleave", () => {
     node.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease, box-shadow 0.25s ease";
     node.style.transform = "rotateX(0deg) rotateY(0deg)";
-  });
-}
-
-// ── countdown ──────────────────────────────────────────────────────────────
-
-let countdownTarget = null;
-let countdownTimer = null;
-
-function renderCountdown(container, target) {
-  container.innerHTML = "";
-  const units = [
-    { label: "Giorni", key: "d" },
-    { label: "Ore", key: "h" },
-    { label: "Min", key: "m" },
-    { label: "Sec", key: "s" },
-  ];
-  units.forEach((u) => {
-    const box = el("div", "gda-countdown__unit");
-    box.innerHTML = `<p class="gda-countdown__value" data-unit="${u.key}">00</p><p class="gda-countdown__label">${u.label}</p>`;
-    container.appendChild(box);
-  });
-  countdownTarget = target;
-  tickCountdown(container);
-  clearInterval(countdownTimer);
-  countdownTimer = setInterval(() => tickCountdown(container), 1000);
-}
-
-function tickCountdown(container) {
-  const ms = new Date(countdownTarget).getTime() - Date.now();
-  const clamped = isNaN(ms) || ms < 0 ? 0 : ms;
-  const s = Math.floor(clamped / 1000);
-  const vals = {
-    d: pad(Math.floor(s / 86400)),
-    h: pad(Math.floor((s % 86400) / 3600)),
-    m: pad(Math.floor((s % 3600) / 60)),
-    s: pad(s % 60),
-  };
-  Object.keys(vals).forEach((k) => {
-    const node = container.querySelector(`[data-unit="${k}"]`);
-    if (node) node.textContent = vals[k];
   });
 }
 
@@ -232,6 +190,15 @@ function renderContacts(container, contacts) {
   });
 }
 
+function renderFooterSocials(container, contacts) {
+  container.innerHTML = "";
+  (contacts || []).filter((c) => c.social).forEach((c) => {
+    const li = el("li");
+    li.innerHTML = `<a href="${esc(c.href)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(c.label)}" title="${esc(c.label)}"><span class="gda-card__icon" style="--icon: url('${esc(icon(c.icon))}')"></span></a>`;
+    container.appendChild(li);
+  });
+}
+
 function groupByYear(events) {
   const buckets = {};
   (events || []).forEach((ev) => {
@@ -308,15 +275,18 @@ function render(data) {
   const links = data.links || {};
   const hasTicket = !!up.url;
 
-  setText("upcoming-date", up.dateLabel || monthLabel(up.date));
-  setText("upcoming-title", up.title || "");
-  setText("upcoming-speaker", up.speaker || "");
-  setText("upcoming-location", up.location || "");
-  setText("upcoming-cta-label", hasTicket ? "Prenota il posto" : up.ticketLabel || "Biglietti in arrivo");
   document.querySelectorAll('[data-link="upcoming-cta"]').forEach((n) => {
     n.href = hasTicket ? up.url : links.speakerForm || "#/contatti";
   });
-  renderCountdown(document.querySelector('[data-out="countdown"]'), up.date);
+
+  const posterEl = document.querySelector(".gda-hero-poster");
+  if (posterEl) {
+    posterEl.hidden = !up.poster;
+    if (up.poster) {
+      posterEl.querySelector("img[data-src]").src = up.poster;
+      posterEl.querySelector("source[data-src-mobile]").srcset = up.posterMobile || up.poster;
+    }
+  }
 
   const intro = (data.community && data.community.intro) || [];
   renderIntro(document.querySelector('[data-out="home-intro"]'), intro);
@@ -332,6 +302,7 @@ function render(data) {
   renderLogos(document.querySelector('[data-out="partners"]'), data.partners, false);
   renderLogos(document.querySelector('[data-out="sponsors"]'), data.sponsors, true);
   renderContacts(document.querySelector('[data-out="contacts"]'), data.contacts);
+  renderFooterSocials(document.querySelector('[data-out="footer-socials"]'), data.contacts);
 
   document.querySelectorAll('[data-link="speakerForm"]').forEach((n) => { n.href = links.speakerForm || "#/contatti"; });
   document.querySelectorAll('[data-link="sponsorMail"]').forEach((n) => { n.href = links.sponsorMail || "#/contatti"; });

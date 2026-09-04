@@ -8,6 +8,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="stylesheet" href="../../public/fonts/fonts.css" />
   <link rel="stylesheet" href="style.css" />
+  <script src="../../server/livereload.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -41,7 +42,7 @@
       <label>Foto (hero web + locandina)
         <input type="file" id="bgImage" accept="image/*" />
       </label>
-      <label>Immagine a sinistra <small>(solo locandina)</small>
+      <label>Immagine a sinistra <small>(hero web + locandina)</small>
         <input type="file" id="leftImage" accept="image/*" />
       </label>
       <label>QR registrazione <small>(solo locandina, evento — il QR Telegram resta fisso)</small>
@@ -54,7 +55,7 @@
         </span>
       </label>
       <label>Descrizione talk <small>(solo locandina)</small>
-        <textarea name="description" placeholder="In 20 minuti introdurremo come...">In 20 minuti introdurremo come la generazione procedurale permetta a team piccoli di ampliare enormemente i contenuti di gioco, creando varietà e rigiocabilità senza budget enormi.</textarea>
+        <textarea name="description" rows="9" placeholder="In 20 minuti introdurremo come...">In 20 minuti introdurremo come la generazione procedurale permetta a team piccoli di ampliare enormemente i contenuti di gioco, creando varietà e rigiocabilità senza budget enormi.</textarea>
       </label>
       <label>Indirizzo / dettagli venue <small>(solo locandina, // = a capo)</small>
         <textarea name="venueDetails" placeholder="Via Lungadige Galtarossa 21, Verona//Parcheggio interno gratuito">Via Lungadige Galtarossa 21, Verona//Parcheggio interno gratuito</textarea>
@@ -71,14 +72,14 @@
         <button type="button" data-export>Scarica locandina.jpg</button>
       </div>
       <div class="preview">
-        <h2>Hero desktop — 1956×1200 · <span class="target-path"></span>hero.jpg</h2>
+        <h2>Hero desktop — 1956×1200 · <span class="target-path"></span>hero.png</h2>
         <div class="frame" data-frame="hero"></div>
-        <button type="button" data-export>Scarica hero.jpg</button>
+        <button type="button" data-export>Scarica hero.png</button>
       </div>
       <div class="preview">
-        <h2>Hero mobile — 1100×1528 · <span class="target-path"></span>hero-mobile.jpg</h2>
+        <h2>Hero mobile — 1100×1528 · <span class="target-path"></span>hero-mobile.png</h2>
         <div class="frame" data-frame="hero-mobile"></div>
-        <button type="button" data-export>Scarica hero-mobile.jpg</button>
+        <button type="button" data-export>Scarica hero-mobile.png</button>
       </div>
       <div class="preview">
         <h2>Post Instagram — 1080×1350 · <span class="target-path"></span>post.jpg</h2>
