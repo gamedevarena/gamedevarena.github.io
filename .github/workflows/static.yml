@@ -1,4 +1,6 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Publishes main to the gh-pages branch root, which GitHub Pages serves
+# ("Deploy from a branch" in Settings > Pages). Leaves pr-preview/** alone
+# so PR preview deploys (see pr-preview.yml) survive a production publish.
 name: Deploy static content to Pages
 
 on:
@@ -9,24 +11,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: "pages-main"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,20 +25,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      # Rigenera hero + griglia eventi passati + eventbrite-url.json leggendo
-      # events.json (scritto da n8n) e events-legacy.json (statico).
+      # Rigenera data/site.json (campi events/upcoming) + eventbrite-url.json
+      # leggendo events.json (scritto da n8n) e events-legacy.json (statico).
       # Nessun npm install: lo script usa solo moduli nativi di Node.
       # Se un JSON e' malformato lo script esce 1 e il deploy si ferma:
       # il sito online resta quello precedente.
       - name: Build eventi
         run: node scripts/build-events.js
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          branch: gh-pages
+          folder: '.'
+          clean-exclude: |
+            pr-preview/

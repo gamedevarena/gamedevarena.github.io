@@ -1,0 +1,38 @@
+# Deploys each PR to gh-pages:/pr-preview/<pr-number>/, and removes it again
+# on close. Comments the preview link on the PR. Needs Settings > Pages >
+# source = "Deploy from a branch: gh-pages / (root)" to actually be served.
+name: Deploy PR preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+concurrency: preview-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      # Same build step as production (static.yml), so a preview shows the
+      # same data/site.json a merge to main would produce. See scripts/
+      # build-events.js — safe to run against a PR's events.json/legacy data.
+      - name: Build eventi
+        if: github.event.action != 'closed'
+        run: node scripts/build-events.js
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: .
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
