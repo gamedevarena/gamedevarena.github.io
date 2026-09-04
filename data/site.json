@@ -13,13 +13,13 @@
   "upcoming": {
     "date": "2026-09-24T19:00:00+02:00",
     "dateLabel": "24 Settembre 2026",
-    "title": "Titolo da definire",
+    "title": "30 anni di codice, un anno di AI: cosa resta del mio mestiere",
     "speaker": "Diego Zamprogno",
     "location": "311 Verona",
-    "url": "",
+    "url": "https://www.eventbrite.it/e/generazione-procedurale-grandi-mondi-con-piccoli-budget-tickets-1989098344694?aff=oddtdtcreator",
     "ticketLabel": "Biglietti in arrivo",
-    "poster": "",
-    "posterMobile": ""
+    "poster": "public/events/24-sept-2026.webp",
+    "posterMobile": "public/events/24-sept-2026-mobile.webp"
   },
   "events": [
     {
@@ -145,6 +145,16 @@
         "Emanuele è uno sviluppatore Flutter freelance, sempre curioso e pronto a sperimentare nuove tecnologie per creare soluzioni eleganti e funzionali. Nel tempo libero dà vita a un videogioco indipendente, occupandosi di programmazione, scrittura e game design."
       ],
       "bioHighlight": "Crede nel potenziale creativo del software e ama lavorare su progetti che uniscono tecnica, immaginazione e voglia di scoprire."
+    },
+    {
+      "name": "Sofia",
+      "role": "Designer & docente",
+      "avatar": "public/founders/sofia-avatar.webp",
+      "bio": [
+        "Designer freelance dal 2015 tra UX/UI, web e visual design, con una seconda vita da docente in percorsi ITS di Visual e Interaction Design.",
+        "Quando qualcosa non funziona, lo smonta e lo rimette insieme finché non gira come dovrebbe: che sia un'interfaccia o una lavatrice."
+      ],
+      "bioHighlight": "Si impegna ogni giorno a risolvere problemi, facendo il possibile per non aggiungerne di nuovi lungo la strada."
     }
   ],
   "partners": [
@@ -210,25 +220,22 @@
       "label": "Discord",
       "value": "discord.gg/MCVVyAJmpw",
       "href": "https://discord.gg/MCVVyAJmpw",
-      "icon": "message-circle"
+      "icon": "discord",
+      "social": true
     },
     {
       "label": "Instagram",
       "value": "gda.gamedevarena",
       "href": "https://www.instagram.com/gda.gamedevarena",
-      "icon": "instagram"
+      "icon": "instagram",
+      "social": true
     },
     {
       "label": "YouTube",
       "value": "@GameDevArenaVerona",
       "href": "https://www.youtube.com/@GameDevArenaVerona",
-      "icon": "youtube"
-    },
-    {
-      "label": "GitHub",
-      "value": "github.com/gamedevarena",
-      "href": "https://github.com/gamedevarena",
-      "icon": "github"
+      "icon": "youtube",
+      "social": true
     },
     {
       "label": "Presentazione",
