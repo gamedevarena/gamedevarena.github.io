@@ -12,7 +12,7 @@ const wss = new WebSocket.Server({ server });
 const PORT = process.env.PORT || 6969;
 
 // Serve static files from the parent directory of the server folder
-app.use(express.static(path.join(__dirname, "..")));
+app.use(express.static(path.join(__dirname, ".."), { extensions: ["html"] }));
 
 // Live reload script injection
 app.use((req, res, next) => {
