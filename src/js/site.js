@@ -50,6 +50,17 @@ function esc(s) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// Same feed, other sink: esc() can't stop a javascript:/data: URL in href or
+// form action. Relative paths resolve against the page, so they pass.
+function safeHref(u) {
+  try {
+    const { protocol } = new URL(String(u || ""), location.href);
+    return ["https:", "http:", "mailto:"].includes(protocol) ? u : "#";
+  } catch (err) {
+    return "#";
+  }
+}
+
 // This module lives at <site-root>/src/js/site.js on every deployment
 // (production root, or a PR preview under /pr-preview/<n>/) — resolving
 // against its own import.meta.url gives the right site root either way.
@@ -131,7 +142,7 @@ function renderLogos(container, items, small) {
   container.innerHTML = "";
   (items || []).forEach((item) => {
     const link = el("a", `gda-logo gda-tilt${small ? " gda-logo--sm" : ""}`);
-    link.href = item.link;
+    link.href = safeHref(item.link);
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.title = item.name;
@@ -167,7 +178,7 @@ function renderContacts(container, contacts) {
     row.innerHTML = `
       <span class="gda-contact__label"><span class="gda-card__icon" style="--icon: url('${esc(icon(c.icon))}')"></span>${esc(c.label)}</span>
       <span class="gda-contact__value">
-        <a href="${esc(c.href)}" target="_blank" rel="noopener noreferrer">${esc(c.value)}</a>
+        <a href="${esc(safeHref(c.href))}" target="_blank" rel="noopener noreferrer">${esc(c.value)}</a>
         <button type="button" class="gda-copy" title="Copia" aria-label="Copia">${ICON_COPY}</button>
       </span>
     `;
@@ -194,7 +205,7 @@ function renderFooterSocials(container, contacts) {
   container.innerHTML = "";
   (contacts || []).filter((c) => c.social).forEach((c) => {
     const li = el("li");
-    li.innerHTML = `<a href="${esc(c.href)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(c.label)}" title="${esc(c.label)}"><span class="gda-card__icon" style="--icon: url('${esc(icon(c.icon))}')"></span></a>`;
+    li.innerHTML = `<a href="${esc(safeHref(c.href))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(c.label)}" title="${esc(c.label)}"><span class="gda-card__icon" style="--icon: url('${esc(icon(c.icon))}')"></span></a>`;
     container.appendChild(li);
   });
 }
@@ -276,7 +287,7 @@ function render(data) {
   const hasTicket = !!up.url;
 
   document.querySelectorAll('[data-link="upcoming-cta"]').forEach((n) => {
-    n.href = hasTicket ? up.url : links.speakerForm || "#/contatti";
+    n.href = hasTicket ? safeHref(up.url) : safeHref(links.speakerForm || "#/contatti");
   });
 
   const posterEl = document.querySelector(".gda-hero-poster");
@@ -304,10 +315,10 @@ function render(data) {
   renderContacts(document.querySelector('[data-out="contacts"]'), data.contacts);
   renderFooterSocials(document.querySelector('[data-out="footer-socials"]'), data.contacts);
 
-  document.querySelectorAll('[data-link="speakerForm"]').forEach((n) => { n.href = links.speakerForm || "#/contatti"; });
-  document.querySelectorAll('[data-link="sponsorMail"]').forEach((n) => { n.href = links.sponsorMail || "#/contatti"; });
+  document.querySelectorAll('[data-link="speakerForm"]').forEach((n) => { n.href = safeHref(links.speakerForm || "#/contatti"); });
+  document.querySelectorAll('[data-link="sponsorMail"]').forEach((n) => { n.href = safeHref(links.sponsorMail || "#/contatti"); });
   document.querySelectorAll('[data-link="newsletterAction"]').forEach((n) => {
-    if (links.newsletterAction) n.action = links.newsletterAction;
+    if (links.newsletterAction) n.action = safeHref(links.newsletterAction);
   });
 }
 

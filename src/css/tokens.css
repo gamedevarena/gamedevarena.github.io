@@ -1,5 +1,5 @@
 /* GDA shared brand tokens — single source of truth for colors reused across
-   site.css, design.css (legacy pages), and tools/flyer-generator. Edit a
+   site.css and design.css (legacy pages). Edit a
    brand color here and it propagates everywhere; do not hardcode these hex
    values anywhere else. Page-specific tokens (spacing scale, legacy font
    stacks, print-only panel colors) stay local to their own stylesheet. */
