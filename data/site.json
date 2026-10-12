@@ -1,6 +1,6 @@
 {
   "_comment": "Single content feed for the GDA site. Everything on the site is rendered from this file, so an external automation (n8n, GitHub Action, script) only needs to rewrite this JSON — no markup changes.",
-  "generated_at": "2026-09-03T08:42:21Z",
+  "generated_at": "2026-10-12T12:23:18Z",
   "community": {
     "name": "Game Dev Arena",
     "logo": "public/logo.webp",
@@ -11,17 +11,23 @@
     ]
   },
   "upcoming": {
-    "date": "2026-09-24T19:00:00+02:00",
-    "dateLabel": "24 Settembre 2026",
-    "title": "30 anni di codice, un anno di AI: cosa resta del mio mestiere",
-    "speaker": "Diego Zamprogno",
+    "date": "2026-10-22T19:00:00+02:00",
+    "dateLabel": "22 Ottobre 2026",
+    "title": "Pillole di game design: Le idee sono inutili e niente è divertente",
+    "speaker": "Andre Bellaro",
     "location": "311 Verona",
-    "url": "https://www.eventbrite.it/e/30-anni-di-codice-un-anno-di-ai-cosa-resta-del-mio-mestiere-tickets-1999784309703?aff=oddtdtcreator",
+    "url": "https://www.eventbrite.it/e/biglietti-pillole-di-game-design-le-idee-sono-inutili-e-niente-e-divertente-2003120852392",
     "ticketLabel": "Biglietti in arrivo",
-    "poster": "public/events/24-sept-2026.webp",
-    "posterMobile": "public/events/24-sept-2026-mobile.webp"
+    "poster": "public/events/22-oct-2026.webp",
+    "posterMobile": "public/events/22-oct-2026-mobile.webp"
   },
   "events": [
+    {
+      "date": "2026-09-24",
+      "dateLabel": "24 Settembre 2026",
+      "image": "public/events/24-sept-2026.webp",
+      "title": ""
+    },
     {
       "date": "2026-05-21",
       "dateLabel": "21 Maggio 2026",
