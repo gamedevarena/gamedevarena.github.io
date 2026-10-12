@@ -8,6 +8,11 @@ This is a static html, css and JavaScript landing page for the Game Dev Arena pr
 
 This document defines coding standards, best practices, and a utility class reference for all HTML, CSS, and JavaScript code in this project. Follow these guidelines to ensure code quality, maintainability, and consistency.
 
+**Scope note:** the utility classes below (`design.css`) power `socials.html` and
+`upcoming-event.html`. `index.html` (the home SPA) is a separate, self-contained system:
+`src/css/site.css` + `src/js/site.js`, content from `data/site.json`. Don't mix the two — adding
+`design.css` utility classes to `index.html`, or `site.css` classes to the other pages, will not work.
+
 # Coding Standards and Best Practices
 
 ## HTML
@@ -19,7 +24,7 @@ This document defines coding standards, best practices, and a utility class refe
 - Use descriptive, lowercase, hyphen-separated class names.
 - Keep markup clean and readable; indent consistently.
 - Use `<button>` for actions, `<a>` for navigation.
-- Use custom elements (Web Components) for reusable UI blocks.
+- Use custom elements (Web Components) for reusable UI blocks — `socials.html`/`upcoming-event.html` only. `index.html`'s `site.js` intentionally skips a component runtime (see scope note above); don't add custom elements there.
 
 ## CSS
 
