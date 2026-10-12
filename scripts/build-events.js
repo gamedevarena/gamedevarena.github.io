@@ -104,6 +104,12 @@ if (upcoming.length > 1) {
 upcoming.sort((a, b) => String(a.date).localeCompare(String(b.date)));
 const prossimo = upcoming[0] || null;
 
+// eb_url arriva dal Google Sheet via n8n e finisce in href e in un redirect
+// (upcoming-event.html): solo link Eventbrite https, altrimenti il deploy si ferma.
+if (prossimo && prossimo.eb_url && !/^https:\/\/(www\.)?eventbrite\.[a-z.]+\//i.test(prossimo.eb_url)) {
+  fail(`eb_url non valido (atteso https://www.eventbrite.*/...): ${JSON.stringify(prossimo.eb_url)}`);
+}
+
 const passati = nuovi
   .filter((e) => String(e.status || '').toLowerCase() !== 'upcoming')
   .concat(legacy.events.filter((e) => e && (e.image || e.id)))

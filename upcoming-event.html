@@ -55,6 +55,11 @@
 
         const data = await response.json();
 
+        // Same check as scripts/build-events.js: only ever redirect to Eventbrite.
+        if (!/^https:\/\/(www\.)?eventbrite\.[a-z.]+\//i.test(data.latestEventUrl || '')) {
+          throw new Error('URL evento non valido');
+        }
+
         // Update status message
         document.getElementById('status-message').textContent = 'Evento trovato! Reindirizzamento a Eventbrite...';
 

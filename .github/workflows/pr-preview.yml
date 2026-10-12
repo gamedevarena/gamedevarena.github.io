@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Setup Node
         if: github.event.action != 'closed'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '20'
       # Same build step as production (static.yml), so a preview shows the
@@ -30,8 +30,14 @@ jobs:
       - name: Build eventi
         if: github.event.action != 'closed'
         run: node scripts/build-events.js
+      # Publish only what the site serves: build inputs, dev server, docs and
+      # the flyer tool stay in the repo. server/livereload.js stays (pages
+      # reference it, inert outside localhost).
+      - name: Strip non-site files
+        if: github.event.action != 'closed'
+        run: rm -rf scripts server/server.js package.json package-lock.json README.md AUTOMAZIONE.md events.json events-legacy.json tools
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+        uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 # v1
         with:
           source-dir: .
           preview-branch: gh-pages

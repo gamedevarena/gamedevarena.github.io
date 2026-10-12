@@ -14,23 +14,6 @@ const PORT = process.env.PORT || 6969;
 // Serve static files from the parent directory of the server folder
 app.use(express.static(path.join(__dirname, ".."), { extensions: ["html"] }));
 
-// Live reload script injection
-app.use((req, res, next) => {
-  if (req.url.endsWith(".html")) {
-    let filePath = path.join(__dirname, "..", req.url);
-    res.sendFile(filePath, {}, (err) => {
-      if (!err) {
-        // No error, inject script
-        // (Handled on client side)
-      } else {
-        next();
-      }
-    });
-  } else {
-    next();
-  }
-});
-
 // WebSocket for reload
 wss.on("connection", (ws) => {
   // ...existing code...
@@ -47,6 +30,7 @@ chokidar
     });
   });
 
-server.listen(PORT, () => {
+// Localhost only: the dev server serves the whole repo.
+server.listen(PORT, "127.0.0.1", () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
