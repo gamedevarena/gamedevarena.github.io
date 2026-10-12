@@ -5,10 +5,12 @@
  * GDA — build eventi
  *
  * Legge events.json (scritto da n8n) + events-legacy.json (statico, scritto a mano)
- * e riscrive tre cose:
- *   1. il blocco hero di index.html      -> link Eventbrite + locandina desktop/mobile
- *   2. la griglia "Eventi Passati"       -> una card per evento concluso
- *   3. eventbrite-url.json               -> consumato da upcoming-event.html
+ * e riscrive due cose dentro data/site.json (il feed che alimenta index.html):
+ *   1. "events"  -> archivio eventi passati
+ *   2. "upcoming" -> prossimo evento, SOLO se c'e' un evento con status "upcoming" e eb_url.
+ *                    Se non c'e', "upcoming" resta quello gia' su disco (puo' essere
+ *                    un evento annunciato a mano, in attesa del biglietto Eventbrite).
+ * Riscrive anche eventbrite-url.json, consumato da upcoming-event.html.
  *
  * Idempotente: rilanciarlo sullo stesso input riproduce lo stesso output.
  * Nessuna dipendenza esterna: solo moduli nativi di Node.
@@ -24,29 +26,22 @@ const ROOT = path.resolve(__dirname, '..');
 const F = {
   events: path.join(ROOT, 'events.json'),
   legacy: path.join(ROOT, 'events-legacy.json'),
-  index: path.join(ROOT, 'index.html'),
+  site: path.join(ROOT, 'data', 'site.json'),
   ebUrl: path.join(ROOT, 'eventbrite-url.json'),
 };
 
 const CHECK = process.argv.includes('--check');
 
-const MARK = {
-  hero: ['<!-- GDA:HERO:START -->', '<!-- GDA:HERO:END -->'],
-  past: ['<!-- GDA:PAST:START -->', '<!-- GDA:PAST:END -->'],
-};
+// Ora di default per gli eventi pubblicati da n8n: events.json porta solo la
+// data (AAAA-MM-GG), non l'orario. Le serate GDA sono sempre alle 19:00.
+const ORA_DEFAULT = '19:00:00';
+const FUSO_DEFAULT = '+02:00';
 
 const MESI = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
   'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 
 const log = (...a) => console.log('[build-events]', ...a);
 const fail = (msg) => { console.error('[build-events] ERRORE:', msg); process.exit(1); };
-
-/** Escape per attributi HTML: i titoli arrivano dal foglio e possono contenere " o &. */
-function esc(s) {
-  return String(s == null ? '' : s)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
 
 /** "2026-03-12" -> "12 Marzo 2026". Ritorna '' se la data non e' valida. */
 function dataEstesa(iso) {
@@ -56,15 +51,6 @@ function dataEstesa(iso) {
   const mese = MESI[Number(mo) - 1];
   if (!mese) return '';
   return `${Number(d)} ${mese} ${y}`;
-}
-
-/** "Evento del 12 Marzo 2026" / "Evento dell'11 Dicembre 2025" (8 e 11 vogliono l'elisione). */
-function altText(iso) {
-  const esteso = dataEstesa(iso);
-  if (!esteso) return 'Evento Game Dev Arena';
-  const giorno = Number(iso.slice(8, 10));
-  const art = (giorno === 8 || giorno === 11) ? "dell'" : 'del ';
-  return `Evento ${art}${esteso}`;
 }
 
 function leggiJson(file, obbligatorio) {
@@ -96,20 +82,18 @@ function imgPath(ev, nome) {
   return `public/events/${ev.id}/${nome}.jpg`;
 }
 
-function rimpiazzaBlocco(html, [start, end], contenuto, nome) {
-  const i = html.indexOf(start);
-  const j = html.indexOf(end);
-  if (i === -1 || j === -1) {
-    fail(`marker ${nome} non trovati in index.html. Attesi:\n  ${start}\n  ${end}`);
-  }
-  if (j < i) fail(`marker ${nome} invertiti in index.html`);
-  return html.slice(0, i + start.length) + contenuto + html.slice(j);
-}
-
 // ── raccolta dati ────────────────────────────────────────────────────────────
 
 const evJson = leggiJson(F.events, false);
 const legacy = leggiJson(F.legacy, false);
+
+if (!fs.existsSync(F.site)) fail(`file mancante: ${path.relative(ROOT, F.site)}`);
+let site;
+try {
+  site = JSON.parse(fs.readFileSync(F.site, 'utf8'));
+} catch (e) {
+  fail(`${path.relative(ROOT, F.site)} non e' JSON valido: ${e.message}`);
+}
 
 const nuovi = evJson.events.filter((e) => e && (e.id || e.image));
 const upcoming = nuovi.filter((e) => String(e.status || '').toLowerCase() === 'upcoming');
@@ -130,61 +114,37 @@ const passati = nuovi
   })
   .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
-// ── generazione blocchi ──────────────────────────────────────────────────────
+// ── data/site.json ──────────────────────────────────────────────────────────
 
-function bloccoHero(ev) {
-  const desktop = imgPath(ev, 'hero');
-  const mobile = imgPath(ev, 'hero-mobile');
-  const label = ev.title ? `Vai a "${ev.title}" su Eventbrite` : "Vai all'evento su Eventbrite";
-  return `
-    <a href="${esc(ev.eb_url)}" target="_blank" aria-label="${esc(label)}" class="w-full flex justify-center">
-      <picture class="w-full">
-      <source
-        media="(min-width: 768px)"
-        srcset="${esc(desktop)}"
-      />
-      <img
-        src="${esc(mobile)}"
-        alt="${esc(ev.title || 'Prossimo evento Game Dev Arena')}"
-        class="w-full h-auto"
-        style="object-fit: contain; max-width: 100%; height: auto;"
-      />
-    </picture>
-    </a>
-    `;
-}
+const sitePrima = JSON.stringify(site);
 
-function bloccoPassati(lista) {
-  if (!lista.length) return '\n      ';
-  const cards = lista.map((ev) => {
-    const src = imgPath(ev, 'hero');
-    return `        <div class="event-image-card radius-lg overflow-hidden">
-          <img src="${esc(src)}"
-               alt="${esc(ev.title ? ev.title : altText(ev.date))}"
-               class="w-full h-auto"
-               style="object-fit: cover;" />
-        </div>`;
-  });
-  return `\n${cards.join('\n')}\n      `;
-}
-
-// ── scrittura ────────────────────────────────────────────────────────────────
-
-let html = fs.readFileSync(F.index, 'utf8');
-const htmlPrima = html;
+site.events = passati.map((ev) => ({
+  date: ev.date,
+  dateLabel: dataEstesa(ev.date),
+  image: imgPath(ev, 'hero'),
+  title: ev.title || '',
+}));
 
 if (prossimo && prossimo.eb_url) {
-  html = rimpiazzaBlocco(html, MARK.hero, bloccoHero(prossimo), 'HERO');
-  log(`hero: ${prossimo.id} — ${prossimo.title || '(senza titolo)'}`);
+  const ora = prossimo.time || ORA_DEFAULT;
+  site.upcoming = Object.assign({}, site.upcoming, {
+    date: `${prossimo.date}T${ora}${FUSO_DEFAULT}`,
+    dateLabel: dataEstesa(prossimo.date),
+    title: prossimo.title || (site.upcoming && site.upcoming.title) || '',
+    speaker: prossimo.speaker || (site.upcoming && site.upcoming.speaker) || '',
+    location: prossimo.location || (site.upcoming && site.upcoming.location) || '',
+    url: prossimo.eb_url,
+  });
+  log(`upcoming: ${prossimo.id || prossimo.date} — ${prossimo.title || '(senza titolo)'}`);
 } else {
-  // Nessun evento futuro: l'hero resta quello che c'e' gia'. Non lo svuotiamo,
-  // altrimenti la home mostrerebbe un buco fino al prossimo talk.
-  if (html.indexOf(MARK.hero[0]) === -1) fail('marker HERO non trovati in index.html');
-  log('nessun evento upcoming: hero lasciato invariato');
+  // Nessun evento futuro con biglietto pubblicato: "upcoming" resta quello gia'
+  // su disco (puo' essere un evento annunciato a mano, senza link Eventbrite).
+  log('nessun evento upcoming con eb_url: campo "upcoming" lasciato invariato');
 }
 
-html = rimpiazzaBlocco(html, MARK.past, bloccoPassati(passati), 'PAST');
 log(`eventi passati: ${passati.length}`);
+
+const siteDiverso = JSON.stringify(site) !== sitePrima;
 
 const ebJson = prossimo && prossimo.eb_url
   ? JSON.stringify({
@@ -195,16 +155,16 @@ const ebJson = prossimo && prossimo.eb_url
   : null;
 
 if (CHECK) {
-  const diffHtml = html !== htmlPrima;
-  log(diffHtml ? 'index.html: DIFFERENTE da quello su disco' : 'index.html: allineato');
-  process.exit(diffHtml ? 1 : 0);
+  log(siteDiverso ? 'data/site.json: DIFFERENTE da quello su disco' : 'data/site.json: allineato');
+  process.exit(siteDiverso ? 1 : 0);
 }
 
-if (html !== htmlPrima) {
-  fs.writeFileSync(F.index, html, 'utf8');
-  log('index.html aggiornato');
+if (siteDiverso) {
+  site.generated_at = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+  fs.writeFileSync(F.site, JSON.stringify(site, null, 2) + '\n', 'utf8');
+  log('data/site.json aggiornato');
 } else {
-  log('index.html gia\' allineato, non riscritto');
+  log('data/site.json gia\' allineato, non riscritto');
 }
 
 if (ebJson !== null) {

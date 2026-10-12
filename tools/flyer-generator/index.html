@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>GDA — Generatore locandine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../../public/fonts/fonts.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="../../server/livereload.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+  <h1 class="page-title">GDA — Generatore locandine (bozza interna, non parte del sito pubblico)</h1>
+
+  <div class="layout">
+    <form id="flyer-form">
+      <label>Event ID (per il nome cartella)
+        <input type="text" name="eventId" placeholder="gda-012" value="gda-012" />
+      </label>
+      <label>Titolo
+        <input type="text" name="title" placeholder="Generazione Procedurale" value="Generazione Procedurale" />
+      </label>
+      <label>Sottotitolo <small>(// = a capo, ==parola== = oro)</small>
+        <textarea name="subtitle" placeholder="Creare ==mondi infiniti== con ==risorse finite==">Creare ==mondi infiniti== con ==risorse finite==</textarea>
+      </label>
+      <label>Data
+        <input type="date" name="date" value="2026-11-13" />
+      </label>
+      <label>Location
+        <input type="text" name="location" placeholder="311 Verona" value="311 Verona" />
+      </label>
+      <label>Relatore
+        <input type="text" name="speaker" placeholder="Nome Cognome" value="Valerio Ceraudio" />
+      </label>
+      <label>Ruolo relatore <small>(// = a capo, ==parola== = oro)</small>
+        <textarea name="speakerRole" placeholder="Tech Guy @ ==SkunkyFactory==//Technical Manager @ ==Supermassive Games==">Tech Guy @ ==SkunkyFactory==//Technical Manager @ ==Supermassive Games==</textarea>
+      </label>
+      <label>Foto (hero web + locandina)
+        <input type="file" id="bgImage" accept="image/*" />
+      </label>
+      <label>Immagine a sinistra <small>(hero web + locandina)</small>
+        <input type="file" id="leftImage" accept="image/*" />
+      </label>
+      <label>QR registrazione <small>(solo locandina, evento — il QR Telegram resta fisso)</small>
+        <input type="file" id="regQrImage" accept="image/*" />
+      </label>
+      <label>Stagione / episodio <small>(solo locandina)</small>
+        <span style="display:flex; gap:0.5rem;">
+          <input type="number" name="season" placeholder="1" min="1" value="1" style="width:50%" />
+          <input type="number" name="episode" placeholder="3" min="1" value="3" style="width:50%" />
+        </span>
+      </label>
+      <label>Descrizione talk <small>(solo locandina)</small>
+        <textarea name="description" rows="9" placeholder="In 20 minuti introdurremo come...">In 20 minuti introdurremo come la generazione procedurale permetta a team piccoli di ampliare enormemente i contenuti di gioco, creando varietà e rigiocabilità senza budget enormi.</textarea>
+      </label>
+      <label>Indirizzo / dettagli venue <small>(solo locandina, // = a capo)</small>
+        <textarea name="venueDetails" placeholder="Via Lungadige Galtarossa 21, Verona//Parcheggio interno gratuito">Via Lungadige Galtarossa 21, Verona//Parcheggio interno gratuito</textarea>
+      </label>
+      <label>Programma <small>(solo locandina, // = a capo, ==parola== = oro)</small>
+        <textarea name="program" placeholder="18:00 Welcome buffet & musica.//==18:30 Talk Generazione Procedurale.==//20:00 Q&amp;A e networking in pizzeria.">18:00 Welcome buffet &amp; musica.//==18:30 Talk Generazione Procedurale.==//20:00 Q&amp;A e networking in pizzeria.</textarea>
+      </label>
+    </form>
+
+    <div class="previews">
+      <div class="preview">
+        <h2>Locandina (A4 print) — 3508×4960 · <span class="target-path"></span>locandina.jpg</h2>
+        <div class="frame" data-frame="locandina"></div>
+        <button type="button" data-export>Scarica locandina.jpg</button>
+      </div>
+      <div class="preview">
+        <h2>Hero desktop — 1956×1200 · <span class="target-path"></span>hero.png</h2>
+        <div class="frame" data-frame="hero"></div>
+        <button type="button" data-export>Scarica hero.png</button>
+      </div>
+      <div class="preview">
+        <h2>Hero mobile — 1100×1528 · <span class="target-path"></span>hero-mobile.png</h2>
+        <div class="frame" data-frame="hero-mobile"></div>
+        <button type="button" data-export>Scarica hero-mobile.png</button>
+      </div>
+      <div class="preview">
+        <h2>Post Instagram — 1080×1350 · <span class="target-path"></span>post.jpg</h2>
+        <div class="frame" data-frame="post"></div>
+        <button type="button" data-export>Scarica post.jpg</button>
+      </div>
+      <div class="preview">
+        <h2>Story Instagram — 1080×1920 · <span class="target-path"></span>story.jpg</h2>
+        <div class="frame" data-frame="story"></div>
+        <button type="button" data-export>Scarica story.jpg</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" id="export-all">Scarica tutti i formati</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

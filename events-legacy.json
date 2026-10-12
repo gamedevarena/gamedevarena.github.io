@@ -1,7 +1,11 @@
 {
   "_comment": "Eventi antecedenti all'automazione. File statico, scritto a mano una volta sola. n8n NON tocca mai questo file. Le immagini stanno flat in public/events/, non nella struttura a cartelle per event_id.",
   "events": [
-      {
+    {
+      "date": "2026-09-24",
+      "image": "public/events/24-sept-2026.webp"
+    },
+    {
       "date": "2026-05-21",
       "image": "public/events/21-maggio-2026.webp"
     },

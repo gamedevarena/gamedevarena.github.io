@@ -1,0 +1,47 @@
+/* GDA shared brand tokens — single source of truth for colors reused across
+   site.css, design.css (legacy pages), and tools/flyer-generator. Edit a
+   brand color here and it propagates everywhere; do not hardcode these hex
+   values anywhere else. Page-specific tokens (spacing scale, legacy font
+   stacks, print-only panel colors) stay local to their own stylesheet. */
+
+:root {
+  --gda-color-accent: #FDC101; /* brand yellow */
+  --gda-color-ink: #1F2428;    /* 2026 brand dark bg */
+  --gda-color-black: #1d1c1c;  /* legacy near-black */
+  --gda-color-paper: #F5F5F5;  /* off-white */
+
+  /* Font-size scale (design.css's existing scale, promoted here) */
+  --gda-font-size-xs: 0.75rem;   /* 12px */
+  --gda-font-size-sm: 0.875rem;  /* 14px */
+  --gda-font-size-base: 1.15rem; /* 16px */
+  --gda-font-size-lg: 1.125rem;  /* 18px */
+  --gda-font-size-xl: 1.25rem;   /* 20px */
+  --gda-font-size-2xl: 1.5rem;   /* 24px */
+  --gda-font-size-3xl: 1.875rem; /* 30px */
+  --gda-font-size-4xl: 2.25rem;  /* 36px */
+  --gda-font-size-5xl: 3rem;     /* 48px */
+
+  /* Spacing scale */
+  --gda-space-xs: 0.25rem;  /* 4px */
+  --gda-space-sm: 0.5rem;   /* 8px */
+  --gda-space-md: 1rem;     /* 16px */
+  --gda-space-lg: 1.5rem;   /* 24px */
+  --gda-space-xl: 3rem;     /* 32px */
+  --gda-space-2xl: 4rem;    /* 48px */
+  --gda-space-3xl: 6rem;    /* 64px */
+  --gda-space-4xl: 8rem;    /* 96px */
+
+  /* Border radius scale */
+  --gda-radius-sm: 0.15rem;  /* 4px */
+  --gda-radius-md: 0.3rem;   /* 8px */
+  --gda-radius-lg: 0.5rem;   /* 12px */
+  --gda-radius-xl: 1rem;     /* 16px */
+  --gda-radius-2xl: 1.5rem;  /* 24px */
+  --gda-radius-full: 9999px;
+
+  /* Transitions */
+  --gda-transition-fast: 150ms ease-in-out;
+  --gda-transition-base: 200ms ease-in-out;
+  --gda-transition-slow: 300ms ease-in-out;
+  --gda-transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
