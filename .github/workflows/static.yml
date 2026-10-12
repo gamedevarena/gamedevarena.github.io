@@ -32,11 +32,11 @@ jobs:
       # il sito online resta quello precedente.
       - name: Build eventi
         run: node scripts/build-events.js
-      # Publish only what the site serves: build inputs, dev server, docs and
-      # the flyer tool stay in the repo. server/livereload.js stays (pages
+      # Publish only what the site serves: build inputs, dev server and docs
+      # stay in the repo. server/livereload.js stays (pages
       # reference it, inert outside localhost).
       - name: Strip non-site files
-        run: rm -rf scripts server/server.js package.json package-lock.json README.md AUTOMAZIONE.md events.json events-legacy.json tools
+        run: rm -rf scripts server/server.js package.json package-lock.json README.md AUTOMAZIONE.md events.json events-legacy.json
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4
         with:
