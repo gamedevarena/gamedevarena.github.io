@@ -1,6 +1,6 @@
 {
   "_comment": "Single content feed for the GDA site. Everything on the site is rendered from this file, so an external automation (n8n, GitHub Action, script) only needs to rewrite this JSON — no markup changes.",
-  "generated_at": "2026-10-12T12:23:18Z",
+  "generated_at": "2026-11-01T09:01:48Z",
   "community": {
     "name": "Game Dev Arena",
     "logo": "public/logo.webp",
@@ -11,17 +11,23 @@
     ]
   },
   "upcoming": {
-    "date": "2026-10-22T19:00:00+02:00",
-    "dateLabel": "22 Ottobre 2026",
-    "title": "Pillole di game design: Le idee sono inutili e niente è divertente",
-    "speaker": "Andre Bellaro",
+    "date": "2026-11-19T19:00:00+01:00",
+    "dateLabel": "19 Novembre 2026",
+    "title": "Branching Dragons - The GDD is a lie: storie che nascono dalle scelte del giocatore",
+    "speaker": "Piero Feltrinelli",
     "location": "311 Verona",
-    "url": "https://www.eventbrite.it/e/biglietti-pillole-di-game-design-le-idee-sono-inutili-e-niente-e-divertente-2003120852392",
+    "url": "https://www.eventbrite.it/e/biglietti-branching-dragons-the-gdd-is-a-lie-basta-enciclopedie-di-lore-come-progettare-storie-che-nascono-2004181075548",
     "ticketLabel": "Biglietti in arrivo",
-    "poster": "public/events/22-oct-2026.webp",
-    "posterMobile": "public/events/22-oct-2026-mobile.webp"
+    "poster": "public/events/19-nov-2026.webp",
+    "posterMobile": "public/events/19-nov-2026-mobile.webp"
   },
   "events": [
+    {
+      "date": "2026-10-22",
+      "dateLabel": "22 Ottobre 2026",
+      "image": "public/events/22-oct-2026.webp",
+      "title": ""
+    },
     {
       "date": "2026-09-24",
       "dateLabel": "24 Settembre 2026",
