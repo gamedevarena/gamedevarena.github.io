@@ -1,6 +1,6 @@
 {
   "_comment": "Single content feed for the GDA site. Everything on the site is rendered from this file, so an external automation (n8n, GitHub Action, script) only needs to rewrite this JSON — no markup changes.",
-  "generated_at": "2026-11-02T11:37:14Z",
+  "generated_at": "2026-11-02T11:47:12Z",
   "community": {
     "name": "Game Dev Arena",
     "logo": "public/logo.webp",
@@ -13,7 +13,7 @@
   "upcoming": {
     "date": "2026-11-19T18:00+02:00",
     "dateLabel": "19 Novembre 2026",
-    "title": "Branching Dragons, The GDD is a lie: Basta enciclopedie di lore: come progettare storie che nascono dalle scelte del giocatore. Un talk sul game narrative design.",
+    "title": "Branching Dragons, The GDD is a lie",
     "speaker": "Piero Feltrinelli",
     "location": "311 Verona",
     "url": "https://www.eventbrite.it/e/biglietti-branching-dragons-the-gdd-is-a-lie-basta-enciclopedie-di-lore-come-progettare-storie-che-nascono-2004181075548",
